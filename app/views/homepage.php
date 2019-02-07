@@ -1,53 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+//Load header
 $this->load->view("header");
 ?>
     <body>
         <header class="clearfix">
-            <!-- Start  Logo & Naviagtion  -->
-            <div class="navbar navbar-default navbar-top">
-                <div class="container">
-                    <div class="navbar-header">
-                        <!-- Stat Toggle Nav Link For Mobiles -->
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                        <!-- End Toggle Nav Link For Mobiles -->
-                        <a class="navbar-brand" href="index.html">SGT Gestão e Tecnologia</a>
-                    </div>
-                    <div class="navbar-collapse collapse">
-                        
-                        <!-- Start Navigation List -->
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a class="active" href="index.html">Início</a>
-                            </li>
-                            <li>
-                                <a href="about.html">About Us</a>
-                            </li>
-                            <li>
-                                <a href="service.html">Service</a>
-                            </li>
-                            <li>
-                                <a href="portfolio.html">Portfolio</a>
-                            </li>
-                            <li>
-                                <a href="blog.html">Blog</a>
-                                <ul class="dropdown">
-                                    <li>
-                                        <a href="blog-item.html">Item Page</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="contact.html">Contact</a>
-                            </li>
-                        </ul>
-                        <!-- End Navigation List -->
-                    </div>
-                </div>
-            </div>
-            <!-- End Header Logo & Naviagtion -->
-            
+            <?php
+            //Load menu navigation layout
+            $this->load->view("navigation");
+            ?>
         </header>
         
         
@@ -79,7 +40,7 @@ $this->load->view("header");
             <div class="row">
                <div class="col-md-5">
                    <div class="about-img">
-                       <img src="<?=base_url("assets/images/corporate1.jpg");?>" class="img-responsive" alt="About images">
+                       <img src="<?=base_url("assets/landing/images/corporate1.jpg");?>" class="img-responsive" alt="About images">
                        <div class="head-text">
                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec iaculis metus vitae ligula elementum ut luctus lorem facilisis.</p>
                            <span>CEO, Themebean</span>
@@ -150,7 +111,7 @@ $this->load->view("header");
             <div class="row">
                 <div class="col-md-3 wow fadeInLeft" data-wow-duration="2s" data-wow-delay="300ms">
                     <div class="team-member">
-                        <img src="<?=base_url("assets/images/team/team-1.jpg");?>" class="img-responsive" alt="">
+                        <img src="<?=base_url("assets/landing/images/team/team-1.jpg");?>" class="img-responsive" alt="">
                         <div class="team-details">
                             <h4>John Doe</h4>
                             <p>Founder & Director</p>
@@ -166,7 +127,7 @@ $this->load->view("header");
                 </div><!-- /.col-md-3 -->
                 <div class="col-md-3 wow fadeInLeft" data-wow-duration="2s" data-wow-delay="600ms">
                     <div class="team-member">
-                        <img src="<?=base_url("assets/images/team/team-2.jpg");?>" class="img-responsive" alt="">
+                        <img src="<?=base_url("assets/landing/images/team/team-2.jpg");?>" class="img-responsive" alt="">
                         <div class="team-details">
                             <h4>John Doe</h4>
                             <p>Founder & Director</p>
@@ -182,7 +143,7 @@ $this->load->view("header");
                 </div><!-- /.col-md-3 -->
                 <div class="col-md-3 wow fadeInLeft" data-wow-duration="2s" data-wow-delay="900ms">
                     <div class="team-member">
-                        <img src="<?=base_url("assets/images/team/team-3.jpg");?>" class="img-responsive" alt="">
+                        <img src="<?=base_url("assets/landing/images/team/team-3.jpg");?>" class="img-responsive" alt="">
                         <div class="team-details">
                             <h4>John Doe</h4>
                             <p>Founder & Director</p>
@@ -198,7 +159,7 @@ $this->load->view("header");
                 </div><!-- /.col-md-3 -->
                 <div class="col-md-3 wow fadeInLeft" data-wow-duration="2s" data-wow-delay="1200ms">
                     <div class="team-member">
-                        <img src="<?=base_url("assets/images/team/team-4.jpg");?>" class="img-responsive" alt="">
+                        <img src="<?=base_url("assets/landing/images/team/team-4.jpg");?>" class="img-responsive" alt="">
                         <div class="team-details">
                             <h4>John Doe</h4>
                             <p>Founder & Director</p>
@@ -236,7 +197,7 @@ $this->load->view("header");
                         <ul id="portfolio-list">
                             <li class="wow fadeInLeft" data-wow-duration="2s" data-wow-delay="300ms">
                                 <div class="portfolio-item">
-                                    <img src="<?=base_url("assets/images/portfolio/img1.jpg");?>" class="img-responsive" alt="" />
+                                    <img src="<?=base_url("assets/landing/images/portfolio/img1.jpg");?>" class="img-responsive" alt="" />
                                     <div class="portfolio-caption">
                                         <h4>Portfolio Title</h4>
                                         <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium</p>
@@ -247,7 +208,7 @@ $this->load->view("header");
                             </li>
                             <li class="wow fadeInLeft" data-wow-duration="2s" data-wow-delay="600ms">
                                 <div class="portfolio-item">
-                                    <img src="<?=base_url("assets/images/portfolio/img2.jpg");?>" class="img-responsive" alt="" />
+                                    <img src="<?=base_url("assets/landing/images/portfolio/img2.jpg");?>" class="img-responsive" alt="" />
                                     <div class="portfolio-caption">
                                         <h4>Portfolio Title</h4>
                                         <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium</p>
@@ -258,7 +219,7 @@ $this->load->view("header");
                             </li>
                             <li class="wow fadeInLeft" data-wow-duration="2s" data-wow-delay="900ms">
                                 <div class="portfolio-item">
-                                    <img src="<?=base_url("assets/images/portfolio/img3.jpg");?>" class="img-responsive" alt="" />
+                                    <img src="<?=base_url("assets/landing/images/portfolio/img3.jpg");?>" class="img-responsive" alt="" />
                                     <div class="portfolio-caption">
                                         <h4>Portfolio Title</h4>
                                         <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium</p>
@@ -269,7 +230,7 @@ $this->load->view("header");
                             </li>
                             <li class="wow fadeInLeft" data-wow-duration="2s" data-wow-delay="1200ms">
                                 <div class="portfolio-item">
-                                    <img src="<?=base_url("assets/images/portfolio/img4.jpg");?>" class="img-responsive" alt="" />
+                                    <img src="<?=base_url("assets/landing/images/portfolio/img4.jpg");?>" class="img-responsive" alt="" />
                                     <div class="portfolio-caption">
                                         <h4>Portfolio Title</h4>
                                         <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium</p>
@@ -280,7 +241,7 @@ $this->load->view("header");
                             </li>
                             <li class="wow fadeInLeft" data-wow-duration="2s" data-wow-delay="1500ms">
                                 <div class="portfolio-item">
-                                    <img src="<?=base_url("assets/images/portfolio/img5.jpg");?>" class="img-responsive" alt="" />
+                                    <img src="<?=base_url("assets/landing/images/portfolio/img5.jpg");?>" class="img-responsive" alt="" />
                                     <div class="portfolio-caption">
                                         <h4>Portfolio Title</h4>
                                         <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium</p>
@@ -291,7 +252,7 @@ $this->load->view("header");
                             </li>
                             <li class="wow fadeInLeft" data-wow-duration="2s" data-wow-delay="1800ms">
                                 <div class="portfolio-item">
-                                    <img src="<?=base_url("assets/images/portfolio/img6.jpg");?>" class="img-responsive" alt="" />
+                                    <img src="<?=base_url("assets/landing/images/portfolio/img6.jpg");?>" class="img-responsive" alt="" />
                                     <div class="portfolio-caption">
                                         <h4>Portfolio Title</h4>
                                         <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium</p>
@@ -394,25 +355,25 @@ $this->load->view("header");
                         <div class="testimonial-wrapper">
                             <div class="testimonial-item">
                                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
-                                <img src="<?=base_url("assets/images/team/team-1.jpg");?>" alt="Testimonial images">
+                                <img src="<?=base_url("assets/landing/images/team/team-1.jpg");?>" alt="Testimonial images">
                                 <h5>John Doe</h5>
                                 <div class="desgnation">CEO, ThemeBean</div>
                             </div>
                             <div class="testimonial-item">
                                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                                <img src="<?=base_url("assets/images/team/team-2.jpg");?>" alt="Testimonial images">
+                                <img src="<?=base_url("assets/landing/images/team/team-2.jpg");?>" alt="Testimonial images">
                                 <h5>John Doe</h5>
                                 <div class="desgnation">CEO, ThemeBean</div>
                             </div>
                             <div class="testimonial-item">
                                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                                <img src="<?=base_url("assets/images/team/team-3.jpg");?>" alt="Testimonial images">
+                                <img src="<?=base_url("assets/landing/images/team/team-3.jpg");?>" alt="Testimonial images">
                                 <h5>John Doe</h5>
                                 <div class="desgnation">CEO, ThemeBean</div>
                             </div>
                             <div class="testimonial-item">
                                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                                <img src="<?=base_url("assets/images/team/team-4.jpg");?>" alt="Testimonial images">
+                                <img src="<?=base_url("assets/landing/images/team/team-4.jpg");?>" alt="Testimonial images">
                                 <h5>John Doe</h5>
                                 <div class="desgnation">CEO, ThemeBean</div>
                             </div>
@@ -431,11 +392,11 @@ $this->load->view("header");
                     <div class="col-md-12">
                         <div class="client-box">
                             <ul class="client-list">
-                                <li><a href="#"><img src="<?=base_url("assets/images/clients/client1.png");?>" class="img-responsive" alt="Clients Logo"></a></li>
-                                <li><a href="#"><img src="<?=base_url("assets/images/clients/client2.png");?>" class="img-responsive" alt="Clients Logo"></a></li>
-                                <li><a href="#"><img src="<?=base_url("assets/images/clients/client3.png");?>" class="img-responsive" alt="Clients Logo"></a></li>
-                                <li><a href="#"><img src="<?=base_url("assets/images/clients/client4.png");?>" class="img-responsive" alt="Clients Logo"></a></li>
-                                <li><a href="#"><img src="<?=base_url("assets/images/clients/client5.png");?>" class="img-responsive" alt="Clients Logo"></a></li>
+                                <li><a href="#"><img src="<?=base_url("assets/landing/images/clients/client1.png");?>" class="img-responsive" alt="Clients Logo"></a></li>
+                                <li><a href="#"><img src="<?=base_url("assets/landing/images/clients/client2.png");?>" class="img-responsive" alt="Clients Logo"></a></li>
+                                <li><a href="#"><img src="<?=base_url("assets/landing/images/clients/client3.png");?>" class="img-responsive" alt="Clients Logo"></a></li>
+                                <li><a href="#"><img src="<?=base_url("assets/landing/images/clients/client4.png");?>" class="img-responsive" alt="Clients Logo"></a></li>
+                                <li><a href="#"><img src="<?=base_url("assets/landing/images/clients/client5.png");?>" class="img-responsive" alt="Clients Logo"></a></li>
                             </ul>
                         </div>
                     </div>
@@ -444,5 +405,6 @@ $this->load->view("header");
         </div>
         <!-- End Client Section -->
 <?php
+//Load footer layout
 $this->load->view("footer");
 ?>

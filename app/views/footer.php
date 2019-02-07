@@ -68,43 +68,43 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="flickr-widget">
                             <ul class="flickr-list">
                                 <li>
-                                    <a href="<?=base_url("assets/images/portfolio/img1.jpg");?>" data-lightbox="picture-1">
-                                        <img src="<?=base_url("assets/images/portfolio/img1.jpg");?>" alt="" class="img-responsive">
+                                    <a href="<?=base_url("assets/landing/images/portfolio/img1.jpg");?>" data-lightbox="picture-1">
+                                        <img src="<?=base_url("assets/landing/images/portfolio/img1.jpg");?>" alt="" class="img-responsive">
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?=base_url("assets/images/portfolio/img2.jpg");?>" data-lightbox="picture-2">
-                                        <img src="<?=base_url("assets/images/portfolio/img2.jpg");?>" alt="" class="img-responsive">
+                                    <a href="<?=base_url("assets/landing/images/portfolio/img2.jpg");?>" data-lightbox="picture-2">
+                                        <img src="<?=base_url("assets/landing/images/portfolio/img2.jpg");?>" alt="" class="img-responsive">
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?=base_url("assets/images/portfolio/img3.jpg");?>" data-lightbox="picture-3">
-                                        <img src="<?=base_url("assets/images/portfolio/img3.jpg");?>" alt="" class="img-responsive">
+                                    <a href="<?=base_url("assets/landing/images/portfolio/img3.jpg");?>" data-lightbox="picture-3">
+                                        <img src="<?=base_url("assets/landing/images/portfolio/img3.jpg");?>" alt="" class="img-responsive">
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?=base_url("assets/images/portfolio/img4.jpg");?>" data-lightbox="picture-4">
-                                        <img src="<?=base_url("assets/images/portfolio/img4.jpg");?>" alt="" class="img-responsive">
+                                    <a href="<?=base_url("assets/landing/images/portfolio/img4.jpg");?>" data-lightbox="picture-4">
+                                        <img src="<?=base_url("assets/landing/images/portfolio/img4.jpg");?>" alt="" class="img-responsive">
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?=base_url("assets/images/portfolio/img5.jpg");?>" data-lightbox="picture-5">
-                                        <img src="<?=base_url("assets/images/portfolio/img5.jpg");?>" alt="" class="img-responsive">
+                                    <a href="<?=base_url("assets/landing/images/portfolio/img5.jpg");?>" data-lightbox="picture-5">
+                                        <img src="<?=base_url("assets/landing/images/portfolio/img5.jpg");?>" alt="" class="img-responsive">
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?=base_url("assets/images/portfolio/img6.jpg");?>" data-lightbox="picture-6">
-                                        <img src="<?=base_url("assets/images/portfolio/img6.jpg");?>" alt="" class="img-responsive">
+                                    <a href="<?=base_url("assets/landing/images/portfolio/img6.jpg");?>" data-lightbox="picture-6">
+                                        <img src="<?=base_url("assets/landing/images/portfolio/img6.jpg");?>" alt="" class="img-responsive">
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?=base_url("assets/images/portfolio/img1.jpg");?>" data-lightbox="picture-7">
-                                        <img src="<?=base_url("assets/images/portfolio/img1.jpg");?>" alt="" class="img-responsive">
+                                    <a href="<?=base_url("assets/landing/images/portfolio/img1.jpg");?>" data-lightbox="picture-7">
+                                        <img src="<?=base_url("assets/landing/images/portfolio/img1.jpg");?>" alt="" class="img-responsive">
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?=base_url("assets/images/portfolio/img2.jpg");?>" data-lightbox="picture-8">
-                                        <img src="<?=base_url("assets/images/portfolio/img2.jpg");?>" alt="" class="img-responsive">
+                                    <a href="<?=base_url("assets/landing/images/portfolio/img2.jpg");?>" data-lightbox="picture-8">
+                                        <img src="<?=base_url("assets/landing/images/portfolio/img2.jpg");?>" alt="" class="img-responsive">
                                     </a>
                                 </li>
                             </ul>
@@ -144,19 +144,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         
         
        <!-- Sulfur JS File -->
-        <script src="<?=base_url("assets/js/jquery-2.1.3.min.js");?>"></script>
-        <script src="<?=base_url("assets/js/jquery-migrate-1.2.1.min.js");?>"></script>
-        <script src="<?=base_url("assets/bootstrap/js/bootstrap.min.js");?>"></script>
-        <script src="<?=base_url("assets/js/owl.carousel.min.js");?>"></script>
-        <script src="<?=base_url("assets/js/jquery.appear.js");?>"></script>
-        <script src="<?=base_url("assets/js/jquery.fitvids.js");?>"></script>
-        <script src="<?=base_url("assets/js/jquery.nicescroll.min.js");?>"></script>
-        <script src="<?=base_url("assets/js/lightbox.min.js");?>"></script>
-        <script src="<?=base_url("assets/js/count-to.js");?>"></script>
-        <script src="<?=base_url("assets/js/styleswitcher.js");?>"></script>
+        <script src="<?=base_url("assets/landing/js/jquery-2.1.3.min.js");?>"></script>
+        <script src="<?=base_url("assets/landing/js/jquery-migrate-1.2.1.min.js");?>"></script>
+        <script src="<?=base_url("assets/landing/bootstrap/js/bootstrap.min.js");?>"></script>
+        <script src="<?=base_url("assets/landing/js/owl.carousel.min.js");?>"></script>
+        <script src="<?=base_url("assets/landing/js/jquery.appear.js");?>"></script>
+        <script src="<?=base_url("assets/landing/js/jquery.fitvids.js");?>"></script>
+        <script src="<?=base_url("assets/landing/js/jquery.nicescroll.min.js");?>"></script>
+        <script src="<?=base_url("assets/landing/js/lightbox.min.js");?>"></script>
+        <script src="<?=base_url("assets/landing/js/count-to.js");?>"></script>
+        <script src="<?=base_url("assets/landing/js/styleswitcher.js");?>"></script>
         
-        <script src="<?=base_url("assets/js/map.js");?>"></script>
+        <script src="<?=base_url("assets/landing/js/map.js");?>"></script>
         <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-        <script src="<?=base_url("assets/js/script.js");?>"></script>     
+        <script src="<?=base_url("assets/landing/js/script.js");?>"></script>     
     </body>
 </html>
