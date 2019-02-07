@@ -17,20 +17,24 @@ $this->load->view("admin_header");
         <p class="login-box-msg">Insira seus dados para acessar a página administrativa</p>
         <?=form_open("admin/login");?>
         <div class="form-group has-feedback">
+            <?=form_label("E-mail:", "email");?>
             <?=form_input(
                 array(
+                    "id" => "email",
                     "type" => "email",
                     "class" => "form-control",
-                    "placeholder" => "Email"
+                    "placeholder" => "E-mail"
                 )
             );?>
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
+            <?=form_label("Senha:", "password");?>
             <?=form_password(
                 array(
+                    "id" => "password",
                     "class" => "form-control",
-                    "placeholder" => "Password"
+                    "placeholder" => "Senha"
                 )
             );?>
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>

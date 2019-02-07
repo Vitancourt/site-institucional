@@ -41,3 +41,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="<?=base_url("assets/admin/dist/js/pages/dashboard.js");?>"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?=base_url("assets/admin/dist/js/demo.js");?>"></script>
+<!-- DataTables -->
+<script src="<?=base_url("assets/admin/bower_components/datatables.net/js/jquery.dataTables.min.js");?>"></script>
+<script src="<?=base_url("assets/admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js");?>"></script>

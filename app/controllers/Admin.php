@@ -38,6 +38,11 @@ class Admin extends CI_Controller {
 			//$this->session->sess_destroy();
 			//redirect('admin/login', 'location');
 		}
+		$this->session->set_userdata(
+			array(
+				"name" => "Maikel"
+			)
+		);
 		$this->load->view('admin');
 	}
 
@@ -47,6 +52,10 @@ class Admin extends CI_Controller {
 			exit();
 		}
 		$this->load->view('admin_login');
+	}
+
+	public function user() {
+		$this->load->view('admin_user');
 	}
 
 }
