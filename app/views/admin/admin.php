@@ -4,13 +4,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!DOCTYPE html>
 <html>
 <?php
-$this->load->view("admin_header");
+$this->load->view("admin/admin_header");
 ?>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
   <?php
-  $this->load->view("admin_menu");
-  $this->load->view("admin_menu_header");
+  $this->load->view("admin/admin_menu");
+  $this->load->view("admin/admin_menu_header");
   ?>
   
 
@@ -738,7 +738,7 @@ $this->load->view("admin_header");
 </div>
 <!-- ./wrapper -->
 <?php
-$this->load->view("admin_footer");
+$this->load->view("admin/admin_footer");
 ?>
 </body>
 </html>

@@ -5,7 +5,7 @@ $this->load->helper("form")
 <!DOCTYPE html>
 <html>
 <?php
-$this->load->view("admin_header");
+$this->load->view("admin/admin_header");
 ?>
 <body class="hold-transition login-page">
 <div class="login-box">
@@ -23,7 +23,8 @@ $this->load->view("admin_header");
                     "id" => "email",
                     "type" => "email",
                     "class" => "form-control",
-                    "placeholder" => "E-mail"
+                    "placeholder" => "E-mail",
+                    "autocomplete" => "off"
                 )
             );?>
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -70,7 +71,7 @@ $this->load->view("admin_header");
 </div>
 <!-- /.login-box -->
 <?php
-$this->load->view("admin_footer");
+$this->load->view("admin/admin_footer");
 ?>
 <script>
   $(function () {

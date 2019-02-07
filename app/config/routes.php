@@ -56,4 +56,13 @@ $route['translate_uri_dashes'] = FALSE;
 /*
  * Admin controllers
  */
-$route['admin'] = 'admin';
+$route['admin'] = 'admin_controller';
+
+/*
+ * Admin User controllers
+ */
+$route['admin/user'] = 'user_controller';
+$route['admin/user/post'] = 'user_controller/post';
+//$route['admin/user'] = 'user/get';
+//$route['admin/user'] = 'user/put';
+//$route['admin/user'] = 'user/delete';
