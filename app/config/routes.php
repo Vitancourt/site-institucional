@@ -60,6 +60,12 @@ $route['admin'] = 'admin_controller';
 $route['admin/login'] = 'admin_controller/login';
 
 /*
+ * Admin config routes
+ */
+$route['admin/config'] = 'config_controller';
+
+
+/*
  * Admin User routes
  */
 $route['admin/user'] = 'user_controller';

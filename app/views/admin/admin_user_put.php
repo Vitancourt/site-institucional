@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <?php
 $this->load->view("admin/admin_header");
 ?>
