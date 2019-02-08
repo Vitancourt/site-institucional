@@ -71,3 +71,4 @@ $route['admin/user/delete'] = 'user_controller/index';
 /*
  * Admin Company routes
  */
+$route['admin/company'] = 'company_controller';
