@@ -77,7 +77,7 @@ $this->load->view("admin/admin_header");
                                 </td>
                                 <td>
                                     <img src="<?=base_url("repository/banner_homepage/".$banner->image);?>" alt="<?=$banner->text;?>"
-                                    style="max-width:300px; max-height:240px">
+                                    style="max-width:300px; max-height:240px;">
                                 </td>
                                 <td>
                                     <?=$banner->order;?>
