@@ -84,3 +84,8 @@ $route['admin/company'] = 'company_controller';
  * Admin banner routes
  */
 $route['admin/banner'] = 'banner_controller';
+$route['admin/banner/post'] = 'banner_controller/post';
+$route['admin/banner/put'] = 'banner_controller/put';
+$route['admin/banner/put/:num'] = 'banner_controller/put';
+$route['admin/banner/delete'] = 'banner_controller/delete';
+$route['admin/banner/view'] = 'banner_controller/view';
