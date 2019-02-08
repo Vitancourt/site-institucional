@@ -16,15 +16,40 @@ $this->load->view("admin/admin_header");
     <div class="login-box-body">
         <p class="login-box-msg">Insira seus dados para acessar a página administrativa</p>
         <?=form_open("admin/login");?>
+        <?php
+        if (validation_errors()) {
+            ?>
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-ban"></i> Erro</h4>
+                <?=validation_errors();?>
+            </div>
+            <?php
+        }
+        ?>
+        <?php
+        if ($this->session->flashdata("error")) {
+            ?>
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-ban"></i> Erro</h4>
+                <?=$this->session->flashdata("error");?>
+            </div>
+            <?php
+        }
+        ?>
         <div class="form-group has-feedback">
             <?=form_label("E-mail:", "email");?>
             <?=form_input(
                 array(
                     "id" => "email",
                     "type" => "email",
+                    "name" => "email",
                     "class" => "form-control",
                     "placeholder" => "E-mail",
-                    "autocomplete" => "off"
+                    "autocomplete" => "off",
+                    "required" => "true",
+                    "value" => set_value("email")
                 )
             );?>
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -34,8 +59,10 @@ $this->load->view("admin/admin_header");
             <?=form_password(
                 array(
                     "id" => "password",
+                    "name" => "password",
                     "class" => "form-control",
-                    "placeholder" => "Senha"
+                    "placeholder" => "Senha",
+                    "required" => "true"
                 )
             );?>
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>

@@ -12,16 +12,16 @@ class User_controller extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->library("session");
-        $db_obj= $this->load->database(TRUE);
-        if (
-			!$this->session->has_userdata("username") ||
-			!$this->session->has_userdata("name") ||
-			!$this->session->has_userdata("email") ||
-			!$this->session->has_userdata("id")
+    $db_obj= $this->load->database(TRUE);
+    if (
+			$this->session->has_userdata("username") &&
+			$this->session->has_userdata("first_name") &&
+			$this->session->has_userdata("email") &&
+			$this->session->has_userdata("id")
 		) {
-			//Commented to tests
-			//$this->session->sess_destroy();
-			//redirect('admin/login', 'location');
+			redirect('admin', 'location');
+		} else {
+			redirect('admin/login', 'location');
 		}
 	}
 
@@ -39,14 +39,14 @@ class User_controller extends CI_Controller {
 				"array_user" => $array_user
 			)
 		);
-    }
+  }
     
-    /*
-     * Show view user to user post
-     * Get user POST
-     */
-    public function post()
-    {
+	/*
+		* Show view user to user post
+		* Get user POST
+		*/
+	public function post()
+	{
 		if ($this->input->method(TRUE) == "POST") {
 			$this->load->library('form_validation');
 			$this->form_validation->set_rules(
@@ -111,18 +111,17 @@ class User_controller extends CI_Controller {
 			if ($this->form_validation->run() == FALSE) {
 				$this->load->view("admin/admin_user_post");
 			} else {
-				$this->load->library('encryption');
 				$this->load->model("user_model");
 				if ($this->user_model->post($this->input->post())) {
-					$this->session->set_flashdata("success", "Gravou");
+					$this->session->set_flashdata("success", "Usuário cadastrado!");
 				} else {
-					$this->session->set_flashdata("error", "n Gravou");
+					$this->session->set_flashdata("error", "Erro ao cadastrar o usuário");
 				}
 				redirect("admin/user", "location");
 			}
 		} else {
 			$this->load->helper("form");
-        	$this->load->view("admin/admin_user_post");
+					$this->load->view("admin/admin_user_post");
 		}
-    }
+	}
 }

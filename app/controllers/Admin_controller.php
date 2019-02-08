@@ -17,20 +17,23 @@ class Admin_controller extends CI_Controller {
 	{
 		
 		if (
+			$this->session->has_userdata("username") &&
+			$this->session->has_userdata("first_name") &&
+			$this->session->has_userdata("email") &&
+			$this->session->has_userdata("id")
+		) {
+			//$this->session->sess_destroy();
+			redirect('admin', 'location');
+			exit();
+		} elseif (
 			!$this->session->has_userdata("username") ||
-			!$this->session->has_userdata("name") ||
+			!$this->session->has_userdata("first_name") ||
 			!$this->session->has_userdata("email") ||
 			!$this->session->has_userdata("id")
 		) {
-			//Commented to tests
-			//$this->session->sess_destroy();
-			//redirect('admin/login', 'location');
+			redirect('admin/login', 'location');
+			exit();
 		}
-		$this->session->set_userdata(
-			array(
-				"name" => "Maikel"
-			)
-		);
 		$this->load->view('admin/admin');
 	}
 
@@ -41,10 +44,37 @@ class Admin_controller extends CI_Controller {
 	public function login()
 	{
 		if ($this->input->method(TRUE) == "POST") {
-			exit();
-
+			$this->load->library("form_validation");
+			$this->form_validation->set_rules(
+				'email',
+				'Email',
+				'required',
+				array(
+					"required" => "Você não preencheu o Email."
+				)
+			);
+			$this->form_validation->set_rules(
+				'password',
+				'Senha',
+				'required',
+				array(
+					'required' => "Você deve preencher a senha."
+				)
+			);
+			if ($this->form_validation->run() == FALSE) {
+				$this->load->view("admin/admin_login");
+			} else {
+				$this->load->model("user_model");
+				if ($this->user_model->login($this->input->post())) {
+					$this->session->set_flashdata("success", "Bem vindo a página de administração!");
+				} else {
+					$this->session->set_flashdata("error", "Dados inválidos!");
+				}
+				redirect("admin", "location");
+			}
+		} else {
+			$this->load->view('admin/admin_login');
 		}
-		$this->load->view('admin/admin_login');
 	}
 
 }
