@@ -44,3 +44,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!-- DataTables -->
 <script src="<?=base_url("assets/admin/bower_components/datatables.net/js/jquery.dataTables.min.js");?>"></script>
 <script src="<?=base_url("assets/admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js");?>"></script>
+
+<!-- CK Editor -->
+<script src="<?=base_url("assets/admin/bower_components/ckeditor/ckeditor.js");?>"></script>

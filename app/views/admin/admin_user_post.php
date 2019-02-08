@@ -31,7 +31,7 @@ $this->load->view("admin/admin_header");
             <!-- general form elements -->
             <div class="box box-primary">
                 <?php
-                $this->load->view("admin/admin_header");
+                $this->load->view("admin/admin_user_navigation");
                 ?>
                 <!-- /.box-header -->
                 <?=form_open("admin/user/post");?>
