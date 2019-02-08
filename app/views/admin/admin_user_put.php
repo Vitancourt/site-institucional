@@ -56,7 +56,7 @@ $this->load->view("admin/admin_header");
                                 "placeholder" => "Primeiro nome",
                                 "required" => "true",
                                 "autocomplete" => "off",
-                                "value" => set_value("first_name")
+                                "value" => ($user[0]->first_name)?$user[0]->first_name:set_value("first_name")
                             )
                         );?>
                     </div>
@@ -71,7 +71,7 @@ $this->load->view("admin/admin_header");
                                 "placeholder" => "Segundo nome",
                                 "required" => "false",
                                 "autocomplete" => "off",
-                                "value" => set_value("middle_name")
+                                "value" => ($user[0]->middle_name)?$user[0]->middle_name:set_value("middle_name")
                             )
                         );?>
                     </div>
@@ -86,7 +86,7 @@ $this->load->view("admin/admin_header");
                                 "placeholder" => "Último nome",
                                 "required" => "true",
                                 "autocomplete" => "off",
-                                "value" => set_value("last_name")
+                                "value" => ($user[0]->last_name)?$user[0]->last_name:set_value("last_name")
                             )
                         );?>
                     </div>
@@ -101,7 +101,7 @@ $this->load->view("admin/admin_header");
                                 "placeholder" => "Nome de usuário",
                                 "required" => "true",
                                 "autocomplete" => "off",
-                                "value" => set_value("username")
+                                "value" => ($user[0]->username)?$user[0]->username:set_value("username")
                             )
                         );?>
                     </div>
@@ -116,7 +116,7 @@ $this->load->view("admin/admin_header");
                                 "placeholder" => "E-mail",
                                 "required" => "true",
                                 "autocomplete" => "off",
-                                "value" => set_value("email")
+                                "value" => ($user[0]->email)?$user[0]->email:set_value("username")
                             )
                         );?>
                     </div>

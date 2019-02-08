@@ -22,9 +22,11 @@ class User_model extends CI_Model {
     public function get($id=null)
     {
         if ($id) {
-            $this->db->where('id', $id);
-            $this->db->select("id,first_name,middle_name,last_name,username,email");
-            $query = $this->db->get('user');
+            //$this->db->where('id', $id);
+            $query = $this->db->select("id,first_name,middle_name,last_name,username,email")
+                ->from("user")
+                ->where("id", $id)
+                ->get();
             if ($query->num_rows() > 0) {
                 return $query->result();
             }
@@ -80,4 +82,55 @@ class User_model extends CI_Model {
         return false;
     }
 
+
+    public function check(int $id)
+    {
+        $query = $this->db->select("id,first_name,middle_name,last_name,username,email")
+            ->from("user")
+            ->where("id", $id)
+            ->get();
+        if ($query->num_rows() > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public function is_unique_username(string $username, int $id = null)
+    {
+        $query = $this->db->select("id,first_name,middle_name,last_name,username,email")
+            ->from("user")
+            ->where("username", $username)
+            ->get();
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+
+            }
+        }
+        return false;
+    }
+
+
+    
+    public function put($post)
+    {   
+        if ($this->check($post["id"])) {
+            $this->db->where("id", $post["id"]);
+            $this->db->replace(
+                'table',
+                array(
+                    "first_name" => $post["first_name"],
+                    "middle_name" => $post["middle_name"],
+                    "last_name" => $post["last_name"],
+                    "username" => $post["username"],
+                    "email" => $post["email"],
+                    "password" =>$this->hash_password($post["password"])
+                )
+            );
+            if ($this->db->affected_rows() == '1') {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
 }

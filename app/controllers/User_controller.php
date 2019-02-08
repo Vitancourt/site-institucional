@@ -114,7 +114,7 @@ class User_controller extends CI_Controller {
 			}
 		} else {
 			$this->load->helper("form");
-					$this->load->view("admin/admin_user_post");
+			$this->load->view("admin/admin_user_post");
 		}
     }
     
@@ -122,16 +122,96 @@ class User_controller extends CI_Controller {
     * Show view user to user put
     * Get user by id
     */
-    public function put($id)
+    public function put()
 	{
-        $this->load->model("user_model");
-		$array_user = $this->user_model->get($id);
-		$this->load->view(
-			'admin/admin_user',
-			array(
-				"array_user" => $array_user
-			)
-		);
+        if ($this->input->method(TRUE) == "POST") {
+			$this->load->library('form_validation');
+			$this->form_validation->set_rules(
+				'first_name',
+				'Primeiro nome',
+				'required|min_length[1]|max_length[127]',
+				array(
+					"min_length" => "Você não preencheu o Primeiro nome.",
+					"max_length" => "O Primeiro nome ultrapassou 127 caracteres.",
+					"required" => "Você não preencheu o Primeiro nome."
+				)
+			);
+			$this->form_validation->set_rules(
+				'last_name',
+				'Último nome',
+				'required|min_length[1]|max_length[127]',
+				array(
+					"min_length[1]" => "Você não preencheu o Último nome.",
+					"max_length[127]" => "O Último nome ultrapassou 127 caracteres.",
+					"required" => "Você não preencheu o Último nome."
+				)
+			);
+			$this->form_validation->set_rules(
+				'username',
+				'Nome de usuário',
+				'required|min_length[6]|max_length[64]|is_unique[user.username]',
+				array(
+					"min_length" => "O Nome de usuário deve ter mais de 6 caracteres.",
+					"max_length" => "O Nome de usuário ultrapassou 64 caracteres.",
+					"required" => "Você não preencheu o Nome de usuário.",
+					"is_unique" => "O Nome de usuário já existe."
+				)
+			);
+			$this->form_validation->set_rules(
+				'email',
+				'Email',
+				'required|valid_email|is_unique[user.email]',
+				array(
+					"required" => "Você não preencheu o Email.",
+					"is_unique" => "O Email já existe.",
+					"valid_email" => "O Email não é válido."
+				)
+			);
+			$this->form_validation->set_rules(
+				'password',
+				'Senha',
+				'required|min_length[1]',
+				array(
+					'min_length' => "Você deve preencher a senha.",
+					'required' => "Você deve preencher a senha."
+				)
+			);
+			$this->form_validation->set_rules(
+				'password_conf',
+				'Confirmação de Senha',
+				'required|matches[password]',
+				array(
+					"required" => "Você deve preencher a confirmação de senha.",
+					"matches", "As senhas inseridas não são iguais."
+				)
+			);
+			if ($this->form_validation->run() == FALSE) {
+				$this->load->view("admin/admin_user_put");
+			} else {
+				$this->load->model("user_model");
+				if ($this->user_model->put($this->input->post())) {
+					$this->session->set_flashdata("success", "Alterações gravadas!");
+				} else {
+					$this->session->set_flashdata("error", "Erro ao alterar o usuário");
+				}
+				redirect("admin/user", "location");
+            }
+        } else {
+            $this->load->helper("form");
+            $this->load->model("user_model");
+            $user = $this->user_model->get($this->uri->segment(4));
+            if ($user) {
+                $this->load->view(
+                    'admin/admin_user_put',
+                    array(
+                        "user" => $user
+                    )
+                );
+            } else {
+                $this->session->set_flashdata("error", "Usuário não encontrado!");
+                redirect("admin/user", "location");
+            }
+        }
     }
 
 }
