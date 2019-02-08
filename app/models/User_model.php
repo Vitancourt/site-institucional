@@ -94,29 +94,13 @@ class User_model extends CI_Model {
         }
         return false;
     }
-
-    public function is_unique_username(string $username, int $id = null)
-    {
-        $query = $this->db->select("id,first_name,middle_name,last_name,username,email")
-            ->from("user")
-            ->where("username", $username)
-            ->get();
-        if ($query->num_rows() > 0) {
-            foreach ($query->result() as $row) {
-
-            }
-        }
-        return false;
-    }
-
-
     
     public function put($post)
     {   
-        if ($this->check($post["id"])) {
+        if ($this->check($post["id"])) {            
             $this->db->where("id", $post["id"]);
-            $this->db->replace(
-                'table',
+            $this->db->update(
+                'user',
                 array(
                     "first_name" => $post["first_name"],
                     "middle_name" => $post["middle_name"],

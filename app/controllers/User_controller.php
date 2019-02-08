@@ -126,6 +126,7 @@ class User_controller extends CI_Controller {
 	{
         if ($this->input->method(TRUE) == "POST") {
 			$this->load->library('form_validation');
+			$this->load->model("user_model");
 			$this->form_validation->set_rules(
 				'first_name',
 				'Primeiro nome',
@@ -146,27 +147,53 @@ class User_controller extends CI_Controller {
 					"required" => "Você não preencheu o Último nome."
 				)
 			);
-			$this->form_validation->set_rules(
-				'username',
-				'Nome de usuário',
-				'required|min_length[6]|max_length[64]|is_unique[user.username]',
-				array(
-					"min_length" => "O Nome de usuário deve ter mais de 6 caracteres.",
-					"max_length" => "O Nome de usuário ultrapassou 64 caracteres.",
-					"required" => "Você não preencheu o Nome de usuário.",
-					"is_unique" => "O Nome de usuário já existe."
-				)
-			);
-			$this->form_validation->set_rules(
-				'email',
-				'Email',
-				'required|valid_email|is_unique[user.email]',
-				array(
-					"required" => "Você não preencheu o Email.",
-					"is_unique" => "O Email já existe.",
-					"valid_email" => "O Email não é válido."
-				)
-			);
+			$array_user = $this->user_model->get($this->input->post("id"));
+			if ($array_user[0]->username != $this->input->post("username")) {
+				$this->form_validation->set_rules(
+					'username',
+					'Nome de usuário',
+					'required|min_length[6]|max_length[64]|is_unique[user.username]',
+					array(
+						"min_length" => "O Nome de usuário deve ter mais de 6 caracteres.",
+						"max_length" => "O Nome de usuário ultrapassou 64 caracteres.",
+						"required" => "Você não preencheu o Nome de usuário.",
+						"is_unique" => "O Nome de usuário já existe."
+					)
+				);
+			} else {
+				$this->form_validation->set_rules(
+					'username',
+					'Nome de usuário',
+					'required|min_length[6]|max_length[64]',
+					array(
+						"min_length" => "O Nome de usuário deve ter mais de 6 caracteres.",
+						"max_length" => "O Nome de usuário ultrapassou 64 caracteres.",
+						"required" => "Você não preencheu o Nome de usuário."
+					)
+				);
+			}
+			if ($array_user[0]->email != $this->input->post("email")) {
+				$this->form_validation->set_rules(
+					'email',
+					'Email',
+					'required|valid_email|is_unique[user.email]',
+					array(
+						"required" => "Você não preencheu o Email.",
+						"is_unique" => "O Email já existe.",
+						"valid_email" => "O Email não é válido."
+					)
+				);
+			} else {
+				$this->form_validation->set_rules(
+					'email',
+					'Email',
+					'required|valid_email',
+					array(
+						"required" => "Você não preencheu o Email.",
+						"valid_email" => "O Email não é válido."
+					)
+				);
+			}
 			$this->form_validation->set_rules(
 				'password',
 				'Senha',
@@ -188,7 +215,6 @@ class User_controller extends CI_Controller {
 			if ($this->form_validation->run() == FALSE) {
 				$this->load->view("admin/admin_user_put");
 			} else {
-				$this->load->model("user_model");
 				if ($this->user_model->put($this->input->post())) {
 					$this->session->set_flashdata("success", "Alterações gravadas!");
 				} else {
@@ -197,6 +223,14 @@ class User_controller extends CI_Controller {
 				redirect("admin/user", "location");
             }
         } else {
+			if (
+				empty($this->uri->segment(4)) ||
+				$this->uri->segment(4) == "" ||
+				!is_numeric($this->uri->segment(4))
+			) {
+				$this->session->set_flashdata("error", "Erro de parâmetro!");
+				redirect("admin/user", "location");
+			}
             $this->load->helper("form");
             $this->load->model("user_model");
             $user = $this->user_model->get($this->uri->segment(4));

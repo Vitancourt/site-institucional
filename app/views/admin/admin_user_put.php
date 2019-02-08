@@ -32,7 +32,11 @@ $this->load->view("admin/admin_header");
                 $this->load->view("admin/admin_header");
                 ?>
                 <!-- /.box-header -->
-                <?=form_open("admin/user/post");?>
+                <?=form_open(
+                    "admin/user/put/",
+                    "",
+                    array('id' => (isset($user[0]->id))?$user[0]->id:set_value("id"))
+                );?>
                 <div class="box-body">
                     <?php
                     if (validation_errors()) {
@@ -56,7 +60,7 @@ $this->load->view("admin/admin_header");
                                 "placeholder" => "Primeiro nome",
                                 "required" => "true",
                                 "autocomplete" => "off",
-                                "value" => ($user[0]->first_name)?$user[0]->first_name:set_value("first_name")
+                                "value" => (isset($user[0]->first_name))?$user[0]->first_name:set_value("first_name")
                             )
                         );?>
                     </div>
@@ -71,7 +75,7 @@ $this->load->view("admin/admin_header");
                                 "placeholder" => "Segundo nome",
                                 "required" => "false",
                                 "autocomplete" => "off",
-                                "value" => ($user[0]->middle_name)?$user[0]->middle_name:set_value("middle_name")
+                                "value" => (isset($user[0]->middle_name))?$user[0]->middle_name:set_value("middle_name")
                             )
                         );?>
                     </div>
@@ -86,7 +90,7 @@ $this->load->view("admin/admin_header");
                                 "placeholder" => "Último nome",
                                 "required" => "true",
                                 "autocomplete" => "off",
-                                "value" => ($user[0]->last_name)?$user[0]->last_name:set_value("last_name")
+                                "value" => (isset($user[0]->last_name))?$user[0]->last_name:set_value("last_name")
                             )
                         );?>
                     </div>
@@ -101,7 +105,7 @@ $this->load->view("admin/admin_header");
                                 "placeholder" => "Nome de usuário",
                                 "required" => "true",
                                 "autocomplete" => "off",
-                                "value" => ($user[0]->username)?$user[0]->username:set_value("username")
+                                "value" => (isset($user[0]->username))?$user[0]->username:set_value("username")
                             )
                         );?>
                     </div>
@@ -116,7 +120,7 @@ $this->load->view("admin/admin_header");
                                 "placeholder" => "E-mail",
                                 "required" => "true",
                                 "autocomplete" => "off",
-                                "value" => ($user[0]->email)?$user[0]->email:set_value("username")
+                                "value" => (isset($user[0]->email))?$user[0]->email:set_value("email")
                             )
                         );?>
                     </div>
