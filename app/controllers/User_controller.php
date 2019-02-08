@@ -24,14 +24,37 @@ class User_controller extends CI_Controller {
      */
 	public function index()
 	{
-        $this->load->model("user_model");
-		$array_user = $this->user_model->get();
-		$this->load->view(
-			'admin/admin_user',
-			array(
-				"array_user" => $array_user
-			)
-		);
+		$this->load->library('form_validation');
+		$this->load->model("user_model");
+		if ($this->input->method(TRUE) == "POST") {
+			$this->load->model("user_model");
+			$this->form_validation->set_rules(
+				'id',
+				'Identificador',
+				'required',
+				array(
+					"required" => "Erro de parâmetro!"
+				)
+			);
+			if ($this->form_validation->run() == FALSE) {
+				$this->load->view("admin/admin_user");
+			} else {
+				if ($this->user_model->delete($this->input->post("id"))) {
+					$this->session->set_flashdata("success", "Usuário excluído!");
+				} else {
+					$this->session->set_flashdata("error", "Erro ao excluir o usuário");
+				}
+				redirect("admin/user", "location");
+			}
+		} else {
+			$array_user = $this->user_model->get();
+			$this->load->view(
+				'admin/admin_user',
+				array(
+					"array_user" => $array_user
+				)
+			);
+		}
     }
     
 	/*
@@ -246,6 +269,6 @@ class User_controller extends CI_Controller {
                 redirect("admin/user", "location");
             }
         }
-    }
+	}
 
 }

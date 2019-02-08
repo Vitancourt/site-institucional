@@ -117,4 +117,16 @@ class User_model extends CI_Model {
         }
         return false;
     }
+
+    public function delete(int $id)
+    {
+        $this->db->delete(
+            "user",
+            array("id" => $id));
+        if ($this->db->affected_rows() == '1') {
+            return true;
+        }
+        return false;
+    }
+
 }

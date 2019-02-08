@@ -34,6 +34,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <i class="fa fa-user"></i> <span>Usuários</span>
           </a>
         </li>
+        <li>
+          <a href="<?=site_url("admin/company");?>">
+            <i class="fa fa-building-o"></i> <span>Empresa</span>
+          </a>
+        </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-files-o"></i>

@@ -69,25 +69,27 @@ $this->load->view("admin/admin_header");
                         <tbody>
                         <?php
                         if (!empty($array_user)) {
-                        foreach ($array_user as $user) {
-                            ?>
-                            <tr>
-                            <td>
-                                <?=$user->complete_name;?>
-                            </td>
-                            <td>
-                                <?=$user->username;?>
-                            </td>
-                            <td>
-                                <?=$user->email;?>
-                            </td>
-                            <td>
-                                <a href="<?=site_url("admin/user/put/".$user->id);?>" class="btn btn-block btn-info btn-flat">Editar</button>
-                                <a href="" class="btn btn-block btn-danger btn-flat">Excluir</button>
-                            </td>
-                            </tr>
-                            <?php
-                        }
+                            foreach ($array_user as $user) {
+                                ?>
+                                <tr>
+                                <td>
+                                    <?=$user->complete_name;?>
+                                </td>
+                                <td>
+                                    <?=$user->username;?>
+                                </td>
+                                <td>
+                                    <?=$user->email;?>
+                                </td>
+                                <td>
+                                    <a href="<?=site_url("admin/user/put/".$user->id);?>"
+                                    class="btn btn-block btn-info btn-flat">Editar</button>
+                                    <a href="" class="btn btn-block btn-danger btn-flat" data-toggle="modal"
+                                    data-target="#modal-danger" onclick="trocaId('<?=$user->id;?>')">Excluir</a>
+                                </td>
+                                </tr>
+                                <?php
+                            }
                         }
                         ?>
                     </table>
@@ -97,6 +99,43 @@ $this->load->view("admin/admin_header");
             </div>
         </div>
     </aside>
+    <div class="modal modal-danger fade" id="modal-danger" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Confirme a operação</h4>
+                </div>
+                <?=form_open("admin/user/delete");?>
+                <?=form_input(
+                    array(
+                        "type" => "hidden",
+                        "name" => "id",
+                        "id" => "user-id"
+                    )
+                );?>
+                <div class="modal-body">
+                <p>Excluir usuário</p>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Cancelar</button>
+                <?=form_submit(
+                    array(
+                        "value" => "Confirmar",
+                        "type" => "submit",
+                        "name" => "post",
+                        "class" => "btn btn-outline",
+                    )
+                );
+                ?>
+                <?=form_close();?>
+                </div>
+            </div>
+        <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
     <!-- /.control-sidebar -->
     <!-- Add the sidebar's background. This div must be placed
         immediately after the control sidebar -->
@@ -117,6 +156,10 @@ $this->load->view("admin/admin_footer");
         'autoWidth'   : false
         })
     })
+
+    function trocaId(id) {
+        $("#user-id").val(id);
+    }
 </script>
 </body>
 </html>
