@@ -64,8 +64,8 @@ $route['admin/login'] = 'admin_controller/login';
  */
 $route['admin/user'] = 'user_controller';
 $route['admin/user/post'] = 'user_controller/post';
-$route['admin/user/put'] = 'user_controller/put';
-$route['admin/user/delete'] = 'user_controller/delete';
+$route['admin/user/put/:num'] = 'user_controller/put';
+$route['admin/user/delete/:num'] = 'user_controller/delete';
 
 /*
  * Admin Company routes

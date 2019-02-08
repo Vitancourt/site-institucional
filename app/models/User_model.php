@@ -19,12 +19,23 @@ class User_model extends CI_Model {
         return password_verify($password, $hash);
     }
 
-    public function get()
+    public function get($id=null)
     {
-        $this->db->order_by("first_name", "asc");
-        $this->db->select("id,concat_ws(' ',first_name,middle_name,last_name) as complete_name,username,email,password");
-        $query = $this->db->get('user');
-        return $query->result();
+        if ($id) {
+            $this->db->where('id', $id);
+            $this->db->select("id,first_name,middle_name,last_name,username,email");
+            $query = $this->db->get('user');
+            if ($query->num_rows() > 0) {
+                return $query->result();
+            }
+            return false;
+        } else {
+            $this->db->order_by("first_name", "asc");
+            $this->db->select("id,concat_ws(' ',first_name,middle_name,last_name) as complete_name,username,email,password");
+            $query = $this->db->get('user');
+            return $query->result();
+        }
+        return false;
     }
 
     public function post($post)

@@ -11,12 +11,10 @@ class User_controller extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->library("session");
-    $db_obj= $this->load->database(TRUE);
-    if ($this->session->has_userdata("id")) {
-			redirect('admin', 'location');
-		} else {
-			redirect('admin/login', 'location');
+        $this->load->library("session");
+        $db_obj= $this->load->database(TRUE);
+        if (!$this->session->has_userdata("id")) {
+            redirect('admin/login', 'location');
 		}
 	}
 
@@ -34,12 +32,12 @@ class User_controller extends CI_Controller {
 				"array_user" => $array_user
 			)
 		);
-  }
+    }
     
 	/*
-		* Show view user to user post
-		* Get user POST
-		*/
+    * Show view user to user post
+    * Get user POST
+    */
 	public function post()
 	{
 		if ($this->input->method(TRUE) == "POST") {
@@ -118,5 +116,22 @@ class User_controller extends CI_Controller {
 			$this->load->helper("form");
 					$this->load->view("admin/admin_user_post");
 		}
-	}
+    }
+    
+	/*
+    * Show view user to user put
+    * Get user by id
+    */
+    public function put($id)
+	{
+        $this->load->model("user_model");
+		$array_user = $this->user_model->get($id);
+		$this->load->view(
+			'admin/admin_user',
+			array(
+				"array_user" => $array_user
+			)
+		);
+    }
+
 }
