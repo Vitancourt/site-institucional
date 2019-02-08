@@ -54,16 +54,19 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 /*
- * Admin controllers
+ * Admin routes
  */
 $route['admin'] = 'admin_controller';
 $route['admin/login'] = 'admin_controller/login';
 
 /*
- * Admin User controllers
+ * Admin User routes
  */
 $route['admin/user'] = 'user_controller';
 $route['admin/user/post'] = 'user_controller/post';
-//$route['admin/user'] = 'user/get';
-//$route['admin/user'] = 'user/put';
-//$route['admin/user'] = 'user/delete';
+$route['admin/user/put'] = 'user_controller/put';
+$route['admin/user/delete'] = 'user_controller/delete';
+
+/*
+ * Admin Company routes
+ */
