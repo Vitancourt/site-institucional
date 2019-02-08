@@ -13,12 +13,7 @@ class User_controller extends CI_Controller {
 		parent::__construct();
 		$this->load->library("session");
     $db_obj= $this->load->database(TRUE);
-    if (
-			$this->session->has_userdata("username") &&
-			$this->session->has_userdata("first_name") &&
-			$this->session->has_userdata("email") &&
-			$this->session->has_userdata("id")
-		) {
+    if ($this->session->has_userdata("id")) {
 			redirect('admin', 'location');
 		} else {
 			redirect('admin/login', 'location');

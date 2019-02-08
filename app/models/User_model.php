@@ -54,11 +54,6 @@ class User_model extends CI_Model {
             );
         foreach ($query->result() as $row) {
             if ($this->verify_password($post["password"], $row->password)) {
-                $newdata = array(
-                        'username'  => 'johndoe',
-                        'email'     => 'johndoe@some-site.com',
-                        'logged_in' => TRUE
-                );
                 $this->session->set_userdata(
                     array(
                         "id" => $row->id,

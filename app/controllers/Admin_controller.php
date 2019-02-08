@@ -15,22 +15,7 @@ class Admin_controller extends CI_Controller {
 	 */
 	public function index()
 	{
-		
-		if (
-			$this->session->has_userdata("username") &&
-			$this->session->has_userdata("first_name") &&
-			$this->session->has_userdata("email") &&
-			$this->session->has_userdata("id")
-		) {
-			//$this->session->sess_destroy();
-			redirect('admin', 'location');
-			exit();
-		} elseif (
-			!$this->session->has_userdata("username") ||
-			!$this->session->has_userdata("first_name") ||
-			!$this->session->has_userdata("email") ||
-			!$this->session->has_userdata("id")
-		) {
+		if (!$this->session->has_userdata("id")) {
 			redirect('admin/login', 'location');
 			exit();
 		}
@@ -71,8 +56,18 @@ class Admin_controller extends CI_Controller {
 					$this->session->set_flashdata("error", "Dados inválidos!");
 				}
 				redirect("admin", "location");
+				exit();
 			}
 		} else {
+			if (
+				$this->session->has_userdata("username") &&
+				$this->session->has_userdata("first_name") &&
+				$this->session->has_userdata("email") &&
+				$this->session->has_userdata("id")
+			) {
+				redirect('admin', 'location');
+				exit();
+			}
 			$this->load->view('admin/admin_login');
 		}
 	}
