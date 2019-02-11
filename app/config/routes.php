@@ -94,3 +94,11 @@ $route['admin/banner/view'] = 'banner_controller/view';
  * About routes
  */
 $route['admin/about'] = 'about_controller/put';
+
+/*
+ * Comments routes
+ */
+$route['admin/comments'] = 'comments_controller';
+$route['admin/comments/post'] = 'comments_controller/post';
+$route['admin/comments_put'] = 'comments_controller/put';
+$route['admin/comments_delete'] = 'comments_controller/delete';
