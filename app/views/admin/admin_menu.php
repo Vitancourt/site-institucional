@@ -54,6 +54,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </a>
           <ul class="treeview-menu">
             <li><a href="<?=site_url("admin/banner");?>"><i class="fa fa-image"></i> Banner principal</a></li>
+            <li><a href="<?=site_url("admin/about");?>"><i class="fa fa-map-o"></i> Sobre</a></li>
           </ul>
         </li>
         <li class="treeview">

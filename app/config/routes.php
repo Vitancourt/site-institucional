@@ -89,3 +89,8 @@ $route['admin/banner/put'] = 'banner_controller/put';
 $route['admin/banner/put/:num'] = 'banner_controller/put';
 $route['admin/banner/delete'] = 'banner_controller/delete';
 $route['admin/banner/view'] = 'banner_controller/view';
+
+/*
+ * About routes
+ */
+$route['admin/about'] = 'about_controller/put';

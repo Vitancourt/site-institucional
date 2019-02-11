@@ -19,7 +19,7 @@ $this->load->view("admin/admin_header");
         <!-- Content Header (Page header) -->
         <section class="content-header">
         <h1>
-            Alterar banner
+            Alterar sobre
         </h1>
         </section>
         <!-- Main content -->
@@ -31,17 +31,29 @@ $this->load->view("admin/admin_header");
             <!-- general form elements -->
             <div class="box box-primary">
                 <?php
-                $this->load->view("admin/admin_banner_navigation");
+                if ($this->session->flashdata('success')) {
+                    ?>
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4><i class="icon fa  fa-check-circle-o"></i> Concluído</h4>
+                        <?=$this->session->flashdata('success');?>
+                    </div>
+                    <?php
+                }
+                ?>
+                <?php
+                if ($this->session->flashdata('error')) {
+                    ?>
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4><i class="icon fa fa-ban"></i> Erro</h4>
+                        <?=$this->session->flashdata('error');?>
+                    </div>
+                    <?php
+                }
                 ?>
                 <!-- /.box-header -->
-                <?=form_open_multipart("admin/banner/put");?>
-                <?=form_input(
-                    array(
-                        "type" => "hidden",
-                        "name" => "id",
-                        "value" => $banner[0]->id
-                    )
-                );?>
+                <?=form_open_multipart("admin/about");?>
                 <div class="box-body">
                     <?php
                     if (validation_errors()) {
@@ -64,16 +76,16 @@ $this->load->view("admin/admin_header");
                                 "class" => "form-control",
                                 "autocomplete" => "off",
                                 "rows" => "2",
-                                "value" => ($banner[0]->text)?$banner[0]->text:set_value("text")
+                                "value" => ($about[0]->text)?$about[0]->text:set_value("text")
                             )
                         );?>
                     </div>
                     <div class="form-group">
-                        <img style="max-width: 360px; max-height: 240px;"
-                        src="<?=base_url("repository/banner_homepage/".$banner[0]->image);?>">
+                        <img style="max-width: 360px; max-heigth: 240px;"
+                        src="<?=(!empty($about[0]->image))?base_url("repository/about/".$about[0]->image):"";?>">
                     </div>
                     <div class="form-group">
-                        <?=form_label("Imagem: (Tamanho máximo 1mb, resolução 1024, 768)", "image");?>
+                        <?=form_label("Imagem: (Só inserir caso queira alterar)", "image");?>
                         <?=form_upload(
                             array(
                                 "id" => "image",
@@ -86,17 +98,17 @@ $this->load->view("admin/admin_header");
                         );?>
                     </div>
                     <div class="form-group">
-                        <?=form_label("Ordem:", "order");?>
+                        <?=form_label("Legenda da imagem:", "caption");?>
                         <?=form_input(
                             array(
-                                "id" => "order",
-                                "name" => "order",
-                                "type" => "number",
+                                "id" => "caption",
+                                "name" => "caption",
+                                "type" => "text",
                                 "class" => "form-control",
-                                "placeholder" => "Ordem",
+                                "placeholder" => "Legenda",
                                 "required" => "false",
                                 "autocomplete" => "off",
-                                "value" => ($banner[0]->order)?$banner[0]->order:set_value("order")
+                                "value" => ($about[0]->caption)?$about[0]->caption:set_value("caption")
                             )
                         );?>
                     </div>
