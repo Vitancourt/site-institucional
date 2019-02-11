@@ -486,7 +486,7 @@ a.navbar-brand {
 }
 
 .banner {
-    width:90%;
+    width:100%;
     text-align: center;
     color: #fff;
     /*
@@ -530,6 +530,8 @@ a.navbar-brand {
 
 .banner .intro-text h1 span {
     color: #0B4E74;
+    background-color: white;
+    padding:3px;
 }
 
 .banner .intro-text p {
@@ -575,6 +577,9 @@ a.navbar-brand {
 /* Start About Us Section                                  */
 /*---------------------------------------------------------*/
 
+.about-details {
+    margin-bottom: 20px;
+}
 
 #about-section {
     padding-top: 40px;
