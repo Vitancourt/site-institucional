@@ -54,17 +54,19 @@ class Banner_model extends CI_Model {
 
     public function put($post)
     {   
-        if ($this->check($post["id"])) {            
+        if ($this->get($post["id"])) {
+            $data["text"] = $post["text"];
+            $data["order"] = $post["order"];
+            if (!empty($file["file_name"])) {
+                $data["image"] = $file["file_name"];
+            }
             $this->db->where("id", $post["id"]);
-            $this->db->update(
-                'banner_homepage',
-                array(
-                    "text" => $post["text"],
-                    "image" => $post["image"],
-                    "order" => $post["order"]
+            if (
+                $this->db->update(
+                    'banner_homepage',
+                    $data  
                 )
-            );
-            if ($this->db->affected_rows() == '1') {
+            ) {
                 return true;
             }
             return false;

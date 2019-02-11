@@ -19,7 +19,7 @@ $this->load->view("admin/admin_header");
         <!-- Content Header (Page header) -->
         <section class="content-header">
         <h1>
-            Cadastrar banner
+            Alterar banner
         </h1>
         </section>
         <!-- Main content -->
@@ -34,7 +34,14 @@ $this->load->view("admin/admin_header");
                 $this->load->view("admin/admin_banner_navigation");
                 ?>
                 <!-- /.box-header -->
-                <?=form_open_multipart("admin/banner/post");?>
+                <?=form_open_multipart("admin/banner/put");?>
+                <?=form_input(
+                    array(
+                        "type" => "hidden",
+                        "name" => "id",
+                        "value" => $banner[0]->id
+                    )
+                );?>
                 <div class="box-body">
                     <?php
                     if (validation_errors()) {
@@ -57,9 +64,13 @@ $this->load->view("admin/admin_header");
                                 "class" => "form-control",
                                 "autocomplete" => "off",
                                 "rows" => "2",
-                                "value" => set_value("text")
+                                "value" => ($banner[0]->text)?$banner[0]->text:set_value("text")
                             )
                         );?>
+                    </div>
+                    <div class="form-group">
+                        <img style="max-width: 360px; max-height: 240px;"
+                        src="<?=base_url("repository/banner_homepage/".$banner[0]->image);?>">
                     </div>
                     <div class="form-group">
                         <?=form_label("Imagem: (Tamanho máximo 1mb, resolução 1024, 768)", "image");?>
@@ -69,7 +80,6 @@ $this->load->view("admin/admin_header");
                                 "name" => "image",
                                 "type" => "file",
                                 "class" => "form-control",
-                                "required" => "true",
                                 "accept" => "image/png, image/jpeg, image/jpg",
                                 "value" => set_value("image")
                             )
@@ -86,7 +96,7 @@ $this->load->view("admin/admin_header");
                                 "placeholder" => "Ordem",
                                 "required" => "false",
                                 "autocomplete" => "off",
-                                "value" => set_value("order")
+                                "value" => ($banner[0]->order)?$banner[0]->order:set_value("order")
                             )
                         );?>
                     </div>
