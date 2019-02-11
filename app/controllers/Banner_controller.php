@@ -57,7 +57,7 @@ class Banner_controller extends CI_Controller {
     }
     
 	/*
-    * Show view user to user post
+    * Show view admin_banner_post to user post
     * Get user POST
     */
 	public function post()
@@ -85,8 +85,8 @@ class Banner_controller extends CI_Controller {
             // Alternately you can set preferences by calling the ``initialize()`` method. Useful if you auto-load the class:
             $this->upload->initialize($config);
             if (!$this->upload->do_upload('image')) {
-                var_dump($this->upload->display_errors());
-			    exit();
+                echo $this->upload->display_errors();
+			    //exit();
             }
 			$this->form_validation->set_rules(
 				'order',
@@ -115,109 +115,60 @@ class Banner_controller extends CI_Controller {
     }
     
 	/*
-    * Show view user to user put
+    * Show view admin_banner_put to user put
     * Get user by id
     */
     public function put()
 	{
+		$this->load->model("banner_model");
         if ($this->input->method(TRUE) == "POST") {
 			$this->load->library('form_validation');
-			$this->load->model("user_model");
+            $this->load->library('upload');
 			$this->form_validation->set_rules(
-				'first_name',
-				'Primeiro nome',
-				'required|min_length[1]|max_length[127]',
+				'text',
+				'Texto',
+				'required|max_length[64000]',
 				array(
-					"min_length" => "Você não preencheu o Primeiro nome.",
-					"max_length" => "O Primeiro nome ultrapassou 127 caracteres.",
-					"required" => "Você não preencheu o Primeiro nome."
+					"max_length" => "O Primeiro nome ultrapassou 64000 caracteres.",
+					"required" => "Você não preencheu o texto."
 				)
 			);
-			$this->form_validation->set_rules(
-				'last_name',
-				'Último nome',
-				'required|min_length[1]|max_length[127]',
-				array(
-					"min_length[1]" => "Você não preencheu o Último nome.",
-					"max_length[127]" => "O Último nome ultrapassou 127 caracteres.",
-					"required" => "Você não preencheu o Último nome."
-				)
-			);
-			$array_user = $this->user_model->get($this->input->post("id"));
-			if ($array_user[0]->username != $this->input->post("username")) {
-				$this->form_validation->set_rules(
-					'username',
-					'Nome de usuário',
-					'required|min_length[6]|max_length[64]|is_unique[user.username]',
-					array(
-						"min_length" => "O Nome de usuário deve ter mais de 6 caracteres.",
-						"max_length" => "O Nome de usuário ultrapassou 64 caracteres.",
-						"required" => "Você não preencheu o Nome de usuário.",
-						"is_unique" => "O Nome de usuário já existe."
-					)
-				);
-			} else {
-				$this->form_validation->set_rules(
-					'username',
-					'Nome de usuário',
-					'required|min_length[6]|max_length[64]',
-					array(
-						"min_length" => "O Nome de usuário deve ter mais de 6 caracteres.",
-						"max_length" => "O Nome de usuário ultrapassou 64 caracteres.",
-						"required" => "Você não preencheu o Nome de usuário."
-					)
-				);
-			}
-			if ($array_user[0]->email != $this->input->post("email")) {
-				$this->form_validation->set_rules(
-					'email',
-					'Email',
-					'required|valid_email|is_unique[user.email]',
-					array(
-						"required" => "Você não preencheu o Email.",
-						"is_unique" => "O Email já existe.",
-						"valid_email" => "O Email não é válido."
-					)
-				);
-			} else {
-				$this->form_validation->set_rules(
-					'email',
-					'Email',
-					'required|valid_email',
-					array(
-						"required" => "Você não preencheu o Email.",
-						"valid_email" => "O Email não é válido."
-					)
-				);
-			}
-			$this->form_validation->set_rules(
-				'password',
-				'Senha',
-				'required|min_length[1]',
-				array(
-					'min_length' => "Você deve preencher a senha.",
-					'required' => "Você deve preencher a senha."
-				)
-			);
-			$this->form_validation->set_rules(
-				'password_conf',
-				'Confirmação de Senha',
-				'required|matches[password]',
-				array(
-					"required" => "Você deve preencher a confirmação de senha.",
-					"matches", "As senhas inseridas não são iguais."
-				)
-			);
-			if ($this->form_validation->run() == FALSE) {
-				$this->load->view("admin/admin_user_put");
-			} else {
-				if ($this->user_model->put($this->input->post())) {
-					$this->session->set_flashdata("success", "Alterações gravadas!");
-				} else {
-					$this->session->set_flashdata("error", "Erro ao alterar o usuário");
+			if (!empty($_FILES["image"]["name"])) {
+				$config['upload_path'] = "./repository/banner_homepage/";
+				$config['allowed_types'] = 'jpg|png|jpeg';
+				$config['max_size']     = '1024';
+				$config['max_width'] = 0;
+				$config['max_height'] = 0;
+				$config['remove_spaces'] = true;
+				$config['encrypt_name'] = true;
+				$this->load->library('upload', $config);
+				// Alternately you can set preferences by calling the ``initialize()`` method. Useful if you auto-load the class:
+				$this->upload->initialize($config);
+				if (!$this->upload->do_upload('image')) {
+					echo $this->upload->display_errors();
+					//exit();
 				}
-				redirect("admin/user", "location");
-            }
+			}
+			$this->form_validation->set_rules(
+				'order',
+				'Ordem',
+				'required|numeric',
+				array(
+					"numeric" => "A ordem deve ser um número inteiro.",
+					"required" => "Você não preencheu o Nome de usuário.",
+					
+				)
+            );
+			if ($this->form_validation->run() == FALSE) {
+				$this->load->view("admin/admin_banner_post");
+			} else {
+				if ($this->banner_model->put($this->input->post(), $this->upload->data())) {
+					$this->session->set_flashdata("success", "Banner cadastrado!");
+				} else {
+					$this->session->set_flashdata("error", "Erro ao cadastrar o banner");
+				}
+				redirect("admin/banner", "location");
+			}
         } else {
 			if (
 				empty($this->uri->segment(4)) ||
@@ -228,20 +179,44 @@ class Banner_controller extends CI_Controller {
 				redirect("admin/user", "location");
 			}
             $this->load->helper("form");
-            $this->load->model("user_model");
-            $user = $this->user_model->get($this->uri->segment(4));
-            if ($user) {
+            $banner = $this->banner_model->get($this->uri->segment(4));
+            if ($banner) {
                 $this->load->view(
                     'admin/admin_banner_put',
                     array(
-                        "user" => $user
+                        "banner" => $banner
                     )
                 );
             } else {
-                $this->session->set_flashdata("error", "Usuário não encontrado!");
+                $this->session->set_flashdata("error", "Banner não encontrado!");
                 redirect("admin/banner", "location");
             }
         }
+	}
+
+		/*
+    * Show view user to user put
+    * Get user by id
+    */
+    public function delete()
+	{
+		$this->load->model("banner_model");
+        if ($this->input->method(TRUE) == "POST") {
+			if (
+				!empty($this->input->post("id")) &&
+				!is_numeric($this->input->post("id"))
+			) {
+				$this->session->set_flashdata("error", "Erro de parâmetro!");
+				return false;
+			}
+			if ($this->banner_model->delete($this->input->post("id"))) {
+				$this->session->set_flashdata("success", "Banner excluído!");
+			} else {
+				$this->session->set_flashdata("error", "Nada alterado!");
+			}
+			redirect("admin/banner", "location");
+		}
+		return false;
 	}
 
 }
