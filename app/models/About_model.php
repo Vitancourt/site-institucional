@@ -15,7 +15,10 @@ class About_model extends CI_Model {
         $query = $this->db->select(
             "text,
             image,
-            caption"
+            caption,
+            mission,
+            vision,
+            value"
             )
             ->from("about")
             ->get();
@@ -27,7 +30,10 @@ class About_model extends CI_Model {
         $query = $this->db->select(
             "text,
             image,
-            caption"
+            caption,
+            mission,
+            vision,
+            value"
             )
             ->from("about")
             ->get();
@@ -45,7 +51,10 @@ class About_model extends CI_Model {
             array(
                 "text" => "",
                 "caption" => NULL,
-                "image" => NULL
+                "image" => NULL,
+                "mission" => NULL,
+                "vision" => NULL,
+                "valua" => NULL
             )
         );
     }
@@ -54,6 +63,9 @@ class About_model extends CI_Model {
     {   
         $data["text"] = $post["text"];
         $data["caption"] = $post["caption"];
+        $data["mission"] = $post["mission"];
+        $data["vision"] = $post["value"];
+        $data["value"] = $post["value"];
         if (!empty($file["file_name"])) {
             $data["image"] = $file["file_name"];
         }

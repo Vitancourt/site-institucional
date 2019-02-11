@@ -28,7 +28,31 @@ class About_controller extends CI_Controller {
         $this->load->helper("form");
         if ($this->input->method(TRUE) == "POST") {
 			$this->load->library('form_validation');
-            $this->load->library('upload');
+			$this->load->library('upload');
+			$this->form_validation->set_rules(
+				'mission',
+				'Missão',
+				'max_length[64000]',
+				array(
+					"max_length" => "A missão ultrapassou 64000 caracteres.",
+				)
+			);
+			$this->form_validation->set_rules(
+				'vision',
+				'Visão',
+				'max_length[64000]',
+				array(
+					"max_length" => "A visão ultrapassou 64000 caracteres.",
+				)
+			);
+			$this->form_validation->set_rules(
+				'value',
+				'Valores',
+				'max_length[64000]',
+				array(
+					"max_length" => "Os valores ultrapassaram 64000 caracteres.",
+				)
+			);
 			$this->form_validation->set_rules(
 				'text',
 				'Texto',

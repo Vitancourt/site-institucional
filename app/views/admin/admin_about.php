@@ -67,6 +67,48 @@ $this->load->view("admin/admin_header");
                     }
                     ?>
                     <div class="form-group">
+                        <?=form_label("Missão", "mission");?>
+                        <?=form_textarea(
+                            array(
+                                "id" => "mission",
+                                "name" => "mission",
+                                "type" => "text",
+                                "class" => "form-control",
+                                "autocomplete" => "off",
+                                "rows" => "2",
+                                "value" => ($about[0]->mission)?$about[0]->mission:set_value("mission")
+                            )
+                        );?>
+                    </div>
+                    <div class="form-group">
+                        <?=form_label("Visão", "vision");?>
+                        <?=form_textarea(
+                            array(
+                                "id" => "vision",
+                                "name" => "vision",
+                                "type" => "text",
+                                "class" => "form-control",
+                                "autocomplete" => "off",
+                                "rows" => "2",
+                                "value" => ($about[0]->vision)?$about[0]->vision:set_value("vision")
+                            )
+                        );?>
+                    </div>
+                    <div class="form-group">
+                        <?=form_label("Valores", "value");?>
+                        <?=form_textarea(
+                            array(
+                                "id" => "value",
+                                "name" => "value",
+                                "type" => "text",
+                                "class" => "form-control",
+                                "autocomplete" => "off",
+                                "rows" => "2",
+                                "value" => ($about[0]->value)?$about[0]->value:set_value("value")
+                            )
+                        );?>
+                    </div>
+                    <div class="form-group">
                         <?=form_label("Texto", "text");?>
                         <?=form_textarea(
                             array(
@@ -138,7 +180,10 @@ $this->load->view("admin/admin_footer");
 ?>
 <script>
     $(function () {
-        CKEDITOR.replace('text')
+        CKEDITOR.replace('text');
+        CKEDITOR.replace('mission');
+        CKEDITOR.replace('vision');
+        CKEDITOR.replace('value');
     })
 </script>
 </body>
