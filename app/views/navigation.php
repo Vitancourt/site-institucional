@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <i class="fa fa-bars"></i>
             </button>
             <!-- End Toggle Nav Link For Mobiles -->
-            <a class="navbar-brand" href="index.html">SGT Gestão e Tecnologia</a>
+            <img class="navbar-logo" src="<?=base_url("repository/logo/logo_sgt.png");?>">
         </div>
         <div class="navbar-collapse collapse">
             

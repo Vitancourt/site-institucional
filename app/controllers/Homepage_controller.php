@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Homepage extends CI_Controller {
+class Homepage_controller extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -23,11 +23,21 @@ class Homepage extends CI_Controller {
 	{
 		parent::__construct();
 		$db_obj= $this->load->database(TRUE);
+		$this->load->model("banner_model");
+		$this->load->model("about_model");
+		$this->load->model("company_model");
 	}
 
 	public function index()
 	{
 		$db_obj= $this->load->database(TRUE);
-		$this->load->view('homepage');
+		$this->load->view(
+			"homepage",
+			array(
+				"banner" => $this->banner_model->get(),
+				"about" => $this->about_model->get(),
+				"company" => $this->company_model->get()
+			)
+		);
 	}
 }

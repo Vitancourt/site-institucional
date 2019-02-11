@@ -32,4 +32,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" type="text/css" href="<?=base_url("assets/landing/css/responsive.css");?>">
     <script src="<?=base_url("assets/landing/js/modernizrr.js");?>"></script>
 
+
 </head>

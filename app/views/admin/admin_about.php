@@ -85,7 +85,7 @@ $this->load->view("admin/admin_header");
                         src="<?=(!empty($about[0]->image))?base_url("repository/about/".$about[0]->image):"";?>">
                     </div>
                     <div class="form-group">
-                        <?=form_label("Imagem: (Só inserir caso queira alterar)", "image");?>
+                        <?=form_label("Imagem: (Só inserir caso queira alterarg)", "image");?>
                         <?=form_upload(
                             array(
                                 "id" => "image",

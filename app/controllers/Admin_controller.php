@@ -19,7 +19,7 @@ class Admin_controller extends CI_Controller {
 			redirect('admin/login', 'location');
 			exit();
 		}
-		$this->load->view('admin/admin');
+		$this->load->view("admin/admin");
 	}
 
 	/*

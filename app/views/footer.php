@@ -146,9 +146,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         
        <!-- Sulfur JS File -->
         <script src="<?=base_url("assets/landing/js/jquery-2.1.3.min.js");?>"></script>
+        <script src="<?=base_url("assets/landing/js/owl.carousel.min.js");?>"></script>
         <script src="<?=base_url("assets/landing/js/jquery-migrate-1.2.1.min.js");?>"></script>
         <script src="<?=base_url("assets/landing/bootstrap/js/bootstrap.min.js");?>"></script>
-        <script src="<?=base_url("assets/landing/js/owl.carousel.min.js");?>"></script>
         <script src="<?=base_url("assets/landing/js/jquery.appear.js");?>"></script>
         <script src="<?=base_url("assets/landing/js/jquery.fitvids.js");?>"></script>
         <script src="<?=base_url("assets/landing/js/jquery.nicescroll.min.js");?>"></script>
@@ -158,6 +158,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         
         <script src="<?=base_url("assets/landing/js/map.js");?>"></script>
         <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-        <script src="<?=base_url("assets/landing/js/script.js");?>"></script>     
-    </body>
-</html>
+        <script src="<?=base_url("assets/landing/js/script.js");?>"></script>
+
