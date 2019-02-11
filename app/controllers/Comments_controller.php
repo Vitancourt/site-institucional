@@ -20,8 +20,9 @@ class Comments_controller extends CI_Controller {
 	}
 
     /*
-     * Get data from user table
+     * Get data from comments table
      * Put on view datatable
+     * and make delete
      */
 	public function index()
 	{
@@ -36,21 +37,21 @@ class Comments_controller extends CI_Controller {
 				)
 			);
 			if ($this->form_validation->run() == FALSE) {
-				$this->load->view("admin/admin_banner");
+				$this->load->view("admin/admin_comments");
 			} else {
 				if ($this->banner_model->delete($this->input->post("id"))) {
-					$this->session->set_flashdata("success", "Usuário excluído!");
+					$this->session->set_flashdata("success", "Comentário excluído!");
 				} else {
-					$this->session->set_flashdata("error", "Erro ao excluir o usuário");
+					$this->session->set_flashdata("error", "Erro ao excluir o comentário");
 				}
-				redirect("admin/banner", "location");
+				redirect("admin/comments", "location");
 			}
 		} else {
-			$array_banner = $this->banner_model->get();
+			$array_comments = $this->comments_model->get();
 			$this->load->view(
-				'admin/admin_banner',
+				'admin/admin_comments',
 				array(
-					"array_banner" => $array_banner
+					"comments" => $array_comments
 				)
 			);
 		}
@@ -66,12 +67,12 @@ class Comments_controller extends CI_Controller {
             $this->load->library('form_validation');
             $this->load->library('upload');
 			$this->form_validation->set_rules(
-				'text',
-				'Texto',
+				'comments',
+				'Comentário',
 				'required|max_length[64000]',
 				array(
-					"max_length" => "O Primeiro nome ultrapassou 64000 caracteres.",
-					"required" => "Você não preencheu o texto."
+					"max_length" => "O comentário ultrapassou 64000 caracteres.",
+					"required" => "Você não preencheu o comentário."
 				)
 			);
             $config['upload_path'] = "./repository/banner_homepage/";
@@ -99,18 +100,18 @@ class Comments_controller extends CI_Controller {
 				)
             );
 			if ($this->form_validation->run() == FALSE) {
-				$this->load->view("admin/admin_banner_post");
+				$this->load->view("admin/admin_comments_post");
 			} else {
-				if ($this->banner_model->post($this->input->post(), $this->upload->data())) {
-					$this->session->set_flashdata("success", "Banner cadastrado!");
+				if ($this->comments_model->post($this->input->post(), $this->upload->data())) {
+					$this->session->set_flashdata("success", "Comentário cadastrado!");
 				} else {
-					$this->session->set_flashdata("error", "Erro ao cadastrar o banner");
+					$this->session->set_flashdata("error", "Erro ao cadastrar o comentário");
 				}
-				redirect("admin/banner", "location");
+				redirect("admin/comments", "location");
 			}
 		} else {
 			$this->load->helper("form");
-			$this->load->view("admin/admin_banner_post");
+			$this->load->view("admin/admin_comments_post");
 		}
     }
     
