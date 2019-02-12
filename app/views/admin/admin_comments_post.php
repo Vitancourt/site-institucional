@@ -78,16 +78,16 @@ $this->load->view("admin/admin_header");
                         );?>
                     </div>
                     <div class="form-group">
-                        <?=form_label("Imagem: (Tamanho máximo 1mb, resolução 1024, 768)", "image");?>
+                        <?=form_label("Imagem: (Tamanho máximo 1mb, resolução 1024, 768)", "photo");?>
                         <?=form_upload(
                             array(
-                                "id" => "image",
-                                "name" => "image",
+                                "id" => "photo",
+                                "name" => "photo",
                                 "type" => "file",
                                 "class" => "form-control",
                                 "required" => "true",
                                 "accept" => "image/png, image/jpeg, image/jpg",
-                                "value" => set_value("image")
+                                "value" => set_value("photo")
                             )
                         );?>
                     </div>
