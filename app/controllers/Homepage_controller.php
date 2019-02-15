@@ -26,6 +26,7 @@ class Homepage_controller extends CI_Controller {
 		$this->load->model("banner_model");
 		$this->load->model("about_model");
 		$this->load->model("company_model");
+		$this->load->model("comments_model");
 	}
 
 	public function index()
@@ -36,7 +37,8 @@ class Homepage_controller extends CI_Controller {
 			array(
 				"banner" => $this->banner_model->get(),
 				"about" => $this->about_model->get(),
-				"company" => $this->company_model->get()
+				"company" => $this->company_model->get(),
+				"comments" => $this->comments_model->getHomepage()
 			)
 		);
 	}

@@ -39,6 +39,19 @@ class Comments_model extends CI_Model {
         return false;
     }
 
+    public function getHomepage($quantity = null)
+    {
+        $this->db->order_by("id", "asc");
+        $this->db->select("
+            id,
+            comments,
+            name,
+            photo"
+        );
+        $query = $this->db->get('comments');
+        return $query->result();
+    }
+
     public function post($post, $file)
     {
         $data["comments"] = $post["comments"];
