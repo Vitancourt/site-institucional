@@ -58,7 +58,7 @@ class Comments_controller extends CI_Controller {
     }
     
 	/*
-    * Show view admin_banner_post to user post
+    * Show view admin_comments_post to user post
     * Get user POST
     */
 	public function post()
@@ -75,30 +75,20 @@ class Comments_controller extends CI_Controller {
 					"required" => "Você não preencheu o comentário."
 				)
 			);
-            $config['upload_path'] = "./repository/banner_homepage/";
+            $config['upload_path'] = "./repository/comments/";
             $config['allowed_types'] = 'jpg|png|jpeg';
-            $config['max_size']     = '1024';
+            $config['max_size']     = '100';
             $config['max_width'] = 0;
             $config['max_height'] = 0;
             $config['remove_spaces'] = true;
-            $config['encrypt_name'] = true;
+			$config['encrypt_name'] = true;
             $this->load->library('upload', $config);
             // Alternately you can set preferences by calling the ``initialize()`` method. Useful if you auto-load the class:
             $this->upload->initialize($config);
-            if (!$this->upload->do_upload('image')) {
+            if (!$this->upload->do_upload('photo')) {
                 echo $this->upload->display_errors();
 			    //exit();
-            }
-			$this->form_validation->set_rules(
-				'order',
-				'Ordem',
-				'required|numeric',
-				array(
-					"numeric" => "A ordem deve ser um número inteiro.",
-					"required" => "Você não preencheu o Nome de usuário.",
-					
-				)
-            );
+			}
 			if ($this->form_validation->run() == FALSE) {
 				$this->load->view("admin/admin_comments_post");
 			} else {
@@ -116,28 +106,36 @@ class Comments_controller extends CI_Controller {
     }
     
 	/*
-    * Show view admin_banner_put to user put
+    * Show view admin_comments_put to user put
     * Get user by id
     */
     public function put()
 	{
-		$this->load->model("banner_model");
         if ($this->input->method(TRUE) == "POST") {
 			$this->load->library('form_validation');
-            $this->load->library('upload');
+			$this->load->library('upload');
 			$this->form_validation->set_rules(
-				'text',
-				'Texto',
-				'required|max_length[64000]',
+				'id',
+				'Parâmetro',
+				'required|integer',
 				array(
-					"max_length" => "O Primeiro nome ultrapassou 64000 caracteres.",
-					"required" => "Você não preencheu o texto."
+					"integer" => "Erro de parâmetro.",
+					"required" => "Erro de parâmetro."
 				)
 			);
-			if (!empty($_FILES["image"]["name"])) {
-				$config['upload_path'] = "./repository/banner_homepage/";
+			$this->form_validation->set_rules(
+				'comments',
+				'Comentário',
+				'required|max_length[64000]',
+				array(
+					"max_length" => "O comentário ultrapassou 64000 caracteres.",
+					"required" => "Você não preencheu o comentário."
+				)
+			);
+			if (!empty($_FILES["photo"]["name"])) {
+				$config['upload_path'] = "./repository/comments/";
 				$config['allowed_types'] = 'jpg|png|jpeg';
-				$config['max_size']     = '1024';
+				$config['max_size']     = '100';
 				$config['max_width'] = 0;
 				$config['max_height'] = 0;
 				$config['remove_spaces'] = true;
@@ -145,30 +143,20 @@ class Comments_controller extends CI_Controller {
 				$this->load->library('upload', $config);
 				// Alternately you can set preferences by calling the ``initialize()`` method. Useful if you auto-load the class:
 				$this->upload->initialize($config);
-				if (!$this->upload->do_upload('image')) {
+				if (!$this->upload->do_upload('photo')) {
 					echo $this->upload->display_errors();
 					//exit();
 				}
 			}
-			$this->form_validation->set_rules(
-				'order',
-				'Ordem',
-				'required|numeric',
-				array(
-					"numeric" => "A ordem deve ser um número inteiro.",
-					"required" => "Você não preencheu o Nome de usuário.",
-					
-				)
-            );
 			if ($this->form_validation->run() == FALSE) {
-				$this->load->view("admin/admin_banner_post");
+				$this->load->view("admin/admin_comments_post");
 			} else {
-				if ($this->banner_model->put($this->input->post(), $this->upload->data())) {
-					$this->session->set_flashdata("success", "Banner cadastrado!");
+				if ($this->comments_model->put($this->input->post(), $this->upload->data())) {
+					$this->session->set_flashdata("success", "Comentário cadastrado!");
 				} else {
-					$this->session->set_flashdata("error", "Erro ao cadastrar o banner");
+					$this->session->set_flashdata("error", "Erro ao cadastrar o comentário");
 				}
-				redirect("admin/banner", "location");
+				redirect("admin/comments", "location");
 			}
         } else {
 			if (
@@ -177,20 +165,20 @@ class Comments_controller extends CI_Controller {
 				!is_numeric($this->uri->segment(4))
 			) {
 				$this->session->set_flashdata("error", "Erro de parâmetro!");
-				redirect("admin/user", "location");
+				redirect("admin/comments", "location");
 			}
             $this->load->helper("form");
-            $banner = $this->banner_model->get($this->uri->segment(4));
-            if ($banner) {
+            $comment = $this->comments_model->get($this->uri->segment(4));
+            if ($comment) {
                 $this->load->view(
-                    'admin/admin_banner_put',
+                    'admin/admin_comments_put',
                     array(
-                        "banner" => $banner
+                        "comment" => $comment
                     )
                 );
             } else {
-                $this->session->set_flashdata("error", "Banner não encontrado!");
-                redirect("admin/banner", "location");
+                $this->session->set_flashdata("error", "Comentário não encontrado!");
+                redirect("admin/comments", "location");
             }
         }
 	}
@@ -201,7 +189,6 @@ class Comments_controller extends CI_Controller {
     */
     public function delete()
 	{
-		$this->load->model("banner_model");
         if ($this->input->method(TRUE) == "POST") {
 			if (
 				!empty($this->input->post("id")) &&
@@ -210,12 +197,12 @@ class Comments_controller extends CI_Controller {
 				$this->session->set_flashdata("error", "Erro de parâmetro!");
 				return false;
 			}
-			if ($this->banner_model->delete($this->input->post("id"))) {
-				$this->session->set_flashdata("success", "Banner excluído!");
+			if ($this->comments_model->delete($this->input->post("id"))) {
+				$this->session->set_flashdata("success", "Comentário excluído!");
 			} else {
 				$this->session->set_flashdata("error", "Nada alterado!");
 			}
-			redirect("admin/banner", "location");
+			redirect("admin/comments", "location");
 		}
 		return false;
 	}

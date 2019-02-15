@@ -41,10 +41,10 @@ class Comments_model extends CI_Model {
 
     public function post($post, $file)
     {
-        $data["text"] = $post["comments"];
+        $data["comments"] = $post["comments"];
         $data["name"] = $post["name"];
         if (!empty($file["file_name"])) {
-            $data["image"] = $file["file_name"];
+            $data["photo"] = $file["file_name"];
         }
         $this->db->insert(
             "comments",
@@ -53,10 +53,10 @@ class Comments_model extends CI_Model {
         return $this->db->insert_id();
     }
 
-    public function put($post)
+    public function put($post, $file)
     {   
         if ($this->get($post["id"])) {
-            $data["text"] = $post["text"];
+            $data["comments"] = $post["comments"];
             $data["name"] = $post["name"];
             if (!empty($file["file_name"])) {
                 $data["photo"] = $file["file_name"];

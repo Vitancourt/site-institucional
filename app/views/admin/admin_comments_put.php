@@ -12,14 +12,12 @@ $this->load->view("admin/admin_header");
     $this->load->view("admin/admin_menu");
     $this->load->view("admin/admin_menu_header");
     ?>
-    
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
         <h1>
-            Cadastrar comentário
+            Alterar comentário
         </h1>
         </section>
         <!-- Main content -->
@@ -34,7 +32,7 @@ $this->load->view("admin/admin_header");
                 $this->load->view("admin/admin_comments_navigation");
                 ?>
                 <!-- /.box-header -->
-                <?=form_open_multipart("admin/comments/post");?>
+                <?=form_open_multipart("admin/comments/put");?>
                 <div class="box-body">
                     <?php
                     if (validation_errors()) {
@@ -47,6 +45,14 @@ $this->load->view("admin/admin_header");
                         <?php
                     }
                     ?>
+                    <?=form_input(
+                        array(
+                            "id" => "id",
+                            "name" => "id",
+                            "type" => "hidden",
+                            "value" => (!empty($comment[0]->id))?$comment[0]->id:set_value("id")
+                        )
+                    );?>
                     <div class="form-group">
                         <?=form_label("Comentários: (Obrigatório)", "comments");?>
                         <?=form_textarea(
@@ -58,7 +64,7 @@ $this->load->view("admin/admin_header");
                                 "placeholder" => "Comentário",
                                 "required" => "true",
                                 "autocomplete" => "off",
-                                "value" => set_value("comments")
+                                "value" => (!empty($comment[0]->comments))?$comment[0]->comments:set_value("comments")
                             )
                         );?>
                     </div>
@@ -71,13 +77,24 @@ $this->load->view("admin/admin_header");
                                 "type" => "text",
                                 "class" => "form-control",
                                 "placeholder" => "Nome",
+                                "required" => "false",
                                 "autocomplete" => "off",
-                                "value" => set_value("name")
+                                "value" => (!empty($comment[0]->name))?$comment[0]->name:set_value("name")
                             )
                         );?>
                     </div>
+                    <div class="form-group col-md-12">
+                        <?php
+                        if (!empty($comment[0]->photo)) {
+                            ?>
+                            <img src="<?=base_url("repository/comments/".$comment[0]->photo);?>"
+                            style="max-width: 360px; max-height: 240px;">
+                            <?php
+                        }
+                        ?>
+                    </div>
                     <div class="form-group">
-                        <?=form_label("Imagem: (Tamanho máximo 100kb, resolução 1024, 768)", "photo");?>
+                        <?=form_label("Imagem: Insira somente se quiser alterar (Tamanho máximo 100kb, resolução 1024, 768)", "photo");?>
                         <?=form_upload(
                             array(
                                 "id" => "photo",

@@ -79,7 +79,14 @@ $this->load->view("admin/admin_header");
                                     <?=$c->name;?>
                                 </td>
                                 <td>
-                                    <?=$c->photo;?>
+                                    <?php
+                                    if (!empty($c->photo)) {
+                                        ?>
+                                        <img src="<?=base_url("repository/comments/".$c->photo);?>"
+                                        style="max-width:300px; max-height:240px;">
+                                        <?php
+                                    }
+                                    ?>
                                 </td>
                                 <td>
                                     <a href="<?=site_url("admin/comments/put/".$c->id);?>"
@@ -112,7 +119,7 @@ $this->load->view("admin/admin_header");
                     array(
                         "type" => "hidden",
                         "name" => "id",
-                        "id" => "comments-id"
+                        "id" => "id"
                     )
                 );?>
                 <div class="modal-body">
@@ -158,7 +165,7 @@ $this->load->view("admin/admin_footer");
     })
 
     function trocaId(id) {
-        $("#user-id").val(id);
+        $("#id").val(id);
     }
 </script>
 </body>

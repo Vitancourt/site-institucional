@@ -100,5 +100,6 @@ $route['admin/about'] = 'about_controller/put';
  */
 $route['admin/comments'] = 'comments_controller';
 $route['admin/comments/post'] = 'comments_controller/post';
-$route['admin/comments_put'] = 'comments_controller/put';
-$route['admin/comments_delete'] = 'comments_controller/delete';
+$route['admin/comments/put'] = 'comments_controller/put';
+$route['admin/comments/put/:num'] = 'comments_controller/put';
+$route['admin/comments/delete'] = 'comments_controller/delete';
