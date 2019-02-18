@@ -38,7 +38,8 @@ class Homepage_controller extends CI_Controller {
 				"banner" => $this->banner_model->get(),
 				"about" => $this->about_model->get(),
 				"company" => $this->company_model->get(),
-				"comments" => $this->comments_model->getHomepage()
+				"comments" => $this->comments_model->getHomepage(),
+				"banner_comments" => $this->comments_model->comments_get()
 			)
 		);
 	}

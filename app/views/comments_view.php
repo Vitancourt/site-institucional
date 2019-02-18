@@ -3,7 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 if (!empty($comments)) {
     ?>
     <!-- Start Testimonial Section -->
-    <section id="testimonial-section">
+    <section id="testimonial-section"
+    style="background: url(
+        <?=(!empty($banner_comments[0]->image))?
+        base_url("repository/banner_comments/".$banner_comments[0]->image):
+        base_url("repository/banner_comments/call-to.jpg");?>) no-repeat;
+        background-size: 100% 100%;">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
