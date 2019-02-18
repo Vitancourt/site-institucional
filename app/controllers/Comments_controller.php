@@ -207,4 +207,46 @@ class Comments_controller extends CI_Controller {
 		return false;
 	}
 
+
+	/*
+     * Get data from banner_comments table
+     * Put on view datatable
+     */
+	public function comments_index()
+	{
+		$this->load->library('form_validation');
+		if ($this->input->method(TRUE) == "POST") {
+			if (!empty($_FILES["image"]["name"])) {
+				$config['upload_path'] = "./repository/banner_comments/";
+				$config['allowed_types'] = 'jpg|png|jpeg';
+				$config['max_size']     = '300';
+				$config['max_width'] = 0;
+				$config['max_height'] = 0;
+				$config['remove_spaces'] = true;
+				$config['encrypt_name'] = true;
+				$this->load->library('upload', $config);
+				// Alternately you can set preferences by calling the ``initialize()`` method. Useful if you auto-load the class:
+				$this->upload->initialize($config);
+				if (!$this->upload->do_upload('image')) {
+					$this->session->flashdata("error", $this->upload->display_errors());
+					//exit();
+				}
+			}
+			if ($this->comments_model->comments_put($this->upload->data())) {
+				$this->session->set_flashdata("success", "Banner atualizado!");
+			}
+			redirect("admin/comments/banner", "location");
+		} else {
+			$array_comments = $this->comments_model->comments_get();
+			$this->load->view(
+				'admin/admin_comments_banner',
+				array(
+					"array_comments" => $array_comments
+				)
+			);
+		}
+    }
+    
+	
+
 }

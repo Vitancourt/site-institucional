@@ -103,3 +103,5 @@ $route['admin/comments/post'] = 'comments_controller/post';
 $route['admin/comments/put'] = 'comments_controller/put';
 $route['admin/comments/put/:num'] = 'comments_controller/put';
 $route['admin/comments/delete'] = 'comments_controller/delete';
+$route['admin/comments/banner'] = 'comments_controller/comments_index';
+

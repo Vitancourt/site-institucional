@@ -99,4 +99,48 @@ class Comments_model extends CI_Model {
         return false;
     }
 
+    public function comments_get()
+    {
+        $this->db->select(
+            "image"
+        );
+        $query = $this->db->get('banner_comments');
+        if ($query->num_rows() == 0) {
+            $file["file_name"] = "";
+            return $this->comments_post($file);
+        }
+        return $query->result();
+    }
+
+    public function comments_post($file)
+    {
+        $data["image"] = $file["file_name"];
+        $this->db->insert(
+            "banner_comments",
+            $data
+        );
+        return $this->db->insert_id();
+    }
+
+    public function comments_put($file)
+    {   
+        //var_dump($file);
+        //exit();
+        if ($this->comments_get()) {
+            if (!empty($file["file_name"])) {
+                $data["image"] = $file["file_name"];
+            }
+            $this->db->update(
+                'banner_comments',
+                $data  
+            );
+        }
+        if ($this->db->affected_rows() == '1') {
+            return true;
+        }
+        return false;
+    }
+
+    
+
 }
