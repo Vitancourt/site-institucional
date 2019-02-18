@@ -57,6 +57,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <li><a href="<?=site_url("admin/about");?>"><i class="fa fa-map-o"></i> Sobre</a></li>
             <li><a href="<?=site_url("admin/comments/banner");?>"><i class="fa fa-image"></i> Banner comentários</a></li>
             <li><a href="<?=site_url("admin/comments");?>"><i class="fa fa-commenting-o"></i> Comentários</a></li>
+            <li><a href="<?=site_url("admin/team");?>"><i class="fa fa-user-secret"></i> Equipe</a></li>
           </ul>
         </li>
         <li class="treeview">

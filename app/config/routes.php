@@ -105,3 +105,12 @@ $route['admin/comments/put/:num'] = 'comments_controller/put';
 $route['admin/comments/delete'] = 'comments_controller/delete';
 $route['admin/comments/banner'] = 'comments_controller/comments_index';
 
+/*
+ * Admin team routes
+ */
+$route['admin/team'] = 'team_controller';
+$route['admin/team/post'] = 'team_controller/post';
+$route['admin/team/put'] = 'team_controller/put';
+$route['admin/team/put/:num'] = 'team_controller/put';
+$route['admin/team/delete'] = 'team_controller/delete';
+$route['admin/team/view'] = 'team_controller/view';
