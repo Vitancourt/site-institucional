@@ -26,7 +26,7 @@ class Level_model extends CI_Model {
             }
             return false;
         } else {
-            $this->db->order_by("name", "asc");
+            $this->db->order_by("id", "desc");
             $this->db->select(
                 "id,
                 name,

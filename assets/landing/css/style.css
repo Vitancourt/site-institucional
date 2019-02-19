@@ -1084,7 +1084,7 @@ and (min-width : 551px){
 
 @media (min-width: 768px) {
   #portfolio-list li {
-      width: 33.3%;
+      width: 50%;
   }
 }
 
