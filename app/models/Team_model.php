@@ -12,7 +12,7 @@ class Team_model extends CI_Model {
     public function get($id=null)
     {
         if ($id) {
-            $query = $this->db->select("id, name, workas, order, facebook, twitter, linkedin, image")
+            $query = $this->db->select("id, name, workas, ordem, facebook, twitter, linkedin, image")
                 ->from("team")
                 ->where("id", $id)
                 ->get();
@@ -21,9 +21,9 @@ class Team_model extends CI_Model {
             }
             return false;
         } else {
-            $this->db->order_by("order", "asc");
-            $this->db->order_by("name", "desc");
-            $this->db->select("id, name, workas, order, facebook, twitter, linkedin, image");
+            $this->db->order_by("ordem", "asc");
+            
+            $this->db->select("id, name, workas, ordem, facebook, twitter, linkedin, image");
             $query = $this->db->get('team');
             return $query->result();
         }
@@ -41,7 +41,7 @@ class Team_model extends CI_Model {
             array(
                 "name" => $post["name"],
                 "workas" => $post["workas"],
-                "order" => $post["order"],
+                "ordem" => $post["order"],
                 "facebook" => $post["facebook"],
                 "twitter" => $post["twitter"],
                 "linkedin" => $post["linkedin"],
@@ -57,7 +57,7 @@ class Team_model extends CI_Model {
             $this->db->where("id", $post["id"]);
             $data["name"] = $post["name"];
             $data["workas"] = $post["workas"];
-            $data["order"] = $post["order"];
+            $data["ordem"] = $post["order"];
             $data["facebook"] = $post["facebook"];
             $data["twitter"] = $post["twitter"];
             $data["linkedin"] = $post["linkedin"];
