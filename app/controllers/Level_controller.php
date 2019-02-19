@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Tool_controller extends CI_Controller {
+class Level_controller extends CI_Controller {
 
     /*
      * Load session
@@ -16,7 +16,7 @@ class Tool_controller extends CI_Controller {
         if (!$this->session->has_userdata("id")) {
             redirect('admin/login', 'location');
         }
-        $this->load->model("modules_model");
+        $this->load->model("level_model");
 	}
 
     /*
@@ -26,11 +26,11 @@ class Tool_controller extends CI_Controller {
 	public function index()
 	{
         $this->load->helper("form");
-        $array_team = $this->team_model->get();
+        $array_level = $this->level_model->get();
         $this->load->view(
-            'admin/admin_team',
+            'admin/level/admin_level',
             array(
-                "array_team" => $array_team
+                "array_level" => $array_level
             )
         );
     }
@@ -51,14 +51,15 @@ class Tool_controller extends CI_Controller {
 				)
 			);
 			if ($this->form_validation->run() == FALSE) {
-				$this->load->view("admin/admin_team");
+				redirect("admin/level");
+				exit();
 			} else {
-				if ($this->team_model->delete($this->input->post("id"))) {
+				if ($this->level_model->delete($this->input->post("id"))) {
 					$this->session->set_flashdata("success", "Dados excluídos!");
 				} else {
 					$this->session->set_flashdata("error", "Erro ao excluir os dados");
 				}
-				redirect("admin/team", "location");
+				redirect("admin/level", "location");
 			}
 		}
     }
@@ -74,68 +75,27 @@ class Tool_controller extends CI_Controller {
             $this->load->library('upload');
 			$this->form_validation->set_rules(
 				'name',
-				'Primeiro nome',
-				'required|max_length[512]',
+				'Nome',
+				'required|max_length[128]',
 				array(
-					"max_length" => "O Primeiro nome ultrapassou 512 caracteres.",
+					"max_length" => "O nome ultrapassou 128 caracteres.",
 					"required" => "Você não preencheu o nome."
 				)
 			);
 			$this->form_validation->set_rules(
-				'workas',
-				'Trabalha como',
-				'max_length[128]',
+				'description',
+				'Descrição',
+				'max_length[256]',
 				array(
-					"max_length[128]" => "O Último nome ultrapassou 128 caracteres.",
+					"max_length[65000]" => "A descrição ultrapassou 256 caracteres.",
 				)
 			);
-			$this->form_validation->set_rules(
-				'order',
-				'Ordem',
-				'required|numeric',
-				array(
-					"required" => "Você não preencheu o Nome de usuário.",
-					"numeric" => "O campo ordem deve ser numérico."
-				)
-            );
-            $this->form_validation->set_rules(
-				'facebook',
-				'Facebook',
-				'max_length[256]',
-				array(
-					"max_length[256]" => "O Facebook ultrapassou 256 caracteres.",
-				)
-            );
-            $this->form_validation->set_rules(
-				'twitter',
-				'Twitter',
-				'max_length[256]',
-				array(
-					"max_length[256]" => "O Twitter ultrapassou 256 caracteres.",
-				)
-            );
-            $this->form_validation->set_rules(
-				'linkedin',
-				'Linkedin',
-				'max_length[256]',
-				array(
-					"max_length[256]" => "O Linkedin ultrapassou 256 caracteres.",
-				)
-			);
-			$this->form_validation->set_rules(
-				'skype',
-				'Skype',
-				'max_length[128]',
-				array(
-					"max_length[128]" => "O Skype ultrapassou 128 caracteres.",
-				)
-            );
             if (empty($_FILES["image"]["name"])) {
                 $this->session->flashdata("error", "Você não inseriu a imagem.");
-                $this->load->view("admin/admin_team_post");
+                $this->load->view("admin/admin_level_post");
                 exit();
             }
-            $config['upload_path'] = "./repository/team/";
+            $config['upload_path'] = "./repository/level/";
             $config['allowed_types'] = 'jpg|png|jpeg';
             $config['max_size']     = '1024';
             $config['max_width'] = 0;
@@ -150,10 +110,10 @@ class Tool_controller extends CI_Controller {
             }
 			
 			if ($this->form_validation->run() == FALSE) {
-				$this->load->view("admin/admin_team_post");
+				$this->load->view("admin/admin_level_post");
 			} else {
 				if (
-                    $this->team_model->post(
+                    $this->level_model->post(
                         $this->input->post(),
                         $this->upload->data()
                     )
@@ -162,11 +122,11 @@ class Tool_controller extends CI_Controller {
 				} else {
 					$this->session->set_flashdata("error", "Erro ao gravar dados");
 				}
-				redirect("admin/team", "location");
+				redirect("admin/level", "location");
 			}
 		} else {
 			$this->load->helper("form");
-			$this->load->view("admin/admin_team_post");
+			$this->load->view("admin/level/admin_level_post");
 		}
     }
     
@@ -190,64 +150,23 @@ class Tool_controller extends CI_Controller {
 			);
 			$this->form_validation->set_rules(
 				'name',
-				'Primeiro nome',
-				'required|max_length[512]',
+				'Nome',
+				'required|max_length[128]',
 				array(
-					"max_length" => "O Primeiro nome ultrapassou 512 caracteres.",
+					"max_length" => "O nome ultrapassou 128 caracteres.",
 					"required" => "Você não preencheu o nome."
 				)
 			);
 			$this->form_validation->set_rules(
-				'workas',
-				'Trabalha como',
+				'description',
+				'Descrição',
 				'max_length[128]',
 				array(
-					"max_length[128]" => "O Último nome ultrapassou 128 caracteres.",
+					"max_length[128]" => "A descrição ultrapassou 128 caracteres.",
 				)
 			);
-			$this->form_validation->set_rules(
-				'order',
-				'Ordem',
-				'required|numeric',
-				array(
-					"required" => "Você não preencheu o Nome de usuário.",
-					"numeric" => "O campo ordem deve ser numérico."
-				)
-            );
-            $this->form_validation->set_rules(
-				'facebook',
-				'Facebook',
-				'max_length[256]',
-				array(
-					"max_length[256]" => "O Facebook ultrapassou 256 caracteres.",
-				)
-            );
-            $this->form_validation->set_rules(
-				'twitter',
-				'Twitter',
-				'max_length[256]',
-				array(
-					"max_length[256]" => "O Twitter ultrapassou 256 caracteres.",
-				)
-            );
-            $this->form_validation->set_rules(
-				'linkedin',
-				'Linkedin',
-				'max_length[256]',
-				array(
-					"max_length[256]" => "O Linkedin ultrapassou 256 caracteres.",
-				)
-            );
-            $this->form_validation->set_rules(
-				'skype',
-				'Skype',
-				'max_length[128]',
-				array(
-					"max_length[128]" => "O Skype ultrapassou 128 caracteres.",
-				)
-            );
             if (!empty($_FILES["image"]["name"])) {
-                $config['upload_path'] = "./repository/team/";
+                $config['upload_path'] = "./repository/level/";
                 $config['allowed_types'] = 'jpg|png|jpeg';
                 $config['max_size']     = '1024';
                 $config['max_width'] = 0;
@@ -262,14 +181,14 @@ class Tool_controller extends CI_Controller {
                 }
             }
 			if ($this->form_validation->run() == FALSE) {
-				$this->load->view("admin/admin_team_put");
+				$this->load->view("admin/level/admin_level_put");
 			} else {
-				if ($this->team_model->put($this->input->post(), $this->upload->data())) {
+				if ($this->level_model->put($this->input->post(), $this->upload->data())) {
 					$this->session->set_flashdata("success", "Alterações gravadas!");
 				} else {
 					$this->session->set_flashdata("error", "Nada alterado");
                 }
-				redirect("admin/team", "location");
+				redirect("admin/level", "location");
             }
         } else {
 			if (
@@ -278,20 +197,20 @@ class Tool_controller extends CI_Controller {
 				!is_numeric($this->uri->segment(4))
 			) {
 				$this->session->set_flashdata("error", "Erro de parâmetro!");
-				redirect("admin/user", "location");
+				redirect("admin/level", "location");
 			}
             $this->load->helper("form");
-            $team = $this->team_model->get($this->uri->segment(4));
-            if ($team) {
+            $level = $this->level_model->get($this->uri->segment(4));
+            if ($level) {
                 $this->load->view(
-                    'admin/admin_team_put',
+                    'admin/level/admin_level_put',
                     array(
-                        "team" => $team
+                        "level" => $level
                     )
                 );
             } else {
-                $this->session->set_flashdata("error", "Membro da equipe não encontrado!");
-                redirect("admin/team", "location");
+                $this->session->set_flashdata("error", "Registro não encontrado!");
+                redirect("admin/level", "location");
             }
         }
 	}

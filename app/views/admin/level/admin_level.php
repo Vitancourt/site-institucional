@@ -17,7 +17,7 @@ $this->load->view("admin/admin_header");
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-            Equipe
+            Níveis
             </h1>
         </section>
         <!-- Main content -->
@@ -29,7 +29,7 @@ $this->load->view("admin/admin_header");
                 <!-- general form elements -->
                 <div class="box box-primary">
                 <?php
-                $this->load->view("admin/admin_team_navigation");
+                $this->load->view("admin/level/admin_level_navigation");
                 ?>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -61,27 +61,31 @@ $this->load->view("admin/admin_header");
                         <thead>
                         <tr>
                         <th>Nome</th>
-                        <th>Ordem</th>
+                        <th>Descriçao</th>
+                        <th>Price</th>
                         <th>Ação</th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php
-                        if (!empty($array_team)) {
-                            foreach ($array_team as $team) {
+                        if (!empty($array_level)) {
+                            foreach ($array_level as $level) {
                                 ?>
                                 <tr>
                                 <td>
-                                    <?=$team->name;?>
+                                    <?=$level->name;?>
                                 </td>
                                 <td>
-                                    <?=$team->ordem;?>
+                                    <?=$level->description;?>
                                 </td>
                                 <td>
-                                    <a href="<?=site_url("admin/team/put/".$team->id);?>"
+                                    <?=$level->price;?>
+                                </td>
+                                <td>
+                                    <a href="<?=site_url("admin/level/put/".$level->id);?>"
                                     class="btn btn-block btn-info btn-flat">Editar</button>
                                     <a href="" class="btn btn-block btn-danger btn-flat" data-toggle="modal"
-                                    data-target="#modal-danger" onclick="trocaId('<?=$team->id;?>')">Excluir</a>
+                                    data-target="#modal-danger" onclick="trocaId('<?=$level->id;?>')">Excluir</a>
                                 </td>
                                 </tr>
                                 <?php
@@ -103,7 +107,7 @@ $this->load->view("admin/admin_header");
                     <span aria-hidden="true">×</span></button>
                 <h4 class="modal-title">Confirme a operação</h4>
                 </div>
-                <?=form_open("admin/team/delete");?>
+                <?=form_open("admin/level/delete");?>
                 <?=form_input(
                     array(
                         "type" => "hidden",

@@ -19,7 +19,7 @@ $this->load->view("admin/admin_header");
         <!-- Content Header (Page header) -->
         <section class="content-header">
         <h1>
-            Alterar Membro
+            Alterar Nível
         </h1>
         </section>
         <!-- Main content -->
@@ -31,10 +31,10 @@ $this->load->view("admin/admin_header");
             <!-- general form elements -->
             <div class="box box-primary">
                 <?php
-                $this->load->view("admin/admin_team_navigation");
+                $this->load->view("admin/level/admin_level_navigation");
                 ?>
                 <!-- /.box-header -->
-                <?=form_open_multipart("admin/team/put");?>
+                <?=form_open_multipart("admin/level/put");?>
                 <div class="box-body">
                     <?php
                     if (validation_errors()) {
@@ -51,7 +51,7 @@ $this->load->view("admin/admin_header");
                         array(
                             "name" => "id",
                             "type" => "hidden",
-                            "value" => (!empty($team[0]->id))?$team[0]->id:set_value("id")
+                            "value" => (!empty($level[0]->id))?$level[0]->id:set_value("id")
                         )
                     );?>
                     <div class="form-group">
@@ -65,101 +65,47 @@ $this->load->view("admin/admin_header");
                                 "placeholder" => "Nome",
                                 "required" => "true",
                                 "autocomplete" => "off",
-                                "value" => (!empty($team[0]->name))?$team[0]->name:set_value("name")
+                                "value" => (!empty($level[0]->name))?$level[0]->name:set_value("name")
                             )
                         );?>
                     </div>
                     <div class="form-group">
-                        <?=form_label("Trabalha como:", "workas");?>
+                        <?=form_label("Descrição: (256 caracteres)", "description");?>
                         <?=form_input(
                             array(
-                                "id" => "workas",
-                                "name" => "workas",
+                                "id" => "description",
+                                "name" => "description",
                                 "type" => "text",
                                 "class" => "form-control",
-                                "placeholder" => "Trabalha como",
-                                "autocomplete" => "off",
-                                "value" => (!empty($team[0]->workas))?$team[0]->workas:set_value("workas")
-                            )
-                        );?>
-                    </div>
-                    <div class="form-group">
-                        <?=form_label("Ordem: (Obrigatório)", "order");?>
-                        <?=form_input(
-                            array(
-                                "id" => "order",
-                                "name" => "order",
-                                "type" => "number",
-                                "class" => "form-control",
-                                "placeholder" => "Ordem",
+                                "placeholder" => "Descrição",
+                                "maxlength" => "256",
                                 "required" => "true",
                                 "autocomplete" => "off",
-                                "value" => (!empty($team[0]->ordem))?$team[0]->ordem:set_value("order")
+                                "value" => (!empty($level[0]->description))?$level[0]->description:set_value("description")
                             )
                         );?>
                     </div>
                     <div class="form-group">
-                        <?=form_label("Skype", "skype");?>
+                        <?=form_label("Preço: (Obrigatório)", "price");?>
                         <?=form_input(
                             array(
-                                "id" => "skype",
-                                "name" => "skype",
+                                "id" => "price",
+                                "name" => "price",
                                 "type" => "text",
                                 "class" => "form-control",
-                                "placeholder" => "Skype",
+                                "placeholder" => "R$ 400,00",
+                                "required" => "true",
                                 "autocomplete" => "off",
-                                "value" => (!empty($team[0]->skype))?$team[0]->skype:set_value("skype")
+                                "value" => (!empty($level[0]->price))?$level[0]->price:set_value("price")
                             )
                         );?>
                     </div>
-                    <div class="form-group">
-                        <?=form_label("Facebook", "facebook");?>
-                        <?=form_input(
-                            array(
-                                "id" => "facebook",
-                                "name" => "facebook",
-                                "type" => "text",
-                                "class" => "form-control",
-                                "placeholder" => "Facebook",
-                                "autocomplete" => "off",
-                                "value" => (!empty($team[0]->facebook))?$team[0]->facebook:set_value("facebook")
-                            )
-                        );?>
+                    <div class="form-group col-md-12">
+                        <img src="<?=base_url("repository/level/".$level[0]->image);?>" alt="<?=$level[0]->name;?>"
+                        style="max-width:300px; max-height:240px;">
                     </div>
                     <div class="form-group">
-                        <?=form_label("Twitter", "twitter");?>
-                        <?=form_input(
-                            array(
-                                "id" => "twitter",
-                                "name" => "twitter",
-                                "type" => "text",
-                                "class" => "form-control",
-                                "placeholder" => "Twitter",
-                                "autocomplete" => "off",
-                                "value" => (!empty($team[0]->twitter))?$team[0]->twitter:set_value("twitter")
-                            )
-                        );?>
-                    </div>
-                    <div class="form-group">
-                        <?=form_label("Linkedin", "linkedin");?>
-                        <?=form_input(
-                            array(
-                                "id" => "linkedin",
-                                "name" => "linkedin",
-                                "type" => "text",
-                                "class" => "form-control",
-                                "placeholder" => "Linkedin",
-                                "autocomplete" => "off",
-                                "value" => (!empty($team[0]->linkedin))?$team[0]->linkedin:set_value("linkedin")
-                            )
-                        );?>
-                    </div>
-                    <div class="form-group">
-                        <img style="max-width: 360px; max-height: 240px;"
-                        src="<?=base_url("repository/team/".$team[0]->image);?>">
-                    </div>
-                    <div class="form-group">
-                        <?=form_label("Imagem: Insira somente para alterar(Tamanho máximo 1mb, resolução 1024, 768)", "image");?>
+                        <?=form_label("Imagem: (Insira somente para alterar. Tamanho máximo 1mb, resolução 1024, 768)", "image");?>
                         <?=form_upload(
                             array(
                                 "id" => "image",

@@ -19,7 +19,7 @@ $this->load->view("admin/admin_header");
         <!-- Content Header (Page header) -->
         <section class="content-header">
         <h1>
-            Cadastrar Membro
+            Cadastrar Nível
         </h1>
         </section>
         <!-- Main content -->
@@ -31,10 +31,10 @@ $this->load->view("admin/admin_header");
             <!-- general form elements -->
             <div class="box box-primary">
                 <?php
-                $this->load->view("admin/admin_team_navigation");
+                $this->load->view("admin/level/admin_level_navigation");
                 ?>
                 <!-- /.box-header -->
-                <?=form_open_multipart("admin/team/post");?>
+                <?=form_open_multipart("admin/level/post");?>
                 <div class="box-body">
                     <?php
                     if (validation_errors()) {
@@ -56,6 +56,7 @@ $this->load->view("admin/admin_header");
                                 "type" => "text",
                                 "class" => "form-control",
                                 "placeholder" => "Nome",
+                                "maxlength" => "128",
                                 "required" => "true",
                                 "autocomplete" => "off",
                                 "value" => set_value("name")
@@ -63,87 +64,33 @@ $this->load->view("admin/admin_header");
                         );?>
                     </div>
                     <div class="form-group">
-                        <?=form_label("Trabalha como:", "workas");?>
+                        <?=form_label("Descrição: (256 caracteres)", "description");?>
                         <?=form_input(
                             array(
-                                "id" => "workas",
-                                "name" => "workas",
+                                "id" => "description",
+                                "name" => "description",
                                 "type" => "text",
                                 "class" => "form-control",
-                                "placeholder" => "Trabalha como",
-                                "autocomplete" => "off",
-                                "value" => set_value("workas")
-                            )
-                        );?>
-                    </div>
-                    <div class="form-group">
-                        <?=form_label("Ordem: (Obrigatório)", "order");?>
-                        <?=form_input(
-                            array(
-                                "id" => "order",
-                                "name" => "order",
-                                "type" => "number",
-                                "class" => "form-control",
-                                "placeholder" => "Ordem",
+                                "placeholder" => "Descrição",
+                                "maxlength" => "256",
                                 "required" => "true",
                                 "autocomplete" => "off",
-                                "value" => set_value("order")
+                                "value" => set_value("description")
                             )
                         );?>
                     </div>
                     <div class="form-group">
-                        <?=form_label("Skype", "skype");?>
+                        <?=form_label("Preço: (Obrigatório)", "price");?>
                         <?=form_input(
                             array(
-                                "id" => "skype",
-                                "name" => "skype",
+                                "id" => "price",
+                                "name" => "price",
                                 "type" => "text",
                                 "class" => "form-control",
-                                "placeholder" => "Skype",
+                                "placeholder" => "R$ 400,00",
+                                "required" => "true",
                                 "autocomplete" => "off",
-                                "value" => set_value("skype")
-                            )
-                        );?>
-                    </div>
-                    <div class="form-group">
-                        <?=form_label("Facebook", "facebook");?>
-                        <?=form_input(
-                            array(
-                                "id" => "facebook",
-                                "name" => "facebook",
-                                "type" => "text",
-                                "class" => "form-control",
-                                "placeholder" => "Facebook",
-                                "autocomplete" => "off",
-                                "value" => set_value("facebook")
-                            )
-                        );?>
-                    </div>
-                    <div class="form-group">
-                        <?=form_label("Twitter", "twitter");?>
-                        <?=form_input(
-                            array(
-                                "id" => "twitter",
-                                "name" => "twitter",
-                                "type" => "text",
-                                "class" => "form-control",
-                                "placeholder" => "Twitter",
-                                "autocomplete" => "off",
-                                "value" => set_value("twitter")
-                            )
-                        );?>
-                    </div>
-                    <div class="form-group">
-                        <?=form_label("Linkedin", "linkedin");?>
-                        <?=form_input(
-                            array(
-                                "id" => "linkedin",
-                                "name" => "linkedin",
-                                "type" => "text",
-                                "class" => "form-control",
-                                "placeholder" => "Linkedin",
-                                "autocomplete" => "off",
-                                "value" => set_value("linkedin")
+                                "value" => set_value("price")
                             )
                         );?>
                     </div>
