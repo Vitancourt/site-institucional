@@ -42,6 +42,11 @@ if (!empty($team)) {
                                 ?>
                                 <ul>
                                     <?php
+                                    if (!empty($t->skype)) {
+                                        ?>
+                                        <li><a href="<?=$t->skype;?>"><i class="fa fa-skype"></i></a></li>
+                                        <?php
+                                    }
                                     if (!empty($t->facebook)) {
                                         ?>
                                         <li><a href="<?=($t->facebook);?>"><i class="fa fa-facebook"></i></a></li>

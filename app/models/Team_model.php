@@ -12,7 +12,7 @@ class Team_model extends CI_Model {
     public function get($id=null)
     {
         if ($id) {
-            $query = $this->db->select("id, name, workas, ordem, facebook, twitter, linkedin, image")
+            $query = $this->db->select("id, name, workas, ordem, facebook, twitter, linkedin, skype, image")
                 ->from("team")
                 ->where("id", $id)
                 ->get();
@@ -23,7 +23,7 @@ class Team_model extends CI_Model {
         } else {
             $this->db->order_by("ordem", "asc");
             
-            $this->db->select("id, name, workas, ordem, facebook, twitter, linkedin, image");
+            $this->db->select("id, name, workas, ordem, facebook, twitter, linkedin, skype, image");
             $query = $this->db->get('team');
             return $query->result();
         }
@@ -45,6 +45,7 @@ class Team_model extends CI_Model {
                 "facebook" => $post["facebook"],
                 "twitter" => $post["twitter"],
                 "linkedin" => $post["linkedin"],
+                "skype" => $post["skype"],
                 "image" => $file_name,
             )
         );
@@ -61,6 +62,7 @@ class Team_model extends CI_Model {
             $data["facebook"] = $post["facebook"];
             $data["twitter"] = $post["twitter"];
             $data["linkedin"] = $post["linkedin"];
+            $data["skype"] = $post["skype"];
             if (!empty($file["file_name"])) {
                 $data["image"] = $file["file_name"];
             }

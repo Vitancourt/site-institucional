@@ -92,6 +92,20 @@ $this->load->view("admin/admin_header");
                         );?>
                     </div>
                     <div class="form-group">
+                        <?=form_label("Skype", "skype");?>
+                        <?=form_input(
+                            array(
+                                "id" => "skype",
+                                "name" => "skype",
+                                "type" => "text",
+                                "class" => "form-control",
+                                "placeholder" => "Skype",
+                                "autocomplete" => "off",
+                                "value" => set_value("skype")
+                            )
+                        );?>
+                    </div>
+                    <div class="form-group">
                         <?=form_label("Facebook", "facebook");?>
                         <?=form_input(
                             array(

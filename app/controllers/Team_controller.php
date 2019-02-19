@@ -121,6 +121,14 @@ class Team_controller extends CI_Controller {
 				array(
 					"max_length[256]" => "O Linkedin ultrapassou 256 caracteres.",
 				)
+			);
+			$this->form_validation->set_rules(
+				'skype',
+				'Skype',
+				'max_length[128]',
+				array(
+					"max_length[128]" => "O Skype ultrapassou 128 caracteres.",
+				)
             );
             if (empty($_FILES["image"]["name"])) {
                 $this->session->flashdata("error", "Você não inseriu a imagem.");
@@ -230,8 +238,14 @@ class Team_controller extends CI_Controller {
 					"max_length[256]" => "O Linkedin ultrapassou 256 caracteres.",
 				)
             );
-            var_dump($_FILES);
-            echo "<hr>";
+            $this->form_validation->set_rules(
+				'skype',
+				'Skype',
+				'max_length[128]',
+				array(
+					"max_length[128]" => "O Skype ultrapassou 128 caracteres.",
+				)
+            );
             if (!empty($_FILES["image"]["name"])) {
                 $config['upload_path'] = "./repository/team/";
                 $config['allowed_types'] = 'jpg|png|jpeg';

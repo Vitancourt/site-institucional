@@ -75,7 +75,7 @@ $this->load->view("admin/admin_header");
                                     <?=$team->name;?>
                                 </td>
                                 <td>
-                                    <?=$team->order;?>
+                                    <?=$team->ordem;?>
                                 </td>
                                 <td>
                                     <a href="<?=site_url("admin/team/put/".$team->id);?>"

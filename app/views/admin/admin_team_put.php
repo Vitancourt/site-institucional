@@ -94,7 +94,21 @@ $this->load->view("admin/admin_header");
                                 "placeholder" => "Ordem",
                                 "required" => "true",
                                 "autocomplete" => "off",
-                                "value" => (!empty($team[0]->order))?$team[0]->order:set_value("order")
+                                "value" => (!empty($team[0]->ordem))?$team[0]->ordem:set_value("order")
+                            )
+                        );?>
+                    </div>
+                    <div class="form-group">
+                        <?=form_label("Skype", "skype");?>
+                        <?=form_input(
+                            array(
+                                "id" => "skype",
+                                "name" => "skype",
+                                "type" => "text",
+                                "class" => "form-control",
+                                "placeholder" => "Skype",
+                                "autocomplete" => "off",
+                                "value" => (!empty($team[0]->skype))?$team[0]->skype:set_value("skype")
                             )
                         );?>
                     </div>
