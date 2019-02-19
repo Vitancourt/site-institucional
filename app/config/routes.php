@@ -113,4 +113,14 @@ $route['admin/team/post'] = 'team_controller/post';
 $route['admin/team/put'] = 'team_controller/put';
 $route['admin/team/put/:num'] = 'team_controller/put';
 $route['admin/team/delete'] = 'team_controller/delete';
-$route['admin/team/view'] = 'team_controller/view';
+//$route['admin/team/view'] = 'team_controller/view';
+
+
+/*
+ * Admin level routes
+ */
+$route['admin/level'] = 'level_controller';
+$route['admin/level/post'] = 'level_controller/post';
+$route['admin/level/put'] = 'level_controller/put';
+$route['admin/level/put/:num'] = 'level_controller/put';
+$route['admin/level/delete'] = 'level_controller/delete';
