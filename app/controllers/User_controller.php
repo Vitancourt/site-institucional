@@ -217,31 +217,18 @@ class User_controller extends CI_Controller {
 					)
 				);
 			}
-			$this->form_validation->set_rules(
-				'password',
-				'Senha',
-				'required|min_length[1]',
-				array(
-					'min_length' => "Você deve preencher a senha.",
-					'required' => "Você deve preencher a senha."
-				)
-			);
-			$this->form_validation->set_rules(
-				'password_conf',
-				'Confirmação de Senha',
-				'required|matches[password]',
-				array(
-					"required" => "Você deve preencher a confirmação de senha.",
-					"matches", "As senhas inseridas não são iguais."
-				)
-			);
+			if (!empty($this->input->post("password"))) {
+				if ($this->input->post("password") != $this->input->post("password_conf")) {
+					$this->session->set_flashdata("error", "As senhas não coincidem.");
+				}
+			}
 			if ($this->form_validation->run() == FALSE) {
 				$this->load->view("admin/user/admin_user_put");
 			} else {
 				if ($this->user_model->put($this->input->post())) {
 					$this->session->set_flashdata("success", "Alterações gravadas!");
 				} else {
-					$this->session->set_flashdata("error", "Erro ao alterar o usuário");
+					$this->session->set_flashdata("error", "Nada alterado");
 				}
 				redirect("admin/user", "location");
             }

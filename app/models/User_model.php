@@ -50,7 +50,8 @@ class User_model extends CI_Model {
                 "last_name" => $post["last_name"],
                 "username" => $post["username"],
                 "email" => $post["email"],
-                "password" =>$this->hash_password($post["password"])
+                "password" =>$this->hash_password($post["password"]),
+                "inserted_at" => date("Y-m-d H:i:s")
             )
         );
         return $this->db->insert_id();
@@ -97,18 +98,20 @@ class User_model extends CI_Model {
     
     public function put($post)
     {   
-        if ($this->check($post["id"])) {            
+        if ($this->check($post["id"])) {     
+            $data["first_name"] = $post["first_name"];
+            $data["middle_name"] = $post["middle_name"];
+            $data["last_name"] = $post["last_name"];
+            $data["username"] = $post["username"];
+            $data["email"] = $post["email"];
+            $data["updated_at"] = date("Y-m-d H:i:s");
+            if (!empty($post["password"])) {
+                $data["password"] = $this->hash_password($post["password"]);
+            }
             $this->db->where("id", $post["id"]);
             $this->db->update(
                 'user',
-                array(
-                    "first_name" => $post["first_name"],
-                    "middle_name" => $post["middle_name"],
-                    "last_name" => $post["last_name"],
-                    "username" => $post["username"],
-                    "email" => $post["email"],
-                    "password" =>$this->hash_password($post["password"])
-                )
+                $data
             );
             if ($this->db->affected_rows() == '1') {
                 return true;

@@ -114,7 +114,7 @@ $this->load->view("admin/admin_header");
                         );?>
                     </div>
                     <div class="form-group">
-                        <?=form_label("Senha: (Obrigatório)", "password");?>
+                        <?=form_label("Senha:", "password");?>
                         <?=form_password(
                             array(
                                 "id" => "password",
@@ -125,7 +125,7 @@ $this->load->view("admin/admin_header");
                         );?>
                     </div>
                     <div class="form-group">
-                        <?=form_label("Confirme a senha: (Obrigatório)", "password");?>
+                        <?=form_label("Confirme a senha:", "password");?>
                         <?=form_password(
                             array(
                                 "id" => "password_conf",
