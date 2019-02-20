@@ -38,6 +38,21 @@ class Homepage_controller extends CI_Controller {
 		$this->load->view(
 			"homepage",
 			array(
+				"author" => "Maikel Vitancourt",
+					"description" => "
+						O SGT - Gestão e Tecnologia permite a visualização
+						global de todas as etapas de realização de seu
+						projeto.
+						Um sistema moderno, ágil e eficiente para
+						você ter os melhores resultados na sua empresa.
+					",
+				"keywords" => 
+					"
+					SGT,Gestão e Tecnologia,Gestão,Tecnologia,
+					Etapas do seu projeto,Ágil,Eficiente,
+					Resultados
+					",
+				"title" => "SGT Gestão e Tecnologia",
 				"banner" => $this->banner_model->get(),
 				"about" => $this->about_model->get(),
 				"company" => $this->company_model->get(),

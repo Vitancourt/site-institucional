@@ -37,7 +37,7 @@ class User_controller extends CI_Controller {
 				)
 			);
 			if ($this->form_validation->run() == FALSE) {
-				$this->load->view("admin/admin_user");
+				$this->load->view("admin/user/admin_user");
 			} else {
 				if ($this->user_model->delete($this->input->post("id"))) {
 					$this->session->set_flashdata("success", "Usuário excluído!");
@@ -49,7 +49,7 @@ class User_controller extends CI_Controller {
 		} else {
 			$array_user = $this->user_model->get();
 			$this->load->view(
-				'admin/admin_user',
+				'admin/user/admin_user',
 				array(
 					"array_user" => $array_user
 				)
@@ -125,7 +125,7 @@ class User_controller extends CI_Controller {
 				)
 			);
 			if ($this->form_validation->run() == FALSE) {
-				$this->load->view("admin/admin_user_post");
+				$this->load->view("admin/user/admin_user_post");
 			} else {
 				$this->load->model("user_model");
 				if ($this->user_model->post($this->input->post())) {
@@ -137,7 +137,7 @@ class User_controller extends CI_Controller {
 			}
 		} else {
 			$this->load->helper("form");
-			$this->load->view("admin/admin_user_post");
+			$this->load->view("admin/user/admin_user_post");
 		}
     }
     
@@ -236,7 +236,7 @@ class User_controller extends CI_Controller {
 				)
 			);
 			if ($this->form_validation->run() == FALSE) {
-				$this->load->view("admin/admin_user_put");
+				$this->load->view("admin/user/admin_user_put");
 			} else {
 				if ($this->user_model->put($this->input->post())) {
 					$this->session->set_flashdata("success", "Alterações gravadas!");
@@ -259,7 +259,7 @@ class User_controller extends CI_Controller {
             $user = $this->user_model->get($this->uri->segment(4));
             if ($user) {
                 $this->load->view(
-                    'admin/admin_user_put',
+                    'admin/user/admin_user_put',
                     array(
                         "user" => $user
                     )

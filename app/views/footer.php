@@ -132,7 +132,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <li><a href="#" class="active">Home</a></li>
                                 <li><a href="#">Sample Site</a></li>
                                 <li><a href="#">getbootstrap.com</a></li>
-                                <li><a href="<?=site_url("admin");?>">admin</a></li>
+                                <li><a target="_blank" href="<?=site_url("admin");?>">admin</a></li>
                             </ul>
                         </div>
                     </div>

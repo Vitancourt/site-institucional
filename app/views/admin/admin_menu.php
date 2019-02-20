@@ -30,11 +30,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </ul>
         </li>
         <li>
-          <a href="<?=site_url("admin/config");?>">
-            <i class="fa fa-gear "></i> <span>Configurações</span>
-          </a>
-        </li>
-        <li>
           <a href="<?=site_url("admin/user");?>">
             <i class="fa fa-user"></i> <span>Usuários</span>
           </a>

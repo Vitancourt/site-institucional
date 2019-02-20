@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <head>
     <!-- Basic -->
-    <title>SGT Gestão e Tecnologia</title>
+    <title><?=$title;?></title>
     <!-- Define Charset -->
     <meta charset="utf-8">
     <!-- Robots -->
@@ -11,9 +11,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- Responsive Metatag -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="shortcut icon" href="<?=base_url("assets/favicon.ico");?>" />
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+    <meta name="author" content="<?=$author;?>">
     <!-- Page Description and Author -->
-    <meta name="description" content="O SGT - Gestão e Tecnologia permite a visualização global de todas as etapas de realização de seu projeto. Um sistema moderno, ágil e eficiente para você ter os melhores resultados na sua empresa.">
-    <meta name="author" content="SGT Gestão e Tecnologia">
+    <meta name="description" content="<?=$description;?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS  -->
     <link rel="stylesheet" href="<?=base_url("assets/landing/bootstrap/css/bootstrap.min.css");?>" type="text/css">
     <!-- Font Awesome CSS -->
