@@ -119,7 +119,8 @@ class Level_model extends CI_Model {
                 "description" => $post["description"],
                 "price" => $post["price"],
                 "image" => $file_name,
-                "link" => "level/".$post["link"]
+                "link" => $post["link"],
+                "inserted_at" => date("Y-m-d H:i:s")
             )
         );
         return $this->db->insert_id();
@@ -132,7 +133,8 @@ class Level_model extends CI_Model {
             $data["name"] = $post["name"];
             $data["description"] = $post["description"];
             $data["price"] = $post["price"];
-            $data["link"] = "level/".$this->reduceLink($post["link"]);
+            $data["link"] = $this->reduceLink($post["link"]);
+            $data["updated_at"] = date("Y-m-d H:i:s");
             if (!empty($file["file_name"])) {
                 $data["image"] = $file["file_name"];
             }
