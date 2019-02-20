@@ -32,21 +32,11 @@ $this->load->view("admin/admin_header");
             <div class="box box-primary">
                 <?php
                 $this->load->view("admin/module/admin_module_navigation");
+                $url = (!empty($module[0]->id))?$module[0]->id:set_value("id");
                 ?>
                 <!-- /.box-header -->
-                <?=form_open_multipart("admin/module/put");?>
+                <?=form_open_multipart("admin/module/put/".$url);?>
                 <div class="box-body">
-                    <?php
-                    if (validation_errors()) {
-                        ?>
-                        <div class="alert alert-danger alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <h4><i class="icon fa fa-ban"></i> Erro</h4>
-                            <?=validation_errors();?>
-                        </div>
-                        <?php
-                    }
-                    ?>
                     <?=form_input(
                         array(
                             "name" => "id",
@@ -98,6 +88,22 @@ $this->load->view("admin/admin_header");
                                 "required" => "true",
                                 "autocomplete" => "off",
                                 "value" => (!empty($module[0]->icon))?$module[0]->icon:set_value("icon")
+                            )
+                        );?>
+                    </div>
+                    <div class="form-group">
+                        <?=form_label("Link: (Obrigatório. Não utilize espaços e acentos, separe com - ou _)", "link");?>
+                        <?=form_input(
+                            array(
+                                "id" => "link",
+                                "name" => "link",
+                                "type" => "text",
+                                "class" => "form-control",
+                                "placeholder" => "Exemplo: gestao-estrategica",
+                                "maxlength" => "256",
+                                "required" => "true",
+                                "autocomplete" => "off",
+                                "value" => (!empty($module[0]->link))?$class_module->reduceLink($module[0]->link):set_value("link")
                             )
                         );?>
                     </div>

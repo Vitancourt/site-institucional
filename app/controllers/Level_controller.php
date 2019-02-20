@@ -192,7 +192,7 @@ class Level_controller extends CI_Controller {
 				)
 			);
 			$valid_link = true;
-			if ($this->level_model->hasLink($this->input->post("link"), $this->input->post("id")) > 0) {
+			if ($this->level_model->hasLink("level/".$this->input->post("link"), $this->input->post("id")) > 0) {
 				$valid_link = false;
 				$erro[] = "O link já existe!";
 			}

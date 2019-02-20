@@ -36,17 +36,6 @@ $this->load->view("admin/admin_header");
                 <!-- /.box-header -->
                 <?=form_open_multipart("admin/module/post");?>
                 <div class="box-body">
-                    <?php
-                    if (validation_errors()) {
-                        ?>
-                        <div class="alert alert-danger alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <h4><i class="icon fa fa-ban"></i> Erro</h4>
-                            <?=validation_errors();?>
-                        </div>
-                        <?php
-                    }
-                    ?>
                     <div class="form-group">
                         <?=form_label("Nome: (Obrigatório)", "name");?>
                         <?=form_input(
@@ -64,7 +53,7 @@ $this->load->view("admin/admin_header");
                         );?>
                     </div>
                     <div class="form-group">
-                        <?=form_label("Descrição: (256 caracteres)", "description");?>
+                        <?=form_label("Descrição: (O texto exibido na página iniciar será resumido, já na página do módulo será completo.)", "description");?>
                         <?=form_input(
                             array(
                                 "id" => "description",
@@ -72,7 +61,6 @@ $this->load->view("admin/admin_header");
                                 "type" => "text",
                                 "class" => "form-control",
                                 "placeholder" => "Descrição",
-                                "maxlength" => "256",
                                 "required" => "true",
                                 "autocomplete" => "off",
                                 "value" => set_value("description")
@@ -92,6 +80,22 @@ $this->load->view("admin/admin_header");
                                 "required" => "true",
                                 "autocomplete" => "off",
                                 "value" => set_value("icon")
+                            )
+                        );?>
+                    </div>
+                    <div class="form-group">
+                        <?=form_label("Link: (Obrigatório. Não utilize espaços e acentos, separe com - ou _)", "link");?>
+                        <?=form_input(
+                            array(
+                                "id" => "link",
+                                "name" => "link",
+                                "type" => "text",
+                                "class" => "form-control",
+                                "placeholder" => "Exemplo: gestao-estrategica",
+                                "maxlength" => "256",
+                                "required" => "true",
+                                "autocomplete" => "off",
+                                "value" => set_value("link")
                             )
                         );?>
                     </div>

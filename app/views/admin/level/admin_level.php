@@ -40,7 +40,8 @@ $this->load->view("admin/admin_header");
                         <tr>
                         <th>Nome</th>
                         <th>Descriçao</th>
-                        <th>Price</th>
+                        <th>Preço</th>
+                        <th>Link</th>
                         <th>Ação</th>
                         </tr>
                         </thead>
@@ -58,6 +59,9 @@ $this->load->view("admin/admin_header");
                                 </td>
                                 <td>
                                     <?=$level->price;?>
+                                </td>
+                                <td>
+                                    <?=site_url($level->link);?>
                                 </td>
                                 <td>
                                     <a href="<?=site_url("admin/level/put/".$level->id);?>"

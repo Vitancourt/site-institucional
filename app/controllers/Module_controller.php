@@ -76,24 +76,27 @@ class Module_controller extends CI_Controller {
 			$this->form_validation->set_rules(
 				'name',
 				'Nome',
-				'required|max_length[128]',
+				'required|max_length[128]|is_unique[module.name]',
 				array(
 					"max_length" => "O nome ultrapassou 128 caracteres.",
-					"required" => "Você não preencheu o nome."
+					"required" => "Você não preencheu o nome.",
+					"is_unique" => "O nome já existe"
 				)
 			);
 			$this->form_validation->set_rules(
-				'description',
-				'Descrição',
-				'max_length[256]',
+				'link',
+				'Link',
+				'required|max_length[256]|is_unique[module.link]',
 				array(
-					"max_length[256]" => "A descrição ultrapassou 256 caracteres.",
+					"max_length" => "O nome ultrapassou 128 caracteres.",
+					"required" => "Você não preencheu o nome.",
+					"is_unique" => "O link já existe"
 				)
 			);
+			$imagem = true;
             if (empty($_FILES["image"]["name"])) {
-                $this->session->flashdata("error", "Você não inseriu a imagem.");
-                $this->load->view("admin/module/admin_module_post");
-                exit();
+				$erro[] = "Você não inseriu a imagem";
+                $imagem = false;
             }
             $config['upload_path'] = "./repository/module/";
             $config['allowed_types'] = 'jpg|png|jpeg';
@@ -109,7 +112,15 @@ class Module_controller extends CI_Controller {
                 $this->session->flashdata("error", $this->upload->display_errors());
             }
 			
-			if ($this->form_validation->run() == FALSE) {
+			if (
+				$this->form_validation->run() == FALSE ||
+				!$imagem
+			) {
+				$erro[] = validation_errors();
+				if (!empty($erro)) {
+					$erro = implode("<br>", $erro);
+				}
+				$this->session->set_flashdata("error", $erro);
 				$this->load->view("admin/module/admin_module_post");
 			} else {
 				if (
@@ -157,14 +168,24 @@ class Module_controller extends CI_Controller {
 					"required" => "Você não preencheu o nome."
 				)
 			);
+			$valida_name = true;
+			if ($this->module_model->hasName($this->input->post("name"), $this->input->post("id"))) {
+				$erro[] = "O nome já existe!";
+				$valida_name = false;
+			}
 			$this->form_validation->set_rules(
-				'description',
-				'Descrição',
-				'max_length[128]',
+				'link',
+				'Link',
+				'required',
 				array(
-					"max_length[128]" => "A descrição ultrapassou 128 caracteres.",
+					"required" => "Erro de parãmetro."
 				)
 			);
+			$valida_link = true;
+			if ($this->module_model->hasLink("level/".$this->input->post("link"), $this->input->post("id"))) {
+				$erro[] = "O link já existe";
+				$valida_link = false;
+			}
             if (!empty($_FILES["image"]["name"])) {
                 $config['upload_path'] = "./repository/module/";
                 $config['allowed_types'] = 'jpg|png|jpeg';
@@ -177,11 +198,21 @@ class Module_controller extends CI_Controller {
                 // Alternately you can set preferences by calling the ``initialize()`` method. Useful if you auto-load the class:
                 $this->upload->initialize($config);
                 if (!$this->upload->do_upload('image')) {
-                    $this->session->flashdata("error", $this->upload->display_errors());
+                    $erro[] = $this->session->flashdata("error", $this->upload->display_errors());
                 }
             }
-			if ($this->form_validation->run() == FALSE) {
-				$this->load->view("admin/module/admin_module_put");
+			if (
+				$this->form_validation->run() == FALSE ||
+				!$valida_link ||
+				!$valida_name
+			) {
+				$erro[] = validation_errors();
+				if (!empty($erro)) {
+					$erro = implode("<br>", $erro);
+				}
+				$this->session->set_flashdata("error", $erro);
+				redirect("admin/module/put/".$this->input->post("id"));
+				//$this->load->view("admin/module/admin_module_put");
 			} else {
 				if ($this->module_model->put($this->input->post(), $this->upload->data())) {
 					$this->session->set_flashdata("success", "Alterações gravadas!");
@@ -205,7 +236,8 @@ class Module_controller extends CI_Controller {
                 $this->load->view(
                     'admin/module/admin_module_put',
                     array(
-						"module" => $module
+						"module" => $module,
+						"class_module" => $this->module_model
                     )
                 );
             } else {
