@@ -247,7 +247,8 @@ class Level_controller extends CI_Controller {
                 $this->load->view(
                     'admin/level/admin_level_put',
                     array(
-                        "level" => $level
+						"level" => $level,
+						"class_level" => $this->level_model
                     )
                 );
             } else {

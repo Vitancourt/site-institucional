@@ -205,7 +205,7 @@ class Module_controller extends CI_Controller {
                 $this->load->view(
                     'admin/module/admin_module_put',
                     array(
-                        "module" => $module
+						"module" => $module
                     )
                 );
             } else {

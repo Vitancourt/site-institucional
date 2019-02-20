@@ -113,7 +113,7 @@ $this->load->view("admin/admin_header");
                                 "maxlength" => "256",
                                 "required" => "true",
                                 "autocomplete" => "off",
-                                "value" => (!empty($level[0]->link))?$level[0]->link:set_value("link")
+                                "value" => (!empty($level[0]->link))?$class_level->reduceLink($level[0]->link):set_value("link")
                             )
                         );?>
                     </div>
