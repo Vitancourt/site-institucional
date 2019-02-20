@@ -49,7 +49,7 @@ class Comments_controller extends CI_Controller {
 		} else {
 			$array_comments = $this->comments_model->get();
 			$this->load->view(
-				'admin/admin_comments',
+				'admin/comments/admin_comments',
 				array(
 					"comments" => $array_comments
 				)
@@ -101,7 +101,7 @@ class Comments_controller extends CI_Controller {
 			}
 		} else {
 			$this->load->helper("form");
-			$this->load->view("admin/admin_comments_post");
+			$this->load->view("admin/comments/admin_comments_post");
 		}
     }
     
@@ -171,7 +171,7 @@ class Comments_controller extends CI_Controller {
             $comment = $this->comments_model->get($this->uri->segment(4));
             if ($comment) {
                 $this->load->view(
-                    'admin/admin_comments_put',
+                    'admin/comments/admin_comments_put',
                     array(
                         "comment" => $comment
                     )

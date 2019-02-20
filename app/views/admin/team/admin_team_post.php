@@ -19,7 +19,7 @@ $this->load->view("admin/admin_header");
         <!-- Content Header (Page header) -->
         <section class="content-header">
         <h1>
-            Alterar Membro
+            Cadastrar Membro
         </h1>
         </section>
         <!-- Main content -->
@@ -31,29 +31,11 @@ $this->load->view("admin/admin_header");
             <!-- general form elements -->
             <div class="box box-primary">
                 <?php
-                $this->load->view("admin/admin_team_navigation");
+                $this->load->view("admin/team/admin_team_navigation");
                 ?>
                 <!-- /.box-header -->
-                <?=form_open_multipart("admin/team/put");?>
+                <?=form_open_multipart("admin/team/post");?>
                 <div class="box-body">
-                    <?php
-                    if (validation_errors()) {
-                        ?>
-                        <div class="alert alert-danger alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <h4><i class="icon fa fa-ban"></i> Erro</h4>
-                            <?=validation_errors();?>
-                        </div>
-                        <?php
-                    }
-                    ?>
-                    <?=form_input(
-                        array(
-                            "name" => "id",
-                            "type" => "hidden",
-                            "value" => (!empty($team[0]->id))?$team[0]->id:set_value("id")
-                        )
-                    );?>
                     <div class="form-group">
                         <?=form_label("Nome: (Obrigatório)", "name");?>
                         <?=form_input(
@@ -65,7 +47,7 @@ $this->load->view("admin/admin_header");
                                 "placeholder" => "Nome",
                                 "required" => "true",
                                 "autocomplete" => "off",
-                                "value" => (!empty($team[0]->name))?$team[0]->name:set_value("name")
+                                "value" => set_value("name")
                             )
                         );?>
                     </div>
@@ -79,7 +61,7 @@ $this->load->view("admin/admin_header");
                                 "class" => "form-control",
                                 "placeholder" => "Trabalha como",
                                 "autocomplete" => "off",
-                                "value" => (!empty($team[0]->workas))?$team[0]->workas:set_value("workas")
+                                "value" => set_value("workas")
                             )
                         );?>
                     </div>
@@ -94,7 +76,7 @@ $this->load->view("admin/admin_header");
                                 "placeholder" => "Ordem",
                                 "required" => "true",
                                 "autocomplete" => "off",
-                                "value" => (!empty($team[0]->ordem))?$team[0]->ordem:set_value("order")
+                                "value" => set_value("order")
                             )
                         );?>
                     </div>
@@ -108,7 +90,7 @@ $this->load->view("admin/admin_header");
                                 "class" => "form-control",
                                 "placeholder" => "Skype",
                                 "autocomplete" => "off",
-                                "value" => (!empty($team[0]->skype))?$team[0]->skype:set_value("skype")
+                                "value" => set_value("skype")
                             )
                         );?>
                     </div>
@@ -122,7 +104,7 @@ $this->load->view("admin/admin_header");
                                 "class" => "form-control",
                                 "placeholder" => "Facebook",
                                 "autocomplete" => "off",
-                                "value" => (!empty($team[0]->facebook))?$team[0]->facebook:set_value("facebook")
+                                "value" => set_value("facebook")
                             )
                         );?>
                     </div>
@@ -136,7 +118,7 @@ $this->load->view("admin/admin_header");
                                 "class" => "form-control",
                                 "placeholder" => "Twitter",
                                 "autocomplete" => "off",
-                                "value" => (!empty($team[0]->twitter))?$team[0]->twitter:set_value("twitter")
+                                "value" => set_value("twitter")
                             )
                         );?>
                     </div>
@@ -150,22 +132,19 @@ $this->load->view("admin/admin_header");
                                 "class" => "form-control",
                                 "placeholder" => "Linkedin",
                                 "autocomplete" => "off",
-                                "value" => (!empty($team[0]->linkedin))?$team[0]->linkedin:set_value("linkedin")
+                                "value" => set_value("linkedin")
                             )
                         );?>
                     </div>
                     <div class="form-group">
-                        <img style="max-width: 360px; max-height: 240px;"
-                        src="<?=base_url("repository/team/".$team[0]->image);?>">
-                    </div>
-                    <div class="form-group">
-                        <?=form_label("Imagem: Insira somente para alterar(Tamanho máximo 1mb, resolução 1024, 768)", "image");?>
+                        <?=form_label("Imagem: (Tamanho máximo 1mb, resolução 1024, 768)", "image");?>
                         <?=form_upload(
                             array(
                                 "id" => "image",
                                 "name" => "image",
                                 "type" => "file",
                                 "class" => "form-control",
+                                "required" => "true",
                                 "accept" => "image/png, image/jpeg, image/jpg",
                                 "value" => set_value("image")
                             )

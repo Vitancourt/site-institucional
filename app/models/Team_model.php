@@ -47,6 +47,7 @@ class Team_model extends CI_Model {
                 "linkedin" => $post["linkedin"],
                 "skype" => $post["skype"],
                 "image" => $file_name,
+                "inserted_at" => date("Y-m-d H:i:s")
             )
         );
         return $this->db->insert_id();
@@ -63,6 +64,7 @@ class Team_model extends CI_Model {
             $data["twitter"] = $post["twitter"];
             $data["linkedin"] = $post["linkedin"];
             $data["skype"] = $post["skype"];
+            $data["updated_at"] = date("Y-m-d H:i:s");
             if (!empty($file["file_name"])) {
                 $data["image"] = $file["file_name"];
             }

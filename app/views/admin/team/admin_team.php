@@ -29,32 +29,10 @@ $this->load->view("admin/admin_header");
                 <!-- general form elements -->
                 <div class="box box-primary">
                 <?php
-                $this->load->view("admin/admin_team_navigation");
+                $this->load->view("admin/team/admin_team_navigation");
                 ?>
                 <!-- /.box-header -->
                 <div class="box-body">
-                <?php
-                if ($this->session->flashdata('success')) {
-                    ?>
-                    <div class="alert alert-success alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <h4><i class="icon fa  fa-check-circle-o"></i> Concluído</h4>
-                        <?=$this->session->flashdata('success');?>
-                    </div>
-                    <?php
-                }
-                ?>
-                <?php
-                if ($this->session->flashdata('error')) {
-                    ?>
-                    <div class="alert alert-danger alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <h4><i class="icon fa fa-ban"></i> Erro</h4>
-                        <?=$this->session->flashdata('error');?>
-                    </div>
-                    <?php
-                }
-                ?>
                 <div class="col-md-12">
                     <!-- datatable-start -->
                     <table id="user-table" class="table table-bordered table-hover">

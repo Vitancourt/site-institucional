@@ -28,7 +28,7 @@ class Team_controller extends CI_Controller {
         $this->load->helper("form");
         $array_team = $this->team_model->get();
         $this->load->view(
-            'admin/admin_team',
+            'admin/team/admin_team',
             array(
                 "array_team" => $array_team
             )
@@ -51,7 +51,7 @@ class Team_controller extends CI_Controller {
 				)
 			);
 			if ($this->form_validation->run() == FALSE) {
-				$this->load->view("admin/admin_team");
+				$this->load->view("admin/team/admin_team");
 			} else {
 				if ($this->team_model->delete($this->input->post("id"))) {
 					$this->session->set_flashdata("success", "Dados excluídos!");
@@ -150,7 +150,7 @@ class Team_controller extends CI_Controller {
             }
 			
 			if ($this->form_validation->run() == FALSE) {
-				$this->load->view("admin/admin_team_post");
+				$this->load->view("admin/team/admin_team_post");
 			} else {
 				if (
                     $this->team_model->post(
@@ -166,7 +166,7 @@ class Team_controller extends CI_Controller {
 			}
 		} else {
 			$this->load->helper("form");
-			$this->load->view("admin/admin_team_post");
+			$this->load->view("admin/team/admin_team_post");
 		}
     }
     
@@ -262,7 +262,7 @@ class Team_controller extends CI_Controller {
                 }
             }
 			if ($this->form_validation->run() == FALSE) {
-				$this->load->view("admin/admin_team_put");
+				$this->load->view("admin/team/admin_team_put");
 			} else {
 				if ($this->team_model->put($this->input->post(), $this->upload->data())) {
 					$this->session->set_flashdata("success", "Alterações gravadas!");
@@ -284,7 +284,7 @@ class Team_controller extends CI_Controller {
             $team = $this->team_model->get($this->uri->segment(4));
             if ($team) {
                 $this->load->view(
-                    'admin/admin_team_put',
+                    'admin/team/admin_team_put',
                     array(
                         "team" => $team
                     )

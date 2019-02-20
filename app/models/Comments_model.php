@@ -56,6 +56,7 @@ class Comments_model extends CI_Model {
     {
         $data["comments"] = $post["comments"];
         $data["name"] = $post["name"];
+        $data["inserted_at"] = date("Y-m-d H:i:s");
         if (!empty($file["file_name"])) {
             $data["photo"] = $file["file_name"];
         }
@@ -71,6 +72,7 @@ class Comments_model extends CI_Model {
         if ($this->get($post["id"])) {
             $data["comments"] = $post["comments"];
             $data["name"] = $post["name"];
+            $data["updated_at"] = date("Y-m-d H:i:s");
             if (!empty($file["file_name"])) {
                 $data["photo"] = $file["file_name"];
             }
