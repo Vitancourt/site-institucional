@@ -29,44 +29,11 @@ $this->load->view("admin/admin_header");
                 <!-- general form elements -->
                 <div class="box box-primary">
                 <?php
-                $this->load->view("admin/admin_company_navigation");
+                $this->load->view("admin/company/admin_company_navigation");
                 ?>
                 <!-- /.box-header -->
                 <div class="box-body">
-                <?php
-                if ($this->session->flashdata('success')) {
-                    ?>
-                    <div class="alert alert-success alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <h4><i class="icon fa  fa-check-circle-o"></i> Concluído</h4>
-                        <?=$this->session->flashdata('success');?>
-                    </div>
-                    <?php
-                }
-                ?>
-                <?php
-                if ($this->session->flashdata('error')) {
-                    ?>
-                    <div class="alert alert-danger alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <h4><i class="icon fa fa-ban"></i> Erro</h4>
-                        <?=$this->session->flashdata('error');?>
-                    </div>
-                    <?php
-                }
-                ?>
                 <div class="col-md-12">
-                    <?php
-                    if (validation_errors()) {
-                        ?>
-                        <div class="alert alert-danger alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <h4><i class="icon fa fa-ban"></i> Erro</h4>
-                            <?=validation_errors();?>
-                        </div>
-                        <?php
-                    }
-                    ?>
                     <?=form_open("admin/company");?>
                     <div class="form-group">
                         <?=form_label("Nome da empresa:", "name");?>

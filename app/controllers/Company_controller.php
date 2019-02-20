@@ -153,12 +153,12 @@ class Company_controller extends CI_Controller {
 				if ($this->company_model->put($this->input->post())) {
 					$this->session->set_flashdata("success", "Os dados da empresa foram alterados!");
 				}	
-				$this->load->view("admin/admin_company");
+				$this->load->view("admin/company/admin_company");
 			}
 		} else {
 			$company = $this->company_model->get();
 			$this->load->view(
-				'admin/admin_company',
+				'admin/company/admin_company',
 				array(
 					"company" => $company
 				)

@@ -52,7 +52,8 @@ class Company_model extends CI_Model {
                 "zip" => "",
                 "address" => "",
                 "number" => "",
-                "complement" => ""
+                "complement" => "",
+                "inserted_at" => date("Y-m-d H:i:s")
             )
         );
         return $this->db->insert_id();
@@ -75,7 +76,8 @@ class Company_model extends CI_Model {
                 "zip" => $post["zip"],
                 "address" => $post["address"],
                 "number" => $post["number"],
-                "complement" => $post["complement"]
+                "complement" => $post["complement"],
+                "updated_at" => date("Y-m-d H:i:s")
             )
         );
         if ($this->db->affected_rows() == '1') {
