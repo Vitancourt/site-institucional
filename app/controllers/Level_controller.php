@@ -76,18 +76,29 @@ class Level_controller extends CI_Controller {
 			$this->form_validation->set_rules(
 				'name',
 				'Nome',
-				'required|max_length[128]',
+				'required|max_length[128]|is_unique[level.name]',
 				array(
 					"max_length" => "O nome ultrapassou 128 caracteres.",
-					"required" => "Você não preencheu o nome."
+					"required" => "Você não preencheu o nome.",
+					"is_unique" => "O nome já existe"
 				)
 			);
 			$this->form_validation->set_rules(
 				'description',
 				'Descrição',
-				'max_length[256]',
+				'max_length[65000]',
 				array(
-					"max_length[256]" => "A descrição ultrapassou 256 caracteres.",
+					"max_length[65000]" => "A descrição ultrapassou 256 caracteres.",
+				)
+			);
+			$this->form_validation->set_rules(
+				'link',
+				'link',
+				'required|max_length[256]|is_unique[level.link]',
+				array(
+					"max_length" => "O link ultrapassou 256 caracteres.",
+					"required" => "Você não preencheu o link.",
+					"is_unique" => "O link já existe"
 				)
 			);
             if (empty($_FILES["image"]["name"])) {
@@ -163,6 +174,15 @@ class Level_controller extends CI_Controller {
 				'max_length[128]',
 				array(
 					"max_length[128]" => "A descrição ultrapassou 128 caracteres.",
+				)
+			);
+			$this->form_validation->set_rules(
+				'link',
+				'link',
+				'required|max_length[256]',
+				array(
+					"max_length" => "O link ultrapassou 256 caracteres.",
+					"required" => "Você não preencheu o link."
 				)
 			);
             if (!empty($_FILES["image"]["name"])) {

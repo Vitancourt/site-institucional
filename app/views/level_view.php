@@ -21,9 +21,10 @@ if (!empty($level)) {
                     foreach ($level as $l) {
                         ?>
                         <li class="wow fadeInLeft" data-wow-duration="2s" data-wow-delay="300ms">
+                            <a href="<?=site_url($l->link);?>">
                             <div class="portfolio-item">
-                                <img src="<?=base_url("repository/level/".$l->image);?>" class="img-responsive"
-                                style="min-width: 265px; min-height: 265px;" alt="<?=$l->name;?>">
+                                <img src="<?=base_url("repository/level/".$l->image);?>" 
+                                style="width: 100%; height: 360px;" alt="<?=$l->name;?>">
                                 <div class="portfolio-caption">
                                     <h4><?=$l->name;?></h4>
                                     <?php
@@ -35,6 +36,7 @@ if (!empty($level)) {
                                     ?>
                                 </div>
                             </div>
+                            </a>
                         </li>
                         <?php
                     }

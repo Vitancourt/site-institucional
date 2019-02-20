@@ -100,6 +100,22 @@ $this->load->view("admin/admin_header");
                             )
                         );?>
                     </div>
+                    <div class="form-group">
+                        <?=form_label("Link: (Obrigatório. Não utilize espaços e acentos, separe com - ou _)", "link");?>
+                        <?=form_input(
+                            array(
+                                "id" => "link",
+                                "name" => "link",
+                                "type" => "text",
+                                "class" => "form-control",
+                                "placeholder" => "Exemplo: gestao-estrategica",
+                                "maxlength" => "256",
+                                "required" => "true",
+                                "autocomplete" => "off",
+                                "value" => (!empty($level[0]->link))?$level[0]->link:set_value("link")
+                            )
+                        );?>
+                    </div>
                     <div class="form-group col-md-12">
                         <img src="<?=base_url("repository/level/".$level[0]->image);?>" alt="<?=$level[0]->name;?>"
                         style="max-width:300px; max-height:240px;">

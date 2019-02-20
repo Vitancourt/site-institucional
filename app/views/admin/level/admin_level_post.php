@@ -12,8 +12,6 @@ $this->load->view("admin/admin_header");
     $this->load->view("admin/admin_menu");
     $this->load->view("admin/admin_menu_header");
     ?>
-    
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -64,7 +62,7 @@ $this->load->view("admin/admin_header");
                         );?>
                     </div>
                     <div class="form-group">
-                        <?=form_label("Descrição: (256 caracteres)", "description");?>
+                        <?=form_label("Descrição: ", "description");?>
                         <?=form_input(
                             array(
                                 "id" => "description",
@@ -72,7 +70,7 @@ $this->load->view("admin/admin_header");
                                 "type" => "text",
                                 "class" => "form-control",
                                 "placeholder" => "Descrição",
-                                "maxlength" => "256",
+                                "maxlength" => "65000",
                                 "required" => "true",
                                 "autocomplete" => "off",
                                 "value" => set_value("description")
@@ -91,6 +89,22 @@ $this->load->view("admin/admin_header");
                                 "required" => "true",
                                 "autocomplete" => "off",
                                 "value" => set_value("price")
+                            )
+                        );?>
+                    </div>
+                    <div class="form-group">
+                        <?=form_label("Link: (Obrigatório. Não utilize espaços e acentos, separe com - ou _)", "link");?>
+                        <?=form_input(
+                            array(
+                                "id" => "link",
+                                "name" => "link",
+                                "type" => "text",
+                                "class" => "form-control",
+                                "placeholder" => "Exemplo: gestao-estrategica",
+                                "maxlength" => "256",
+                                "required" => "true",
+                                "autocomplete" => "off",
+                                "value" => set_value("link")
                             )
                         );?>
                     </div>

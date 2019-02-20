@@ -134,3 +134,11 @@ $route['admin/module/post'] = 'module_controller/post';
 $route['admin/module/put'] = 'module_controller/put';
 $route['admin/module/put/:num'] = 'module_controller/put';
 $route['admin/module/delete'] = 'module_controller/delete';
+
+
+
+/*
+ *Homepage routes
+ */
+//Level route by click on image
+$route["level/:any"] = "landing/level_controller";

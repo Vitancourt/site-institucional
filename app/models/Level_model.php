@@ -17,7 +17,8 @@ class Level_model extends CI_Model {
                 name,
                 description,
                 price,
-                image")
+                image,
+                link")
                 ->from("level")
                 ->where("id", $id)
                 ->get();
@@ -32,7 +33,8 @@ class Level_model extends CI_Model {
                 name,
                 description,
                 price,
-                image"
+                image,
+                link"
             );
             $query = $this->db->get('level');
             return $query->result();
@@ -53,6 +55,7 @@ class Level_model extends CI_Model {
                 "description" => $post["description"],
                 "price" => $post["price"],
                 "image" => $file_name,
+                "link" => "level/".$post["link"]
             )
         );
         return $this->db->insert_id();
@@ -65,6 +68,7 @@ class Level_model extends CI_Model {
             $data["name"] = $post["name"];
             $data["description"] = $post["description"];
             $data["price"] = $post["price"];
+            $data["link"] = "level/".str_replace("level/", "", $post["link"]);
             if (!empty($file["file_name"])) {
                 $data["image"] = $file["file_name"];
             }
