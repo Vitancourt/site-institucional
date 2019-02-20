@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Modules_model extends CI_Model {
+class Module_model extends CI_Model {
 
 	function __construct()
 	{
@@ -12,8 +12,14 @@ class Modules_model extends CI_Model {
     public function get($id=null)
     {
         if ($id) {
-            $query = $this->db->select("id, name, workas, ordem, facebook, twitter, linkedin, skype, image")
-                ->from("team")
+            $query = $this->db->select(
+                "id,
+                name,
+                description,
+                image,
+                icon"
+            )
+                ->from("module")
                 ->where("id", $id)
                 ->get();
             if ($query->num_rows() > 0) {
@@ -21,10 +27,15 @@ class Modules_model extends CI_Model {
             }
             return false;
         } else {
-            $this->db->order_by("ordem", "asc");
-            
-            $this->db->select("id, name, workas, ordem, facebook, twitter, linkedin, skype, image");
-            $query = $this->db->get('team');
+            $this->db->order_by("name", "asc");
+            $this->db->select(
+                "id,
+                name,
+                description,
+                image,
+                icon"
+            );
+            $query = $this->db->get('module');
             return $query->result();
         }
         return false;
@@ -37,16 +48,12 @@ class Modules_model extends CI_Model {
             $file_name = $file["file_name"];
         }
         $this->db->insert(
-            "team",
+            "module",
             array(
                 "name" => $post["name"],
-                "workas" => $post["workas"],
-                "ordem" => $post["order"],
-                "facebook" => $post["facebook"],
-                "twitter" => $post["twitter"],
-                "linkedin" => $post["linkedin"],
-                "skype" => $post["skype"],
+                "description" => $post["description"],
                 "image" => $file_name,
+                "icon" => $post["icon"]
             )
         );
         return $this->db->insert_id();
@@ -57,17 +64,13 @@ class Modules_model extends CI_Model {
         if ($this->get($post["id"])) {
             $this->db->where("id", $post["id"]);
             $data["name"] = $post["name"];
-            $data["workas"] = $post["workas"];
-            $data["ordem"] = $post["order"];
-            $data["facebook"] = $post["facebook"];
-            $data["twitter"] = $post["twitter"];
-            $data["linkedin"] = $post["linkedin"];
-            $data["skype"] = $post["skype"];
+            $data["description"] = $post["description"];
+            $data["icon"] = $post["icon"];
             if (!empty($file["file_name"])) {
                 $data["image"] = $file["file_name"];
             }
             $this->db->update(
-                'team',
+                'module',
                 $data
             );
             if ($this->db->affected_rows() == '1') {
@@ -81,7 +84,7 @@ class Modules_model extends CI_Model {
     public function delete(int $id)
     {
         $this->db->delete(
-            "team",
+            "module",
             array("id" => $id));
         if ($this->db->affected_rows() == '1') {
             return true;

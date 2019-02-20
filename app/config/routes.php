@@ -124,3 +124,13 @@ $route['admin/level/post'] = 'level_controller/post';
 $route['admin/level/put'] = 'level_controller/put';
 $route['admin/level/put/:num'] = 'level_controller/put';
 $route['admin/level/delete'] = 'level_controller/delete';
+
+
+/*
+ * Admin module routes
+ */
+$route['admin/module'] = 'module_controller';
+$route['admin/module/post'] = 'module_controller/post';
+$route['admin/module/put'] = 'module_controller/put';
+$route['admin/module/put/:num'] = 'module_controller/put';
+$route['admin/module/delete'] = 'module_controller/delete';

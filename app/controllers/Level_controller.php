@@ -87,12 +87,12 @@ class Level_controller extends CI_Controller {
 				'Descrição',
 				'max_length[256]',
 				array(
-					"max_length[65000]" => "A descrição ultrapassou 256 caracteres.",
+					"max_length[256]" => "A descrição ultrapassou 256 caracteres.",
 				)
 			);
             if (empty($_FILES["image"]["name"])) {
                 $this->session->flashdata("error", "Você não inseriu a imagem.");
-                $this->load->view("admin/admin_level_post");
+                $this->load->view("admin/level/admin_level_post");
                 exit();
             }
             $config['upload_path'] = "./repository/level/";

@@ -70,7 +70,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </a>
           <ul class="treeview-menu">
             <li><a href="<?=site_url("admin/level");?>"><i class="fa fa-cubes"></i> Níveis</a></li>
-            <li><a href="<?=site_url("admin/modules");?>"><i class="fa fa-cubes"></i> Módulos</a></li>
+            <li><a href="<?=site_url("admin/module");?>"><i class="fa fa-cubes"></i> Módulos</a></li>
             <li><a href="<?=site_url("admin/tool");?>"><i class="fa fa-cubes"></i> Ferramentas</a></li>
           </ul>
         </li>
