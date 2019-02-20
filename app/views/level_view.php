@@ -21,7 +21,7 @@ if (!empty($level)) {
                     foreach ($level as $l) {
                         ?>
                         <li class="wow fadeInLeft" data-wow-duration="2s" data-wow-delay="300ms">
-                            <a href="<?=site_url($l->link);?>">
+                            <a href="<?=site_url("level/".$l->link);?>">
                             <div class="portfolio-item">
                                 <img src="<?=base_url("repository/level/".$l->image);?>" 
                                 style="width: 100%; height: 360px;" alt="<?=$l->name;?>">

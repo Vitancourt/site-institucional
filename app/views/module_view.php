@@ -18,9 +18,9 @@ if (!empty($module)) {
                     ?>
                     <div class="col-md-3">
                         <div class="services-post">
-                            <a href="#"><i class="<?=$m->icon;?>"></i></a>
+                            <a href="<?=site_url("module/".$m->link);?>"><i class="<?=$m->icon;?>"></i></a>
                             <h2><?=$m->name;?></h2>
-                            <p>Donec odio. Quisque volutpat mattis eros. Nullam malesuada </p>
+                            <p><?=$m->description;?></p>
                         </div>
                     </div>
                     <?php

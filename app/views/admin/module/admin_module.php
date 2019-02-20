@@ -57,7 +57,7 @@ $this->load->view("admin/admin_header");
                                     <?=$module->description;?>
                                 </td>
                                 <td>
-                                    <?=site_url($module->link);?>
+                                    <?=site_url("module/".$module->link);?>
                                 </td>
                                 <td>
                                     <a href="<?=site_url("admin/module/put/".$module->id);?>"

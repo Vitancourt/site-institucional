@@ -80,7 +80,7 @@ class Module_model extends CI_Model {
     public function reduceLink($link)
     {
         return 
-            str_replace("level/", "",
+            str_replace("module/", "",
                 strtolower(
                     str_replace(" ", "-",
                         preg_replace(

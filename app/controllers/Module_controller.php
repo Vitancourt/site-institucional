@@ -182,7 +182,7 @@ class Module_controller extends CI_Controller {
 				)
 			);
 			$valida_link = true;
-			if ($this->module_model->hasLink("level/".$this->input->post("link"), $this->input->post("id"))) {
+			if ($this->module_model->hasLink($this->input->post("link"), $this->input->post("id"))) {
 				$erro[] = "O link já existe";
 				$valida_link = false;
 			}

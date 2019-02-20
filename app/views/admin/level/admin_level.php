@@ -61,7 +61,7 @@ $this->load->view("admin/admin_header");
                                     <?=$level->price;?>
                                 </td>
                                 <td>
-                                    <?=site_url($level->link);?>
+                                    <?=site_url("level/".$level->link);?>
                                 </td>
                                 <td>
                                     <a href="<?=site_url("admin/level/put/".$level->id);?>"
