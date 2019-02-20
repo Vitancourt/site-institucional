@@ -51,7 +51,8 @@ class User_controller extends CI_Controller {
 			$this->load->view(
 				'admin/user/admin_user',
 				array(
-					"array_user" => $array_user
+					"array_user" => $array_user,
+					"page" => "user"
 				)
 			);
 		}
@@ -125,7 +126,12 @@ class User_controller extends CI_Controller {
 				)
 			);
 			if ($this->form_validation->run() == FALSE) {
-				$this->load->view("admin/user/admin_user_post");
+				$this->load->view(
+					"admin/user/admin_user_post",
+					array(
+						"page" => "user"
+					)
+				);
 			} else {
 				$this->load->model("user_model");
 				if ($this->user_model->post($this->input->post())) {
@@ -137,7 +143,12 @@ class User_controller extends CI_Controller {
 			}
 		} else {
 			$this->load->helper("form");
-			$this->load->view("admin/user/admin_user_post");
+			$this->load->view(
+				"admin/user/admin_user_post",
+				array(
+					"page" => "user"
+				)
+			);
 		}
     }
     
@@ -223,7 +234,12 @@ class User_controller extends CI_Controller {
 				}
 			}
 			if ($this->form_validation->run() == FALSE) {
-				$this->load->view("admin/user/admin_user_put");
+				$this->load->view(
+					"admin/user/admin_user_put",
+					array(
+						"page" => "user"
+					)
+				);
 			} else {
 				if ($this->user_model->put($this->input->post())) {
 					$this->session->set_flashdata("success", "Alterações gravadas!");
@@ -248,7 +264,8 @@ class User_controller extends CI_Controller {
                 $this->load->view(
                     'admin/user/admin_user_put',
                     array(
-                        "user" => $user
+						"user" => $user,
+						"page" => "user"
                     )
                 );
             } else {

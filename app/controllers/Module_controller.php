@@ -30,7 +30,8 @@ class Module_controller extends CI_Controller {
         $this->load->view(
             'admin/module/admin_module',
             array(
-                "array_module" => $array_module
+				"array_module" => $array_module,
+				"page" => "module"
             )
         );
     }
@@ -121,7 +122,12 @@ class Module_controller extends CI_Controller {
 					$erro = implode("<br>", $erro);
 				}
 				$this->session->set_flashdata("error", $erro);
-				$this->load->view("admin/module/admin_module_post");
+				$this->load->view(
+					"admin/module/admin_module_post",
+					array(
+						"page" => "module"
+					)
+				);
 			} else {
 				if (
                     $this->module_model->post(
@@ -137,7 +143,12 @@ class Module_controller extends CI_Controller {
 			}
 		} else {
 			$this->load->helper("form");
-			$this->load->view("admin/module/admin_module_post");
+			$this->load->view(
+				"admin/module/admin_module_post",
+				array(
+					"page" => "module"
+				)
+			);
 		}
     }
     
@@ -237,7 +248,8 @@ class Module_controller extends CI_Controller {
                     'admin/module/admin_module_put',
                     array(
 						"module" => $module,
-						"class_module" => $this->module_model
+						"class_module" => $this->module_model,
+						"page" => "module"
                     )
                 );
             } else {

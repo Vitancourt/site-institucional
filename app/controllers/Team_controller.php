@@ -30,7 +30,8 @@ class Team_controller extends CI_Controller {
         $this->load->view(
             'admin/team/admin_team',
             array(
-                "array_team" => $array_team
+				"array_team" => $array_team,
+				"page" => "team"
             )
         );
     }
@@ -51,7 +52,12 @@ class Team_controller extends CI_Controller {
 				)
 			);
 			if ($this->form_validation->run() == FALSE) {
-				$this->load->view("admin/team/admin_team");
+				$this->load->view(
+					"admin/team/admin_team",
+					array(
+						"page" => "team"
+					)
+				);
 			} else {
 				if ($this->team_model->delete($this->input->post("id"))) {
 					$this->session->set_flashdata("success", "Dados excluídos!");
@@ -132,7 +138,12 @@ class Team_controller extends CI_Controller {
             );
             if (empty($_FILES["image"]["name"])) {
                 $this->session->flashdata("error", "Você não inseriu a imagem.");
-                $this->load->view("admin/admin_team_post");
+                $this->load->view(
+					"admin/admin_team_post",
+					array(
+						"page" => "team"
+					)
+				);
                 exit();
             }
             $config['upload_path'] = "./repository/team/";
@@ -150,7 +161,12 @@ class Team_controller extends CI_Controller {
             }
 			
 			if ($this->form_validation->run() == FALSE) {
-				$this->load->view("admin/team/admin_team_post");
+				$this->load->view(
+					"admin/team/admin_team_post",
+					array(
+						"page" => "team"
+					)
+				);
 			} else {
 				if (
                     $this->team_model->post(
@@ -166,7 +182,12 @@ class Team_controller extends CI_Controller {
 			}
 		} else {
 			$this->load->helper("form");
-			$this->load->view("admin/team/admin_team_post");
+			$this->load->view(
+				"admin/team/admin_team_post",
+				array(
+					"page" => "team"
+				)
+			);
 		}
     }
     
@@ -262,7 +283,12 @@ class Team_controller extends CI_Controller {
                 }
             }
 			if ($this->form_validation->run() == FALSE) {
-				$this->load->view("admin/team/admin_team_put");
+				$this->load->view(
+					"admin/team/admin_team_put",
+					array(
+						"page" => "team"
+					)
+				);
 			} else {
 				if ($this->team_model->put($this->input->post(), $this->upload->data())) {
 					$this->session->set_flashdata("success", "Alterações gravadas!");
@@ -286,7 +312,8 @@ class Team_controller extends CI_Controller {
                 $this->load->view(
                     'admin/team/admin_team_put',
                     array(
-                        "team" => $team
+						"team" => $team,
+						"page" => "team"
                     )
                 );
             } else {

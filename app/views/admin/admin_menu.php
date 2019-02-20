@@ -17,29 +17,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">Navegação</li>
-        <li class="active treeview">
-          <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
-          </ul>
-        </li>
-        <li>
+        <li <?=($page == "user")?"class='active'":"";?>>
           <a href="<?=site_url("admin/user");?>">
             <i class="fa fa-user"></i> <span>Usuários</span>
           </a>
         </li>
-        <li>
+        <li <?=($page == "company")?"class='active'":"";?>>
           <a href="<?=site_url("admin/company");?>">
             <i class="fa fa-building-o"></i> <span>Empresa</span>
           </a>
         </li>
-        <li class="treeview">
+        <li class="
+        treeview
+        <?php
+        if (
+          $page == "banner" ||
+          $page == "about" ||
+          $page == "banner_comments" ||
+          $page == "comments" ||
+          $page == "team"
+        ) {
+          echo "active";
+        }
+        ?>
+        ">
           <a href="#">
             <i class="fa fa-files-o"></i>
             <span>Site</span>
@@ -48,14 +49,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?=site_url("admin/banner");?>"><i class="fa fa-image"></i> Banner principal</a></li>
-            <li><a href="<?=site_url("admin/about");?>"><i class="fa fa-map-o"></i> Sobre</a></li>
-            <li><a href="<?=site_url("admin/comments/banner");?>"><i class="fa fa-image"></i> Banner comentários</a></li>
-            <li><a href="<?=site_url("admin/comments");?>"><i class="fa fa-commenting-o"></i> Comentários</a></li>
-            <li><a href="<?=site_url("admin/team");?>"><i class="fa fa-user-secret"></i> Equipe</a></li>
+            <li <?=($page == "banner")?"class='active'":"";?>>
+              <a href="<?=site_url("admin/banner");?>">
+              <i class="fa fa-image"></i> Banner principal</a>
+            </li>
+            <li <?=($page == "about")?"class='active'":"";?>>
+              <a href="<?=site_url("admin/about");?>"><i class="fa fa-map-o"></i> Sobre</a>
+            </li>
+            <li <?=($page == "banner_comments")?"class='active'":"";?>>
+              <a href="<?=site_url("admin/comments/banner");?>"><i class="fa fa-image"></i> Banner comentários</a>
+            </li>
+            <li <?=($page == "comments")?"class='active'":"";?>>
+              <a href="<?=site_url("admin/comments");?>"><i class="fa fa-commenting-o"></i> Comentários</a>
+            </li>
+            <li <?=($page == "team")?"class='active'":"";?>>
+              <a href="<?=site_url("admin/team");?>"><i class="fa fa-user-secret"></i> Equipe</a>
+            </li>
           </ul>
         </li>
-        <li class="treeview">
+        <li class="
+        treeview
+        <?php
+        if (
+          $page == "level" ||
+          $page == "module" ||
+          $page == "tool"
+        ) {
+          echo "active";
+        }
+        ?>
+        ">
           <a href="#">
             <i class="fa fa-cubes"></i>
             <span>SGT</span>
@@ -64,9 +87,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?=site_url("admin/level");?>"><i class="fa fa-cubes"></i> Níveis</a></li>
-            <li><a href="<?=site_url("admin/module");?>"><i class="fa fa-cubes"></i> Módulos</a></li>
-            <li><a href="<?=site_url("admin/tool");?>"><i class="fa fa-cubes"></i> Ferramentas</a></li>
+            <li <?=($page == "level")?"class='active'":"";?>>
+              <a href="<?=site_url("admin/level");?>"><i class="fa fa-cubes"></i> Níveis</a>
+            </li>
+            <li <?=($page == "module")?"class='active'":"";?>>
+              <a href="<?=site_url("admin/module");?>"><i class="fa fa-cubes"></i> Módulos</a>
+            </li>
+            <li <?=($page == "tool")?"class='active'":"";?>>
+              <a href="<?=site_url("admin/tool");?>"><i class="fa fa-cubes"></i> Ferramentas</a>
+            </li>
           </ul>
         </li>
         <li class="treeview">

@@ -79,7 +79,12 @@ class About_controller extends CI_Controller {
 				}
 			}
 			if ($this->form_validation->run() == FALSE) {
-				$this->load->view("admin/about/admin_about");
+				$this->load->view(
+					"admin/about/admin_about",
+					array(
+						"page" => "about"
+					)
+				);
 			} else {
 				if ($this->about_model->put($this->input->post(), $this->upload->data())) {
 					$this->session->set_flashdata("success", "Sobre gravado!");
@@ -92,7 +97,8 @@ class About_controller extends CI_Controller {
         $this->load->view(
             "admin/about/admin_about",
             array(
-                "about" => $this->about_model->get()
+				"about" => $this->about_model->get(),
+				"page" => "about"
             )
         );
 	}

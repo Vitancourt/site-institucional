@@ -30,7 +30,8 @@ class Level_controller extends CI_Controller {
         $this->load->view(
             'admin/level/admin_level',
             array(
-                "array_level" => $array_level
+				"array_level" => $array_level,
+				"page" => "level"
             )
         );
     }
@@ -103,7 +104,12 @@ class Level_controller extends CI_Controller {
 			);
             if (empty($_FILES["image"]["name"])) {
                 $this->session->flashdata("error", "Você não inseriu a imagem.");
-                $this->load->view("admin/level/admin_level_post");
+                $this->load->view(
+					"admin/level/admin_level_post",
+					array(
+						"page" => "level"
+					)
+				);
                 exit();
             }
             $config['upload_path'] = "./repository/level/";
@@ -121,7 +127,12 @@ class Level_controller extends CI_Controller {
             }
 			
 			if ($this->form_validation->run() == FALSE) {
-				$this->load->view("admin/level/admin_level_post");
+				$this->load->view(
+					"admin/level/admin_level_post",
+					array(
+						"page" => "level"
+					)
+				);
 			} else {
 				if (
                     $this->level_model->post(
@@ -137,7 +148,12 @@ class Level_controller extends CI_Controller {
 			}
 		} else {
 			$this->load->helper("form");
-			$this->load->view("admin/level/admin_level_post");
+			$this->load->view(
+				"admin/level/admin_level_post",
+				array(
+					"page" => "level"
+				)
+			);
 		}
     }
     
@@ -248,7 +264,8 @@ class Level_controller extends CI_Controller {
                     'admin/level/admin_level_put',
                     array(
 						"level" => $level,
-						"class_level" => $this->level_model
+						"class_level" => $this->level_model,
+						"page" => "level"
                     )
                 );
             } else {

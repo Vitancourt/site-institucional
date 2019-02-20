@@ -51,7 +51,8 @@ class Comments_controller extends CI_Controller {
 			$this->load->view(
 				'admin/comments/admin_comments',
 				array(
-					"comments" => $array_comments
+					"comments" => $array_comments,
+					"page" => "comments"
 				)
 			);
 		}
@@ -101,7 +102,12 @@ class Comments_controller extends CI_Controller {
 			}
 		} else {
 			$this->load->helper("form");
-			$this->load->view("admin/comments/admin_comments_post");
+			$this->load->view(
+				"admin/comments/admin_comments_post",
+				array(
+					"page" => "comments"
+				)
+			);
 		}
     }
     
@@ -149,7 +155,12 @@ class Comments_controller extends CI_Controller {
 				}
 			}
 			if ($this->form_validation->run() == FALSE) {
-				$this->load->view("admin/admin_comments_post");
+				$this->load->view(
+					"admin/admin_comments_post",
+					array(
+						"page" => "comments"
+					)
+				);
 			} else {
 				if ($this->comments_model->put($this->input->post(), $this->upload->data())) {
 					$this->session->set_flashdata("success", "Comentário cadastrado!");
@@ -173,7 +184,8 @@ class Comments_controller extends CI_Controller {
                 $this->load->view(
                     'admin/comments/admin_comments_put',
                     array(
-                        "comment" => $comment
+						"comment" => $comment,
+						"page" => "comments"
                     )
                 );
             } else {
@@ -241,7 +253,8 @@ class Comments_controller extends CI_Controller {
 			$this->load->view(
 				'admin/comments_banner/admin_comments_banner',
 				array(
-					"array_comments" => $array_comments
+					"array_comments" => $array_comments,
+					"page" => "banner_comments"
 				)
 			);
 		}

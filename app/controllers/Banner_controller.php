@@ -50,7 +50,8 @@ class Banner_controller extends CI_Controller {
 			$this->load->view(
 				'admin/banner/admin_banner',
 				array(
-					"array_banner" => $array_banner
+					"array_banner" => $array_banner,
+					"page" => "comments"
 				)
 			);
 		}
@@ -99,7 +100,12 @@ class Banner_controller extends CI_Controller {
 				)
             );
 			if ($this->form_validation->run() == FALSE) {
-				$this->load->view("admin/banner/admin_banner_post");
+				$this->load->view(
+					"admin/banner/admin_banner_post",
+					array(
+						"page" => "banner"
+					)
+				);
 			} else {
 				if ($this->banner_model->post($this->input->post(), $this->upload->data())) {
 					$this->session->set_flashdata("success", "Banner cadastrado!");
@@ -110,7 +116,12 @@ class Banner_controller extends CI_Controller {
 			}
 		} else {
 			$this->load->helper("form");
-			$this->load->view("admin/banner/admin_banner_post");
+			$this->load->view(
+				"admin/banner/admin_banner_post",
+				array(
+					"page" => "banner"
+				)
+			);
 		}
     }
     
@@ -160,7 +171,12 @@ class Banner_controller extends CI_Controller {
 				)
             );
 			if ($this->form_validation->run() == FALSE) {
-				$this->load->view("admin/banner/admin_banner_post");
+				$this->load->view(
+					"admin/banner/admin_banner_post",
+					array(
+						"page" => "banner"
+					)
+				);
 			} else {
 				if ($this->banner_model->put($this->input->post(), $this->upload->data())) {
 					$this->session->set_flashdata("success", "Banner cadastrado!");
@@ -184,7 +200,8 @@ class Banner_controller extends CI_Controller {
                 $this->load->view(
                     'admin/banner/admin_banner_put',
                     array(
-                        "banner" => $banner
+						"banner" => $banner,
+						"page" => "banner"
                     )
                 );
             } else {

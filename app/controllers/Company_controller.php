@@ -160,7 +160,8 @@ class Company_controller extends CI_Controller {
 			$this->load->view(
 				'admin/company/admin_company',
 				array(
-					"company" => $company
+					"company" => $company,
+					"page" => "company"
 				)
 			);
 		}

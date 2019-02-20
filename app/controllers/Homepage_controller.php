@@ -60,7 +60,8 @@ class Homepage_controller extends CI_Controller {
 				"banner_comments" => $this->comments_model->comments_get(),
 				"team" => $this->team_model->get(),
 				"level" => $this->level_model->get(),
-				"module" => $this->module_model->get()
+				"module" => $this->module_model->get(),
+				"page" => "homepage"
 			)
 		);
 	}
