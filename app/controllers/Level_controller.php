@@ -121,7 +121,7 @@ class Level_controller extends CI_Controller {
             }
 			
 			if ($this->form_validation->run() == FALSE) {
-				$this->load->view("admin/admin_level_post");
+				$this->load->view("admin/level/admin_level_post");
 			} else {
 				if (
                     $this->level_model->post(
@@ -165,9 +165,15 @@ class Level_controller extends CI_Controller {
 				'required|max_length[128]',
 				array(
 					"max_length" => "O nome ultrapassou 128 caracteres.",
-					"required" => "Você não preencheu o nome."
+					"required" => "Você não preencheu o nome.",
+					"is_unique" => "O nome já existe!"
 				)
 			);
+			$valid_name = true;
+			if ($this->level_model->hasName($this->input->post("name"), $this->input->post("id")) > 0) {
+				$valid_name = false;
+				$erro[] = "O nome já existe!";
+			}
 			$this->form_validation->set_rules(
 				'description',
 				'Descrição',
@@ -185,6 +191,11 @@ class Level_controller extends CI_Controller {
 					"required" => "Você não preencheu o link."
 				)
 			);
+			$valid_link = true;
+			if ($this->level_model->hasLink($this->input->post("link"), $this->input->post("id")) > 0) {
+				$valid_link = false;
+				$erro[] = "O link já existe!";
+			}
             if (!empty($_FILES["image"]["name"])) {
                 $config['upload_path'] = "./repository/level/";
                 $config['allowed_types'] = 'jpg|png|jpeg';
@@ -199,18 +210,29 @@ class Level_controller extends CI_Controller {
                 if (!$this->upload->do_upload('image')) {
                     $this->session->flashdata("error", $this->upload->display_errors());
                 }
-            }
-			if ($this->form_validation->run() == FALSE) {
-				$this->load->view("admin/level/admin_level_put");
+			}
+			if (
+				$this->form_validation->run() == FALSE ||
+				!$valid_name ||
+				!$valid_link
+			) {
+				$erro[] = validation_errors();
+				if (!empty($erro)) {
+					$erro = implode("<br>", $erro);
+				}
+				$this->session->set_flashdata("error", $erro);
+				redirect("admin/level/put/".$this->uri->segment(4));
+				//$this->load->view("admin/level/admin_level_put");
 			} else {
 				if ($this->level_model->put($this->input->post(), $this->upload->data())) {
 					$this->session->set_flashdata("success", "Alterações gravadas!");
 				} else {
 					$this->session->set_flashdata("error", "Nada alterado");
                 }
-				redirect("admin/level", "location");
+				redirect("admin/level/put/".$this->input->post("id"), "location");
             }
         } else {
+			$this->session->flashdata("error", "O link já existe!");
 			if (
 				empty($this->uri->segment(4)) ||
 				$this->uri->segment(4) == "" ||

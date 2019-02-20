@@ -32,9 +32,10 @@ $this->load->view("admin/admin_header");
             <div class="box box-primary">
                 <?php
                 $this->load->view("admin/level/admin_level_navigation");
+                $value_id = (!empty($level[0]->id))?$level[0]->id:set_value("id");
                 ?>
                 <!-- /.box-header -->
-                <?=form_open_multipart("admin/level/put");?>
+                <?=form_open_multipart("admin/level/put/".$value_id);?>
                 <div class="box-body">
                     <?php
                     if (validation_errors()) {
@@ -116,8 +117,21 @@ $this->load->view("admin/admin_header");
                             )
                         );?>
                     </div>
+                    <?=form_input(
+                        array(
+                            "id" => "imagehidden",
+                            "name" => "imagehidden",
+                            "type" => "hidden",
+                            "autocomplete" => "off",
+                            "value" => (!empty($level[0]->image))?$level[0]->image:set_value("imagehidden")
+                        )
+                    );?>
+                    <?php
+                    $value_image = (!empty($level[0]->image))?$level[0]->image:set_value("imagehidden");
+                    ?>
                     <div class="form-group col-md-12">
-                        <img src="<?=base_url("repository/level/".$level[0]->image);?>" alt="<?=$level[0]->name;?>"
+                        <img src="<?=base_url("repository/level/".$value_image);?>"
+                        alt="<?=(!empty($level[0]->name))?$level[0]->name:set_value("name");?>"
                         style="max-width:300px; max-height:240px;">
                     </div>
                     <div class="form-group">

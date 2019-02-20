@@ -62,7 +62,7 @@ $this->load->view("admin/admin_header");
                         );?>
                     </div>
                     <div class="form-group">
-                        <?=form_label("Descrição: ", "description");?>
+                        <?=form_label("Descrição: (O número de caracteres que aparece no banner é limitado, porém na página do nível aparece completo!)", "description");?>
                         <?=form_input(
                             array(
                                 "id" => "description",

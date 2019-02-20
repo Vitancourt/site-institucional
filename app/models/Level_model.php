@@ -42,6 +42,38 @@ class Level_model extends CI_Model {
         return false;
     }
 
+    public function hasName($name, $id)
+    {
+        $query = $this->db->select(
+            "id,
+            name,
+            description,
+            price,
+            image,
+            link")
+            ->from("level")
+            ->where("name", $name)
+            ->where("id !=", $id)
+            ->get();
+        return ($query->num_rows());
+    }
+
+    public function hasLink($link, $id)
+    {
+        $query = $this->db->select(
+            "id,
+            name,
+            description,
+            price,
+            image,
+            link")
+            ->from("level")
+            ->where("link", $link)
+            ->where("id !=", $id)
+            ->get();
+        return ($query->num_rows());
+    }
+
     public function post($post, $file)
     {   
         $file_name = "";
