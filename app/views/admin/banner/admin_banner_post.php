@@ -12,8 +12,6 @@ $this->load->view("admin/admin_header");
     $this->load->view("admin/admin_menu");
     $this->load->view("admin/admin_menu_header");
     ?>
-    
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -31,22 +29,11 @@ $this->load->view("admin/admin_header");
             <!-- general form elements -->
             <div class="box box-primary">
                 <?php
-                $this->load->view("admin/admin_banner_navigation");
+                $this->load->view("admin/banner/admin_banner_navigation");
                 ?>
                 <!-- /.box-header -->
                 <?=form_open_multipart("admin/banner/post");?>
                 <div class="box-body">
-                    <?php
-                    if (validation_errors()) {
-                        ?>
-                        <div class="alert alert-danger alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <h4><i class="icon fa fa-ban"></i> Erro</h4>
-                            <?=validation_errors();?>
-                        </div>
-                        <?php
-                    }
-                    ?>
                     <div class="form-group">
                         <?=form_label("Texto", "text");?>
                         <?=form_textarea(

@@ -239,7 +239,7 @@ class Comments_controller extends CI_Controller {
 		} else {
 			$array_comments = $this->comments_model->comments_get();
 			$this->load->view(
-				'admin/admin_comments_banner',
+				'admin/comments_banner/admin_comments_banner',
 				array(
 					"array_comments" => $array_comments
 				)

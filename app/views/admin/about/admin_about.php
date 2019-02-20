@@ -19,7 +19,7 @@ $this->load->view("admin/admin_header");
         <!-- Content Header (Page header) -->
         <section class="content-header">
         <h1>
-            Alterar banner
+            Alterar sobre
         </h1>
         </section>
         <!-- Main content -->
@@ -31,29 +31,53 @@ $this->load->view("admin/admin_header");
             <!-- general form elements -->
             <div class="box box-primary">
                 <?php
-                $this->load->view("admin/admin_banner_navigation");
+                $this->load->view("admin/about/admin_about_navigation");
                 ?>
                 <!-- /.box-header -->
-                <?=form_open_multipart("admin/banner/put");?>
-                <?=form_input(
-                    array(
-                        "type" => "hidden",
-                        "name" => "id",
-                        "value" => $banner[0]->id
-                    )
-                );?>
+                <?=form_open_multipart("admin/about");?>
                 <div class="box-body">
-                    <?php
-                    if (validation_errors()) {
-                        ?>
-                        <div class="alert alert-danger alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <h4><i class="icon fa fa-ban"></i> Erro</h4>
-                            <?=validation_errors();?>
-                        </div>
-                        <?php
-                    }
-                    ?>
+                    <div class="form-group">
+                        <?=form_label("Missão", "mission");?>
+                        <?=form_textarea(
+                            array(
+                                "id" => "mission",
+                                "name" => "mission",
+                                "type" => "text",
+                                "class" => "form-control",
+                                "autocomplete" => "off",
+                                "rows" => "2",
+                                "value" => ($about[0]->mission)?$about[0]->mission:set_value("mission")
+                            )
+                        );?>
+                    </div>
+                    <div class="form-group">
+                        <?=form_label("Visão", "vision");?>
+                        <?=form_textarea(
+                            array(
+                                "id" => "vision",
+                                "name" => "vision",
+                                "type" => "text",
+                                "class" => "form-control",
+                                "autocomplete" => "off",
+                                "rows" => "2",
+                                "value" => ($about[0]->vision)?$about[0]->vision:set_value("vision")
+                            )
+                        );?>
+                    </div>
+                    <div class="form-group">
+                        <?=form_label("Valores", "value");?>
+                        <?=form_textarea(
+                            array(
+                                "id" => "value",
+                                "name" => "value",
+                                "type" => "text",
+                                "class" => "form-control",
+                                "autocomplete" => "off",
+                                "rows" => "2",
+                                "value" => ($about[0]->value)?$about[0]->value:set_value("value")
+                            )
+                        );?>
+                    </div>
                     <div class="form-group">
                         <?=form_label("Texto", "text");?>
                         <?=form_textarea(
@@ -64,16 +88,16 @@ $this->load->view("admin/admin_header");
                                 "class" => "form-control",
                                 "autocomplete" => "off",
                                 "rows" => "2",
-                                "value" => ($banner[0]->text)?$banner[0]->text:set_value("text")
+                                "value" => ($about[0]->text)?$about[0]->text:set_value("text")
                             )
                         );?>
                     </div>
                     <div class="form-group">
-                        <img style="max-width: 360px; max-height: 240px;"
-                        src="<?=base_url("repository/banner_homepage/".$banner[0]->image);?>">
+                        <img style="max-width: 360px; max-heigth: 240px;"
+                        src="<?=(!empty($about[0]->image))?base_url("repository/about/".$about[0]->image):"";?>">
                     </div>
                     <div class="form-group">
-                        <?=form_label("Imagem: (Tamanho máximo 1mb, resolução 1024, 768)", "image");?>
+                        <?=form_label("Imagem: (Só inserir caso queira alterarg)", "image");?>
                         <?=form_upload(
                             array(
                                 "id" => "image",
@@ -86,17 +110,17 @@ $this->load->view("admin/admin_header");
                         );?>
                     </div>
                     <div class="form-group">
-                        <?=form_label("Ordem:", "order");?>
+                        <?=form_label("Legenda da imagem:", "caption");?>
                         <?=form_input(
                             array(
-                                "id" => "order",
-                                "name" => "order",
-                                "type" => "number",
+                                "id" => "caption",
+                                "name" => "caption",
+                                "type" => "text",
                                 "class" => "form-control",
-                                "placeholder" => "Ordem",
+                                "placeholder" => "Legenda",
                                 "required" => "false",
                                 "autocomplete" => "off",
-                                "value" => ($banner[0]->order)?$banner[0]->order:set_value("order")
+                                "value" => ($about[0]->caption)?$about[0]->caption:set_value("caption")
                             )
                         );?>
                     </div>
@@ -126,7 +150,10 @@ $this->load->view("admin/admin_footer");
 ?>
 <script>
     $(function () {
-        CKEDITOR.replace('text')
+        CKEDITOR.replace('text');
+        CKEDITOR.replace('mission');
+        CKEDITOR.replace('vision');
+        CKEDITOR.replace('value');
     })
 </script>
 </body>

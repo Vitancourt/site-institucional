@@ -115,6 +115,7 @@ class Comments_model extends CI_Model {
     public function comments_post($file)
     {
         $data["image"] = $file["file_name"];
+        $data["inserted_at"] = date("Y-m-d H:i:s");
         $this->db->insert(
             "banner_comments",
             $data
@@ -124,12 +125,11 @@ class Comments_model extends CI_Model {
 
     public function comments_put($file)
     {   
-        //var_dump($file);
-        //exit();
         if ($this->comments_get()) {
             if (!empty($file["file_name"])) {
                 $data["image"] = $file["file_name"];
             }
+            $data["updated_at"] = date("Y-m-d H:i:s");
             $this->db->update(
                 'banner_comments',
                 $data  

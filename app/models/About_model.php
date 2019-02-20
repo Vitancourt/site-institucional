@@ -54,7 +54,8 @@ class About_model extends CI_Model {
                 "image" => NULL,
                 "mission" => NULL,
                 "vision" => NULL,
-                "valua" => NULL
+                "value" => NULL,
+                "inserted_at" => date("Y-m-d H:i:s")
             )
         );
     }
@@ -66,6 +67,7 @@ class About_model extends CI_Model {
         $data["mission"] = $post["mission"];
         $data["vision"] = $post["value"];
         $data["value"] = $post["value"];
+        $data["updated_at"] = date("Y-m-d H:i:s");
         if (!empty($file["file_name"])) {
             $data["image"] = $file["file_name"];
         }

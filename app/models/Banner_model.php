@@ -46,7 +46,8 @@ class Banner_model extends CI_Model {
             array(
                 "text" => $post["text"],
                 "image" => $file["file_name"],
-                "order" => $post["order"]
+                "order" => $post["order"],
+                "inserted_at" => date("Y-m-d")
             )
         );
         return $this->db->insert_id();
@@ -57,6 +58,7 @@ class Banner_model extends CI_Model {
         if ($this->get($post["id"])) {
             $data["text"] = $post["text"];
             $data["order"] = $post["order"];
+            $data["updated_at"] = date("Y-m-d");
             if (!empty($file["file_name"])) {
                 $data["image"] = $file["file_name"];
             }
