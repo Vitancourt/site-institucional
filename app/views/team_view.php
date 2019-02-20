@@ -21,16 +21,17 @@ if (!empty($team)) {
             $quantidade = count($team);
             $i = 1;
             foreach ($team as $t) {
-                if ($i == 1) {
+                if ($i == 1 || $i == 4) {
                     ?>
-                    <div class="row">
+                    <div class="row" id="row-<?=$i;?>">
                     <?php
                 }
                 ?>
-                    <div class="col-md-4 col-xl-12 col-xs-12 wow fadeInLeft" data-wow-duration="2s" data-wow-delay="300ms">
-                        <div class="team-member">
+                    <div class="col-md-4 col-xl-12 col-xs-12 wow fadeInLeft" data-wow-duration="2s" data-wow-delay="300ms"
+                    id="team-<?=$i;?>">
+                        <div class="team-member" align="center">
                             <img src="<?=base_url("repository/team/".$t->image);?>" class="img-responsive"
-                            alt="<?=$t->name;?>" style="min-width: 262.5px; min-height: 262.5px">
+                            alt="<?=$t->name;?>" style="min-width: 262.5px; min-height: 262.5; max-width: 263px; max-height: 263px;">
                             <div class="team-details">
                                 <h4><?=$t->name;?></h4>
                                 <?php
@@ -73,6 +74,7 @@ if (!empty($team)) {
                     </div><!-- / .row-->
                     <?php
                 }
+                $i++;
                 ?>
                 <?php
             }
