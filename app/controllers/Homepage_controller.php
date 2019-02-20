@@ -29,6 +29,7 @@ class Homepage_controller extends CI_Controller {
 		$this->load->model("comments_model");
 		$this->load->model("team_model");
 		$this->load->model("level_model");
+		$this->load->model("module_model");
 	}
 
 	public function index()
@@ -43,7 +44,8 @@ class Homepage_controller extends CI_Controller {
 				"comments" => $this->comments_model->getHomepage(),
 				"banner_comments" => $this->comments_model->comments_get(),
 				"team" => $this->team_model->get(),
-				"level" => $this->level_model->get()
+				"level" => $this->level_model->get(),
+				"module" => $this->module_model->get()
 			)
 		);
 	}
