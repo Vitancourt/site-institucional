@@ -44,7 +44,7 @@ class Tool_model extends CI_Model {
     {   
         $file_name = "";
         if (!empty($file["file_name"])) {
-            $file_name = $file["file_name"];
+            $file_name = $file["file_namea"];
         }
         $this->db->insert(
             "level",
